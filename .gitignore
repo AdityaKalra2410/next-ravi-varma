@@ -1,0 +1,12 @@
+# Images and weights live on Hugging Face Hub / Drive, not in git
+data/raw/
+data/processed/
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+outputs/
+wandb/
+__pycache__/
+.ipynb_checkpoints/
+.env
