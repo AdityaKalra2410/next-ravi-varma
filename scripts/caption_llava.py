@@ -6,7 +6,7 @@ Output: data/metadata_tags.csv  -> one row per painting, one column per template
 
 Run from the repo root on a GPU (Colab T4 is enough):
     pip install -q transformers accelerate bitsandbytes
-    python scripts/caption_llava.py --limit 3      # test on 3 images first
+    python scripts/caption_llava.py --limit 3 --overwrite   # test on 3 images first
     python scripts/caption_llava.py                # full run (resumes if interrupted)
     python scripts/caption_llava.py --dry-run      # just print the prompts, no model
 """
@@ -18,8 +18,8 @@ from caption import clean_title  # reuse the regex title cleaner
 
 # ---- the rigid template (Step 3) ----
 FIELDS = {
-    "figures":     "who/what is visible, with count and gender",
-    "characters":  "named people, only if the title identifies them, else none",
+    "figures":     "each main person or animal visible, each with a short description, not just a number",
+    "characters":  "only names written in the title, else none",
     "attire":      "clothing, colours, jewellery, crowns",
     "pose":        "body position, gesture, gaze",
     "action":      "what is happening, or none for a still portrait",
@@ -34,11 +34,12 @@ PROMPT = """This is the oil painting "{title}" by Raja Ravi Varma.
 Describe it by filling in the template below.
 
 Rules:
-- Use short phrases separated by commas, not full sentences (e.g. "woman in yellow sari, sitting under a tree").
-- Describe only what is actually visible in the image. Use the title only to name the characters.
+- Use short phrases separated by commas, not full sentences.
+- Describe only what you can actually see in the image. Do not add people or events from the story that are not visible.
+- Mention each thing once. Do not repeat phrases.
 - Do not mention painting style or technique, except in the lighting and palette fields.
 - If a field does not apply, write none.
-- Keep every label exactly as written, one field per line, nothing else.
+- Keep every label exactly as written, one field per line. Stop after the palette line and write nothing else.
 
 {template}"""
 
@@ -80,7 +81,9 @@ def main():
     ap.add_argument("--review", default="data/captions_review.csv")
     ap.add_argument("--images", default="data/images")
     ap.add_argument("--out", default="data/metadata_tags.csv")
-    ap.add_argument("--model", default="llava-hf/llava-1.5-7b-hf")
+    ap.add_argument("--model", default="llava-hf/llava-v1.6-mistral-7b-hf",
+                    help="LLaVA-NeXT (v1.6) by default; llava-hf/llava-1.5-7b-hf also works")
+    ap.add_argument("--overwrite", action="store_true", help="delete old output and start fresh")
     ap.add_argument("--no-4bit", action="store_true", help="load in fp16 (needs ~15 GB VRAM)")
     ap.add_argument("--limit", type=int, default=0, help="only process the first N images (testing)")
     ap.add_argument("--dry-run", action="store_true")
@@ -100,6 +103,8 @@ def main():
     # resume: skip images already in the output file
     cols = ["filename", "title", "split", *FIELDS, "parse_ok", "checked", "raw"]
     done = set()
+    if args.overwrite and Path(args.out).exists():
+        Path(args.out).unlink()
     if Path(args.out).exists():
         done = {r["filename"] for r in csv.DictReader(open(args.out, encoding="utf-8"))}
     todo = [r for r in rows if r["filename"] not in done]
@@ -109,12 +114,14 @@ def main():
 
     import torch
     from PIL import Image
-    from transformers import AutoProcessor, LlavaForConditionalGeneration, BitsAndBytesConfig
+    from transformers import (AutoProcessor, BitsAndBytesConfig,
+                              LlavaForConditionalGeneration, LlavaNextForConditionalGeneration)
 
     if not torch.cuda.is_available():
         sys.exit("No GPU found. In Colab: Runtime > Change runtime type > T4 GPU.")
     quant = None if args.no_4bit else BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16)
-    model = LlavaForConditionalGeneration.from_pretrained(
+    ModelCls = LlavaNextForConditionalGeneration if "v1.6" in args.model else LlavaForConditionalGeneration
+    model = ModelCls.from_pretrained(
         args.model, torch_dtype=torch.float16, quantization_config=quant, device_map="auto")
     proc = AutoProcessor.from_pretrained(args.model)
 
@@ -130,7 +137,8 @@ def main():
             prompt = proc.apply_chat_template(conv, add_generation_prompt=True)
             inputs = proc(images=img, text=prompt, return_tensors="pt").to(model.device, torch.float16)
             with torch.no_grad():
-                ids = model.generate(**inputs, max_new_tokens=300, do_sample=False)
+                ids = model.generate(**inputs, max_new_tokens=250, do_sample=False,
+                                     repetition_penalty=1.15)
             text = proc.decode(ids[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
 
             tags = parse(text)
