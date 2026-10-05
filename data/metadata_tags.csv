@@ -1,0 +1,1768 @@
+filename,title,split,figures,characters,attire,pose,action,setting,composition,mood,lighting,palette,parse_ok,checked,raw
+rrv_0006.jpg,Bheeshma oath,train,"man with red cap, man in white dhoti, woman in blue dress, child, rooster, chicken, man in turban",none,"red cap, white dhoti with belt, blue dress with red trim, orange-red dhoti, white turban","man gesturing upward, man holding cap, woman standing, child standing, man in turban standing",man offering cap to another man,"village with thatched hut, chickens, distant buildings",full scene with multiple figures,"solemn, ceremonial","soft, diffused daylight","reds, whites, earth tones, blues",y,,"{
+  ""figures"": [
+    ""man with red cap"",
+    ""man in white dhoti"",
+    ""woman in blue dress"",
+    ""child"",
+    ""rooster"",
+    ""chicken"",
+    ""man in turban""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""red cap"",
+    ""white dhoti with belt"",
+    ""blue dress with red trim"",
+    ""orange-red dhoti"",
+    ""white turban""
+  ],
+  ""pose"": [
+    ""man gesturing upward"",
+    ""man holding cap"",
+    ""woman standing"",
+    ""child standing"",
+    ""man in turban standing""
+  ],
+  ""action"": ""man offering cap to another man"",
+  ""setting"": ""village with thatched hut, chickens, distant buildings"",
+  ""composition"": ""full scene with multiple figures"",
+  ""mood"": ""solemn, ceremonial"",
+  ""lighting"": ""soft, diffused daylight"",
+  ""palette"": ""reds, whites, earth tones, blues""
+}"
+rrv_0008.jpg,Draupadi Vastraharan,train,"woman in red sari, man holding her sari, man in green and gold robe, bearded man in white robe, men in turbans",Draupadi,"red sari with gold trim, green and gold robe with belt, blue turban with jewels, necklaces and bangles, turbaned men in robes","woman standing with sari pulled, man holding sari, man standing with hands on hips, bearded man seated","sari being torn, men surrounding","ornate palace hall, red curtains, golden throne, arched doorways","full scene, central focus on woman and man","dramatic, tense","soft illumination from above, shadows under figures","reds, greens, gold, blue",y,,"{
+  ""figures"": ""woman in red sari"", ""man holding her sari"", ""man in green and gold robe"", ""bearded man in white robe"", ""men in turbans"",
+  ""characters"": ""Draupadi"",
+  ""attire"": ""red sari with gold trim"", ""green and gold robe with belt"", ""blue turban with jewels"", ""necklaces and bangles"", ""turbaned men in robes"",
+  ""pose"": ""woman standing with sari pulled"", ""man holding sari"", ""man standing with hands on hips"", ""bearded man seated"",
+  ""action"": ""sari being torn"", ""men surrounding"",
+  ""setting"": ""ornate palace hall"", ""red curtains"", ""golden throne"", ""arched doorways"",
+  ""composition"": ""full scene"", ""central focus on woman and man"",
+  ""mood"": ""dramatic"", ""tense"",
+  ""lighting"": ""soft illumination from above"", ""shadows under figures"",
+  ""palette"": ""reds"", ""greens"", ""gold"", ""blue""
+}"
+rrv_0011.jpg,Droupathi in Virata's Palace,train,"man in ornate armor, bearded man in pink robe, man in blue robe, woman in red dress, kneeling man, seated royal figure, group of men in red turbans, man in white robe, woman in blue sari, woman in pink sari",Droupathi,"ornate golden armor with tassels, pink draped robe, blue robe with gold trim, red dress with white bodice, white robe with pink sash, blue sari with jewelry, pink sari with jewelry, red turbans with white robes, golden crown and jewelry","man dancing with arms raised, bearded man gesturing forward, woman lying prone on rug, seated royal figure resting hand on chin, kneeling man bowing, man standing with hands clasped","dancing, gesturing, lying down, bowing, sitting in throne","palatial hall with pillars, red curtains, ornate throne, patterned rug, wooden doors, green drapery","full scene with multiple figures, central focus on dancing man, staged arrangement around throne","dramatic, regal, tense","soft illumination from left, warm glow on central figures","reds, pinks, blues, gold, cream",y,,"{
+  ""figures"": [
+    ""man in ornate armor"",
+    ""bearded man in pink robe"",
+    ""man in blue robe"",
+    ""woman in red dress"",
+    ""kneeling man"",
+    ""seated royal figure"",
+    ""group of men in red turbans"",
+    ""man in white robe"",
+    ""woman in blue sari"",
+    ""woman in pink sari""
+  ],
+  ""characters"": [
+    ""Droupathi""
+  ],
+  ""attire"": [
+    ""ornate golden armor with tassels"",
+    ""pink draped robe"",
+    ""blue robe with gold trim"",
+    ""red dress with white bodice"",
+    ""white robe with pink sash"",
+    ""blue sari with jewelry"",
+    ""pink sari with jewelry"",
+    ""red turbans with white robes"",
+    ""golden crown and jewelry""
+  ],
+  ""pose"": [
+    ""man dancing with arms raised"",
+    ""bearded man gesturing forward"",
+    ""woman lying prone on rug"",
+    ""seated royal figure resting hand on chin"",
+    ""kneeling man bowing"",
+    ""man standing with hands clasped""
+  ],
+  ""action"": [
+    ""dancing"",
+    ""gesturing"",
+    ""lying down"",
+    ""bowing"",
+    ""sitting in throne""
+  ],
+  ""setting"": [
+    ""palatial hall with pillars"",
+    ""red curtains"",
+    ""ornate throne"",
+    ""patterned rug"",
+    ""wooden doors"",
+    ""green drapery""
+  ],
+  ""composition"": [
+    ""full scene with multiple figures"",
+    ""central focus on dancing man"",
+    ""staged arrangement around throne""
+  ],
+  ""mood"": [
+    ""dramatic"",
+    ""regal"",
+    ""tense""
+  ],
+  ""lighting"": [
+    ""soft illumination from left"",
+    ""warm glow on central figures""
+  ],
+  ""palette"": [
+    ""reds"",
+    ""pinks"",
+    ""blues"",
+    ""gold"",
+    ""cream""
+  ]
+}"
+rrv_0012.jpg,Droupathi in Virata's Palace,train,"bearded man seated on throne, woman in blue sari, woman in pink sari, man standing in white dhoti, man kneeling in maroon dhoti",none,"red and gold robe, blue sari with pearl necklace, pink sari with gold border, white dhoti with pink waistcloth, maroon dhoti with white lower garment","seated with hand to chin, standing with sword at side, kneeling with hands clasped, standing behind throne, sitting on throne",court scene with kneeling subject before royal figure,palatial interior with red drapery and green throne,vertical full scene with hierarchical arrangement,"formal, solemn, regal",soft directional light from upper left,"reds, greens, golds, maroons, whites",y,,"{
+  ""figures"": [
+    ""bearded man seated on throne"",
+    ""woman in blue sari"",
+    ""woman in pink sari"",
+    ""man standing in white dhoti"",
+    ""man kneeling in maroon dhoti""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""red and gold robe"",
+    ""blue sari with pearl necklace"",
+    ""pink sari with gold border"",
+    ""white dhoti with pink waistcloth"",
+    ""maroon dhoti with white lower garment""
+  ],
+  ""pose"": [
+    ""seated with hand to chin"",
+    ""standing with sword at side"",
+    ""kneeling with hands clasped"",
+    ""standing behind throne"",
+    ""sitting on throne""
+  ],
+  ""action"": ""court scene with kneeling subject before royal figure"",
+  ""setting"": ""palatial interior with red drapery and green throne"",
+  ""composition"": ""vertical full scene with hierarchical arrangement"",
+  ""mood"": ""formal, solemn, regal"",
+  ""lighting"": ""soft directional light from upper left"",
+  ""palette"": ""reds, greens, golds, maroons, whites""
+}"
+rrv_0022.jpg,Kerala Varma Valiya Koil Thampuran,test,"man with white turban, man wearing blue robe",Kerala Varma Valiya Koil Thampuran,"blue velvet robe with gold trim, layered necklaces, white turban with gold embellishment, pearl earring","standing upright, facing forward, hand holding book",holding a red-bound book,"indoor with dark backdrop, ornate chair, wooden cabinet with books",single-figure portrait centered in frame,"formal, dignified",soft frontal illumination,"deep blue, gold, white, dark brown",y,,"{
+  ""figures"": [
+    ""man with white turban"",
+    ""man wearing blue robe""
+  ],
+  ""characters"": ""Kerala Varma Valiya Koil Thampuran"",
+  ""attire"": ""blue velvet robe with gold trim, layered necklaces, white turban with gold embellishment, pearl earring"",
+  ""pose"": ""standing upright, facing forward, hand holding book"",
+  ""action"": ""holding a red-bound book"",
+  ""setting"": ""indoor with dark backdrop, ornate chair, wooden cabinet with books"",
+  ""composition"": ""single-figure portrait centered in frame"",
+  ""mood"": ""formal, dignified"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""deep blue, gold, white, dark brown""
+}"
+rrv_0027.jpg,Ladies in the Moonlight,test,"woman in dark sari, woman in white sari",none,"dark sari with gold trim, white sari with gold trim, necklaces, bracelets, earrings, feathered fan","standing woman holding fan near seated woman's face, seated woman resting head on hand",one woman gently touching the other’s face with a fan,"stone balcony with balustrade, trees in background, scattered petals","two figures centered on balcony, framed by railing and sky","intimate, serene, contemplative","soft ambient light from above, shadows cast on ground","blue-grey, white, gold, earth tones",y,,"{
+  ""figures"": [
+    ""woman in dark sari"",
+    ""woman in white sari""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""dark sari with gold trim"",
+    ""white sari with gold trim"",
+    ""necklaces"",
+    ""bracelets"",
+    ""earrings"",
+    ""feathered fan""
+  ],
+  ""pose"": [
+    ""standing woman holding fan near seated woman's face"",
+    ""seated woman resting head on hand""
+  ],
+  ""action"": ""one woman gently touching the other’s face with a fan"",
+  ""setting"": ""stone balcony with balustrade, trees in background, scattered petals"",
+  ""composition"": ""two figures centered on balcony, framed by railing and sky"",
+  ""mood"": ""intimate, serene, contemplative"",
+  ""lighting"": ""soft ambient light from above, shadows cast on ground"",
+  ""palette"": ""blue-grey, white, gold, earth tones""
+}"
+rrv_0028.jpg,Lady making a garland,train,"woman with long dark hair, woman wearing white garment",Lady making a garland,"white draped garment with black trim, gold jewelry, nose ring, earrings, necklace","seated, looking toward viewer, hands holding thread and flowers",making a floral garland,"indoor, near table with flowers and cup, red curtain behind","single-figure portrait, seated at table","calm, focused, elegant",soft directional light from front-left,"white, red, gold, pink, brown",y,,"{
+  ""figures"": [
+    ""woman with long dark hair"",
+    ""woman wearing white garment""
+  ],
+  ""characters"": ""Lady making a garland"",
+  ""attire"": ""white draped garment with black trim, gold jewelry, nose ring, earrings, necklace"",
+  ""pose"": ""seated, looking toward viewer, hands holding thread and flowers"",
+  ""action"": ""making a floral garland"",
+  ""setting"": ""indoor, near table with flowers and cup, red curtain behind"",
+  ""composition"": ""single-figure portrait, seated at table"",
+  ""mood"": ""calm, focused, elegant"",
+  ""lighting"": ""soft directional light from front-left"",
+  ""palette"": ""white, red, gold, pink, brown""
+}"
+rrv_0040.jpg,Malabar Beauty,train,young woman,Malabar Beauty,"white draped garment, gold necklace with gemstones, gold earrings, gold nose ring, gold bangle, gold rings, red bindi, flower in hair","head slightly tilted, gazing forward, hands holding fabric",holding fabric over chest,dark background,"single-figure portrait, close-up bust","serene, composed",soft frontal illumination,"warm skin tones, gold, white, dark brown",y,,"{
+  ""figures"": [
+    ""young woman""
+  ],
+  ""characters"": [
+    ""Malabar Beauty""
+  ],
+  ""attire"": [
+    ""white draped garment"",
+    ""gold necklace with gemstones"",
+    ""gold earrings"",
+    ""gold nose ring"",
+    ""gold bangle"",
+    ""gold rings"",
+    ""red bindi"",
+    ""flower in hair""
+  ],
+  ""pose"": [
+    ""head slightly tilted"",
+    ""gazing forward"",
+    ""hands holding fabric""
+  ],
+  ""action"": [
+    ""holding fabric over chest""
+  ],
+  ""setting"": [
+    ""dark background""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""close-up bust""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""composed""
+  ],
+  ""lighting"": [
+    ""soft frontal illumination""
+  ],
+  ""palette"": [
+    ""warm skin tones"",
+    ""gold"",
+    ""white"",
+    ""dark brown""
+  ]
+}"
+rrv_0041.jpg,Malayali Lady,train,woman with dark hair,Malayali Lady,"white draped garment, necklace with red gemstones, earrings, bracelets, ring with blue stone","side profile, gazing right, hand resting on shoulder",none,dark circular background,"oval frame, single-figure portrait","serene, pensive",soft directional light from left,"white, black, skin tones, deep blue",y,,"{
+  ""figures"": [""woman with dark hair""],
+  ""characters"": [""Malayali Lady""],
+  ""attire"": [""white draped garment"", ""necklace with red gemstones"", ""earrings"", ""bracelets"", ""ring with blue stone""],
+  ""pose"": [""side profile"", ""gazing right"", ""hand resting on shoulder""],
+  ""action"": [""none""],
+  ""setting"": [""dark circular background""],
+  ""composition"": [""oval frame"", ""single-figure portrait""],
+  ""mood"": [""serene"", ""pensive""],
+  ""lighting"": [""soft directional light from left""],
+  ""palette"": [""white"", ""black"", ""skin tones"", ""deep blue""]
+}"
+rrv_0043.jpg,Mohini,test,woman on swing,Mohini,"white draped garment, gold trim, necklace, bracelets","arms raised holding swing ropes, head tilted upward, legs extended","sitting on swing, swinging under tree","forest clearing, mountains in distance, tree overhead","single figure centered, vertical framing","serene, elegant, contemplative","soft diffused light, warm glow from sky","soft whites, earthy browns, pastel yellows, green foliage",y,,"{
+  ""figures"": [
+    ""woman on swing""
+  ],
+  ""characters"": [
+    ""Mohini""
+  ],
+  ""attire"": [
+    ""white draped garment"",
+    ""gold trim"",
+    ""necklace"",
+    ""bracelets""
+  ],
+  ""pose"": [
+    ""arms raised holding swing ropes"",
+    ""head tilted upward"",
+    ""legs extended""
+  ],
+  ""action"": [
+    ""sitting on swing"",
+    ""swinging under tree""
+  ],
+  ""setting"": [
+    ""forest clearing"",
+    ""mountains in distance"",
+    ""tree overhead""
+  ],
+  ""composition"": [
+    ""single figure centered"",
+    ""vertical framing""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""elegant"",
+    ""contemplative""
+  ],
+  ""lighting"": [
+    ""soft diffused light"",
+    ""warm glow from sky""
+  ],
+  ""palette"": [
+    ""soft whites"",
+    ""earthy browns"",
+    ""pastel yellows"",
+    ""green foliage""
+  ]
+}"
+rrv_0047.jpg,Pooruruttathi Thirunal Mahaprabha Amma Thampuran,test,woman with dark hair,Pooruruttathi Thirunal Mahaprabha Amma Thampuran,"light-colored draped garment, necklace with red pendant, red earrings, red bindi on forehead","head slightly tilted, gazing forward",portrayed in still portrait,plain brown background,single-figure portrait,"serene, regal",soft frontal illumination,"brown, cream, red",y,,"{
+  ""figures"": [""woman with dark hair""],
+  ""characters"": [""Pooruruttathi Thirunal Mahaprabha Amma Thampuran""],
+  ""attire"": [""light-colored draped garment"", ""necklace with red pendant"", ""red earrings"", ""red bindi on forehead""],
+  ""pose"": [""head slightly tilted"", ""gazing forward""],
+  ""action"": [""portrayed in still portrait""],
+  ""setting"": [""plain brown background""],
+  ""composition"": [""single-figure portrait""],
+  ""mood"": [""serene"", ""regal""],
+  ""lighting"": [""soft frontal illumination""],
+  ""palette"": [""brown"", ""cream"", ""red""]
+}"
+rrv_0048.jpg,Charity,train,"young woman, elderly woman",none,"white draped garment, turban, waistband, wraps around lower body","young woman extending hand, elderly woman holding bowl",offering food or drink,"indoor space with wooden door, stone tiled floor","full scene, two figures facing each other","compassionate, serene","warm ambient light, soft shadows","ochre, sepia, golden tones",y,,"{
+  ""figures"": [
+    ""young woman"",
+    ""elderly woman""
+  ],
+  ""characters"": [
+    ""none""
+  ],
+  ""attire"": [
+    ""white draped garment"",
+    ""turban"",
+    ""waistband"",
+    ""wraps around lower body""
+  ],
+  ""pose"": [
+    ""young woman extending hand"",
+    ""elderly woman holding bowl""
+  ],
+  ""action"": [
+    ""offering food or drink""
+  ],
+  ""setting"": [
+    ""indoor space with wooden door"",
+    ""stone tiled floor""
+  ],
+  ""composition"": [
+    ""full scene"",
+    ""two figures facing each other""
+  ],
+  ""mood"": [
+    ""compassionate"",
+    ""serene""
+  ],
+  ""lighting"": [
+    ""warm ambient light"",
+    ""soft shadows""
+  ],
+  ""palette"": [
+    ""ochre"",
+    ""sepia"",
+    ""golden tones""
+  ]
+}"
+rrv_0049.jpg,Radha in the Moonlight,train,"woman with dark hair, flower in hair",Radha,"maroon sari with gold trim, layered necklaces, bangles, anklets, floral hair accessory","sitting cross-legged on rocks, hands clasped, gazing forward",seated in contemplative stillness,"riverbank under moonlit sky, trees in background",single-figure portrait centered against natural landscape,"serene, tranquil, introspective","soft moonlight illuminating from right side, casting gentle shadows","maroon, gold, earth tones, muted blues and greys",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""flower in hair""
+  ],
+  ""characters"": ""Radha"",
+  ""attire"": ""maroon sari with gold trim, layered necklaces, bangles, anklets, floral hair accessory"",
+  ""pose"": ""sitting cross-legged on rocks, hands clasped, gazing forward"",
+  ""action"": ""seated in contemplative stillness"",
+  ""setting"": ""riverbank under moonlit sky, trees in background"",
+  ""composition"": ""single-figure portrait centered against natural landscape"",
+  ""mood"": ""serene, tranquil, introspective"",
+  ""lighting"": ""soft moonlight illuminating from right side, casting gentle shadows"",
+  ""palette"": ""maroon, gold, earth tones, muted blues and greys""
+}"
+rrv_0050.jpg,Bharani Thirunal Rani Parvathi Bayi,train,woman with dark hair,Bharani Thirunal Rani Parvathi Bayi,"white draped garment with gold trim, heavy gold necklace, large gold earrings, gold bangles, rings","seated on ornate chair, hands resting on lap, looking forward",none,"indoor, against dark background with red upholstered chair","single-figure portrait, centered","serene, dignified",soft frontal illumination,"white, gold, red, dark tones",y,,"{
+  ""figures"": ""woman with dark hair"",
+  ""characters"": ""Bharani Thirunal Rani Parvathi Bayi"",
+  ""attire"": ""white draped garment with gold trim, heavy gold necklace, large gold earrings, gold bangles, rings"",
+  ""pose"": ""seated on ornate chair, hands resting on lap, looking forward"",
+  ""action"": ""none"",
+  ""setting"": ""indoor, against dark background with red upholstered chair"",
+  ""composition"": ""single-figure portrait, centered"",
+  ""mood"": ""serene, dignified"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""white, gold, red, dark tones""
+}"
+rrv_0051.jpg,Damayanthi Vanavasa,test,"woman with dark hair, barefoot woman",Damayanthi,"golden draped garment, red inner garment, necklace, bracelets","sitting on rock, hand to forehead, looking upward",resting in forest,dense forest with tall trees and undergrowth,single-figure portrait framed by natural elements,"contemplative, serene",soft diffused light from above,"earthy tones, gold, red, muted greens and browns",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""barefoot woman""
+  ],
+  ""characters"": ""Damayanthi"",
+  ""attire"": ""golden draped garment, red inner garment, necklace, bracelets"",
+  ""pose"": ""sitting on rock, hand to forehead, looking upward"",
+  ""action"": ""resting in forest"",
+  ""setting"": ""dense forest with tall trees and undergrowth"",
+  ""composition"": ""single-figure portrait framed by natural elements"",
+  ""mood"": ""contemplative, serene"",
+  ""lighting"": ""soft diffused light from above"",
+  ""palette"": ""earthy tones, gold, red, muted greens and browns""
+}"
+rrv_0053.jpg,Decking the Bride,train,"woman wearing cream-colored veil, woman in cream sari with black border, woman adjusting necklace, woman in red veil",none,"cream-colored saree with black embroidered border, red veil over head, pearl necklaces, bangles on wrists, veil draped over head","standing upright, reaching to adjust jewelry, looking toward the center, holding a tray",adorned with jewelry,indoor space with arched doorway and stone pillars,full scene with multiple figures arranged around central figure,ceremonial and reverent,soft illumination from front,"creams, reds, golds, muted earth tones",y,,"{
+  ""figures"": [
+    ""woman wearing cream-colored veil"",
+    ""woman in cream sari with black border"",
+    ""woman adjusting necklace"",
+    ""woman in red veil""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""cream-colored saree with black embroidered border"",
+    ""red veil over head"",
+    ""pearl necklaces"",
+    ""bangles on wrists"",
+    ""veil draped over head""
+  ],
+  ""pose"": [
+    ""standing upright"",
+    ""reaching to adjust jewelry"",
+    ""looking toward the center"",
+    ""holding a tray""
+  ],
+  ""action"": ""adorned with jewelry"",
+  ""setting"": ""indoor space with arched doorway and stone pillars"",
+  ""composition"": ""full scene with multiple figures arranged around central figure"",
+  ""mood"": ""ceremonial and reverent"",
+  ""lighting"": ""soft illumination from front"",
+  ""palette"": ""creams, reds, golds, muted earth tones""
+}"
+rrv_0054.jpg,Disappointing News,train,"woman with dark hair, woman wearing red fabric",none,"green and maroon sari with gold trim, blue lower garment, pearl necklace, bangles, red bindi","sitting on bed, head resting on hand, looking upward","holding letter, gazing thoughtfully",bedroom under canopy with draped curtains,single-figure portrait,"melancholic, pensive",soft directional light from upper left,"deep reds, greens, blues, golds",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman wearing red fabric""
+  ],
+  ""characters"": ""none"",
+  ""attire"": ""green and maroon sari with gold trim, blue lower garment, pearl necklace, bangles, red bindi"",
+  ""pose"": ""sitting on bed, head resting on hand, looking upward"",
+  ""action"": ""holding letter, gazing thoughtfully"",
+  ""setting"": ""bedroom under canopy with draped curtains"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""melancholic, pensive"",
+  ""lighting"": ""soft directional light from upper left"",
+  ""palette"": ""deep reds, greens, blues, golds""
+}"
+rrv_0055.jpg,Expectation,train,woman,none,"red draped garment, dark inner garment, necklaces, bangles, earrings","hand near face, looking upward and to side",none,dark background,single-figure portrait,contemplative,soft directional light from left,"reds, browns, golds",y,,"{
+  ""figures"": [""woman""],
+  ""characters"": [""none""],
+  ""attire"": ""red draped garment, dark inner garment, necklaces, bangles, earrings"",
+  ""pose"": ""hand near face, looking upward and to side"",
+  ""action"": ""none"",
+  ""setting"": ""dark background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""contemplative"",
+  ""lighting"": ""soft directional light from left"",
+  ""palette"": ""reds, browns, golds""
+}"
+rrv_0056.jpg,Goddess Lakshmi,test,"woman, elephant",Goddess Lakshmi,"red sari with gold border, gold jewelry, turban","standing, holding flowers, gazing forward","standing on lotus, elephants holding flowers","water, lotus flower, distant hills","single-figure portrait, central figure, symmetrical framing","serene, divine",soft diffuse light,"red, gold, white, green",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""elephant"",
+    ""elephant""
+  ],
+  ""characters"": [
+    ""Goddess Lakshmi""
+  ],
+  ""attire"": [
+    ""red sari with gold border"",
+    ""gold jewelry"",
+    ""turban""
+  ],
+  ""pose"": [
+    ""standing"",
+    ""holding flowers"",
+    ""gazing forward""
+  ],
+  ""action"": [
+    ""standing on lotus"",
+    ""elephants holding flowers""
+  ],
+  ""setting"": [
+    ""water"",
+    ""lotus flower"",
+    ""distant hills""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""central figure"",
+    ""symmetrical framing""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""divine""
+  ],
+  ""lighting"": [
+    ""soft diffuse light""
+  ],
+  ""palette"": [
+    ""red"",
+    ""gold"",
+    ""white"",
+    ""green""
+  ]
+}"
+rrv_0058.jpg,Gypsies,train,"woman holding baby, child sitting, child leaning against wall",none,"red sari draped over blue blouse, necklace and bangles, simple cloth wrap, dark blue dhoti-like garment","woman seated looking upward, baby cradled in lap, child sitting cross-legged, child leaning against stone wall",resting near temple steps,stone temple steps with large pillars,full scene with figures arranged around central woman,"serene, contemplative","soft, diffused daylight","earthy tones, reds, browns, ochres",y,,"{
+  ""figures"": [
+    ""woman holding baby"",
+    ""child sitting"",
+    ""child leaning against wall""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""red sari draped over blue blouse"",
+    ""necklace and bangles"",
+    ""simple cloth wrap"",
+    ""dark blue dhoti-like garment""
+  ],
+  ""pose"": [
+    ""woman seated looking upward"",
+    ""baby cradled in lap"",
+    ""child sitting cross-legged"",
+    ""child leaning against stone wall""
+  ],
+  ""action"": ""resting near temple steps"",
+  ""setting"": ""stone temple steps with large pillars"",
+  ""composition"": ""full scene with figures arranged around central woman"",
+  ""mood"": ""serene, contemplative"",
+  ""lighting"": ""soft, diffused daylight"",
+  ""palette"": ""earthy tones, reds, browns, ochres""
+}"
+rrv_0060.jpg,The Maharani of Travancore,train,"woman with dark hair, woman wearing red and gold sash",none,"white strapless top, draped red and gold sash, pearl necklace, earrings, floral headpiece","standing, holding tray, looking forward",holding a tray with a book,neutral gray background,single-figure portrait,"calm, dignified",soft frontal illumination,"red, gold, white, gray",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman wearing red and gold sash""
+  ],
+  ""characters"": ""none"",
+  ""attire"": ""white strapless top, draped red and gold sash, pearl necklace, earrings, floral headpiece"",
+  ""pose"": ""standing, holding tray, looking forward"",
+  ""action"": ""holding a tray with a book"",
+  ""setting"": ""neutral gray background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""calm, dignified"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""red, gold, white, gray""
+}"
+rrv_0062.jpg,Shakuntala looking back to glimpse Dushyanta,train,"woman with basket, woman with floral garland, woman with head covering, man in yellow robe",Shakuntala,"orange draped garment, beige dhoti-like wrap, yellow robe, flower garlands, earrings","walking barefoot, looking back over shoulder, holding basket, standing with staff","walking through forest, gazing backward","forest clearing, trees, mountains in distance, grass and flowers","group of four people, foreground focus on central figures, landscape background","serene, reflective","soft daylight, gentle shadows","earthy tones, greens, blues, ochres",y,,"{
+  ""figures"": [
+    ""woman with basket"",
+    ""woman with floral garland"",
+    ""woman with head covering"",
+    ""man in yellow robe""
+  ],
+  ""characters"": [
+    ""Shakuntala""
+  ],
+  ""attire"": [
+    ""orange draped garment"",
+    ""beige dhoti-like wrap"",
+    ""yellow robe"",
+    ""flower garlands"",
+    ""earrings""
+  ],
+  ""pose"": [
+    ""walking barefoot"",
+    ""looking back over shoulder"",
+    ""holding basket"",
+    ""standing with staff""
+  ],
+  ""action"": [
+    ""walking through forest"",
+    ""gazing backward""
+  ],
+  ""setting"": [
+    ""forest clearing"",
+    ""trees"",
+    ""mountains in distance"",
+    ""grass and flowers""
+  ],
+  ""composition"": [
+    ""group of four people"",
+    ""foreground focus on central figures"",
+    ""landscape background""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""reflective""
+  ],
+  ""lighting"": [
+    ""soft daylight"",
+    ""gentle shadows""
+  ],
+  ""palette"": [
+    ""earthy tones"",
+    ""greens"",
+    ""blues"",
+    ""ochres""
+  ]
+}"
+rrv_0063.jpg,Portrait of a Lady,train,woman,Portrait of a Lady,"dark blue saree with gold polka dots, golden border, pearl necklace, bangles, bindi, earrings","sitting, hands clasped, looking forward",none,"indoor, beside stone column",single-figure portrait,"serene, dignified",soft frontal illumination,"blue, gold, red, neutral tones",y,,"{
+  ""figures"": [""woman""],
+  ""characters"": [""Portrait of a Lady""],
+  ""attire"": ""dark blue saree with gold polka dots, golden border, pearl necklace, bangles, bindi, earrings"",
+  ""pose"": ""sitting, hands clasped, looking forward"",
+  ""action"": ""none"",
+  ""setting"": ""indoor, beside stone column"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""serene, dignified"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""blue, gold, red, neutral tones""
+}"
+rrv_0064.jpg,Tilottama,train,"naked woman, woman with long dark hair",Tilottama,"red draped garment with gold trim, pearl necklaces, bangles, earrings, bindi","one arm raised, other hand holding fabric, looking upward",dancing or posing gracefully,cloudy sky background,single-figure portrait,"elegant, serene",soft diffused light,"reds, golds, soft blues and creams",y,,"{
+  ""figures"": [
+    ""naked woman"",
+    ""woman with long dark hair""
+  ],
+  ""characters"": ""Tilottama"",
+  ""attire"": ""red draped garment with gold trim, pearl necklaces, bangles, earrings, bindi"",
+  ""pose"": ""one arm raised, other hand holding fabric, looking upward"",
+  ""action"": ""dancing or posing gracefully"",
+  ""setting"": ""cloudy sky background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""elegant, serene"",
+  ""lighting"": ""soft diffused light"",
+  ""palette"": ""reds, golds, soft blues and creams""
+}"
+rrv_0065.jpg,Woman Holding a Fruit,train,woman with dark hair,Woman Holding a Fruit,"yellow blouse, pink draped garment with gold trim, gold necklace, gold earrings, nose ring, bracelets with green bands","head tilted slightly, gazing downward, hand holding fruit, other hand near neck",holding a fruit,neutral brown background,"single-figure portrait, medium close-up","serene, thoughtful",soft directional light from left,"brown, yellow, pink, gold",y,,"{
+  ""figures"": [
+    ""woman with dark hair""
+  ],
+  ""characters"": [
+    ""Woman Holding a Fruit""
+  ],
+  ""attire"": [
+    ""yellow blouse"",
+    ""pink draped garment with gold trim"",
+    ""gold necklace"",
+    ""gold earrings"",
+    ""nose ring"",
+    ""bracelets with green bands""
+  ],
+  ""pose"": [
+    ""head tilted slightly"",
+    ""gazing downward"",
+    ""hand holding fruit"",
+    ""other hand near neck""
+  ],
+  ""action"": [
+    ""holding a fruit""
+  ],
+  ""setting"": [
+    ""neutral brown background""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""medium close-up""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""thoughtful""
+  ],
+  ""lighting"": [
+    ""soft directional light from left""
+  ],
+  ""palette"": [
+    ""brown"",
+    ""yellow"",
+    ""pink"",
+    ""gold""
+  ]
+}"
+rrv_0068.jpg,Kadambari,train,woman playing sitar,Kadambari,"gold and brown patterned sari, black blouse, necklace, earrings, bangles, hair tied back with yellow ornament","sitting on stone bench, holding sitar, gazing downward at instrument, one foot bare, other foot with slipper nearby",playing sitar,"stone bench, ivory wall with climbing vines, potted plants, flowers on bench","single-figure portrait, centered composition, framed by foliage","serene, focused, calm",soft directional light from upper left,"warm earth tones, gold, brown, cream, dark green",y,,"{
+  ""figures"": [
+    ""woman playing sitar""
+  ],
+  ""characters"": [
+    ""Kadambari""
+  ],
+  ""attire"": [
+    ""gold and brown patterned sari"",
+    ""black blouse"",
+    ""necklace"",
+    ""earrings"",
+    ""bangles"",
+    ""hair tied back with yellow ornament""
+  ],
+  ""pose"": [
+    ""sitting on stone bench"",
+    ""holding sitar"",
+    ""gazing downward at instrument"",
+    ""one foot bare, other foot with slipper nearby""
+  ],
+  ""action"": [
+    ""playing sitar""
+  ],
+  ""setting"": [
+    ""stone bench"",
+    ""ivory wall with climbing vines"",
+    ""potted plants"",
+    ""flowers on bench""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""centered composition"",
+    ""framed by foliage""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""focused"",
+    ""calm""
+  ],
+  ""lighting"": [
+    ""soft directional light from upper left""
+  ],
+  ""palette"": [
+    ""warm earth tones"",
+    ""gold"",
+    ""brown"",
+    ""cream"",
+    ""dark green""
+  ]
+}"
+rrv_0069.jpg,Sairandri and Keechaka,train,"man with mustache, woman with dark hair","Sairandri, Keechaka","red and gold embroidered robe, blue sash, ornate crown with blue feathers, pearl necklace, dark draped garment, necklace and bangles","man gesturing forward, woman standing behind curtain","man inviting entry, woman peeking through curtain","indoor room, wooden door, patterned rug","full scene, figures framed by doorway and curtain","tense, expectant","warm directional light from doorway, contrast between illuminated and shadowed areas","rich reds, gold, deep blue, dark tones",y,,"{
+  ""figures"": [
+    ""man with mustache"",
+    ""woman with dark hair""
+  ],
+  ""characters"": [
+    ""Sairandri"",
+    ""Keechaka""
+  ],
+  ""attire"": [
+    ""red and gold embroidered robe"",
+    ""blue sash"",
+    ""ornate crown with blue feathers"",
+    ""pearl necklace"",
+    ""dark draped garment"",
+    ""necklace and bangles""
+  ],
+  ""pose"": [
+    ""man gesturing forward"",
+    ""woman standing behind curtain""
+  ],
+  ""action"": [
+    ""man inviting entry"",
+    ""woman peeking through curtain""
+  ],
+  ""setting"": [
+    ""indoor room"",
+    ""wooden door"",
+    ""patterned rug""
+  ],
+  ""composition"": [
+    ""full scene"",
+    ""figures framed by doorway and curtain""
+  ],
+  ""mood"": [
+    ""tense"",
+    ""expectant""
+  ],
+  ""lighting"": [
+    ""warm directional light from doorway"",
+    ""contrast between illuminated and shadowed areas""
+  ],
+  ""palette"": [
+    ""rich reds"",
+    ""gold"",
+    ""deep blue"",
+    ""dark tones""
+  ]
+}"
+rrv_0071.jpg,Lady at Ball Game,train,woman,Lady at Ball Game,"red and gold draped garment, necklace, bracelets, earrings","one arm raised, head tilted, gaze upward",playing ball game,"forest, sky with clouds, red ball in air",single figure centered,"elegant, focused",soft directional light,"reds, gold, greens, browns",y,,"{
+  ""figures"": [""woman""],
+  ""characters"": [""Lady at Ball Game""],
+  ""attire"": [""red and gold draped garment"", ""necklace"", ""bracelets"", ""earrings""],
+  ""pose"": [""one arm raised"", ""head tilted"", ""gaze upward""],
+  ""action"": [""playing ball game""],
+  ""setting"": [""forest"", ""sky with clouds"", ""red ball in air""],
+  ""composition"": [""single figure centered""],
+  ""mood"": [""elegant"", ""focused""],
+  ""lighting"": [""soft directional light""],
+  ""palette"": [""reds"", ""gold"", ""greens"", ""browns""]
+}"
+rrv_0072.jpg,Lady in the Moon Light,train,"woman with long dark hair, woman wearing jewelry",none,"blue blouse, red draped garment, pearl necklace, earrings, bangles","sitting on rocks, looking toward viewer",none,"riverbank at night, moonlit sky, distant trees",single-figure portrait,"serene, contemplative","moonlight from above, soft glow on face and water","deep blues, rich reds, warm golds, muted grays",y,,"{
+  ""figures"": [
+    ""woman with long dark hair"",
+    ""woman wearing jewelry""
+  ],
+  ""characters"": ""none"",
+  ""attire"": ""blue blouse, red draped garment, pearl necklace, earrings, bangles"",
+  ""pose"": ""sitting on rocks, looking toward viewer"",
+  ""action"": ""none"",
+  ""setting"": ""riverbank at night, moonlit sky, distant trees"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""serene, contemplative"",
+  ""lighting"": ""moonlight from above, soft glow on face and water"",
+  ""palette"": ""deep blues, rich reds, warm golds, muted grays""
+}"
+rrv_0073.jpg,Malabar beauty,train,"woman with dark hair, woman wearing white garment",Malabar beauty,"white draped garment, red necklace, gold bangles, floral headpiece","hand resting on chin, looking slightly upward",posing for portrait,neutral soft background,single-figure portrait,"thoughtful, serene",soft frontal illumination,"white, red, gold, skin tones",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman wearing white garment""
+  ],
+  ""characters"": ""Malabar beauty"",
+  ""attire"": ""white draped garment, red necklace, gold bangles, floral headpiece"",
+  ""pose"": ""hand resting on chin, looking slightly upward"",
+  ""action"": ""posing for portrait"",
+  ""setting"": ""neutral soft background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""thoughtful, serene"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""white, red, gold, skin tones""
+}"
+rrv_0075.jpg,A Sisterly Remembrance,train,"woman holding baby, woman looking down, baby being held",none,"white draped garment, plaid cloth over baby, gold necklace, earring, red bindi","woman leaning toward baby, woman gazing downward, baby reaching up",holding baby,dark oval background,oval framed portrait,"tender, intimate",soft directional light,"dark tones, skin tones, white, gold",y,,"{
+  ""figures"": [
+    ""woman holding baby"",
+    ""woman looking down"",
+    ""baby being held""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""white draped garment"",
+    ""plaid cloth over baby"",
+    ""gold necklace"",
+    ""earring"",
+    ""red bindi""
+  ],
+  ""pose"": [
+    ""woman leaning toward baby"",
+    ""woman gazing downward"",
+    ""baby reaching up""
+  ],
+  ""action"": ""holding baby"",
+  ""setting"": ""dark oval background"",
+  ""composition"": ""oval framed portrait"",
+  ""mood"": ""tender, intimate"",
+  ""lighting"": ""soft directional light"",
+  ""palette"": ""dark tones, skin tones, white, gold""
+}"
+rrv_0076.jpg,Reclining Nayar Lady,train,"reclining woman, standing woman",Reclining Nayar Lady,"white draped garment with gold trim, dark green sleeve, gold necklace with red pendant, red earrings, bracelets, headpiece with pink flowers, simple white drape, necklace with pendant","reclining on bed with head resting on hand, gazing toward viewer, holding fan, looking toward reclining woman","resting, holding fan, reading book","indoor room, bed with patterned cover, blue pillow, curtains in background","full scene, main figure centered, secondary figure in background","serene, contemplative","soft directional light from left, gentle shadows","green, white, blue, gold, brown",y,,"{
+  ""figures"": [
+    ""reclining woman"",
+    ""standing woman""
+  ],
+  ""characters"": [
+    ""Reclining Nayar Lady""
+  ],
+  ""attire"": [
+    ""white draped garment with gold trim"",
+    ""dark green sleeve"",
+    ""gold necklace with red pendant"",
+    ""red earrings"",
+    ""bracelets"",
+    ""headpiece with pink flowers"",
+    ""simple white drape"",
+    ""necklace with pendant""
+  ],
+  ""pose"": [
+    ""reclining on bed with head resting on hand"",
+    ""gazing toward viewer"",
+    ""holding fan"",
+    ""looking toward reclining woman""
+  ],
+  ""action"": [
+    ""resting"",
+    ""holding fan"",
+    ""reading book""
+  ],
+  ""setting"": [
+    ""indoor room"",
+    ""bed with patterned cover"",
+    ""blue pillow"",
+    ""curtains in background""
+  ],
+  ""composition"": [
+    ""full scene"",
+    ""main figure centered"",
+    ""secondary figure in background""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""contemplative""
+  ],
+  ""lighting"": [
+    ""soft directional light from left"",
+    ""gentle shadows""
+  ],
+  ""palette"": [
+    ""green"",
+    ""white"",
+    ""blue"",
+    ""gold"",
+    ""brown""
+  ]
+}"
+rrv_0077.jpg,Reverie,train,woman with dark hair,Reverie,"white draped garment, gold trim, necklace, earrings, nose ring, bangles, head ornament","hand to chin, gazing upward, leaning on pillar",contemplating,"indoor, column, drapery","single-figure portrait, three-quarter view","pensive, thoughtful","soft directional light, highlighting face and hands","warm tones, ochre, cream, gold, dark background",y,,"{
+  ""figures"": [
+    ""woman with dark hair""
+  ],
+  ""characters"": [
+    ""Reverie""
+  ],
+  ""attire"": [
+    ""white draped garment"",
+    ""gold trim"",
+    ""necklace"",
+    ""earrings"",
+    ""nose ring"",
+    ""bangles"",
+    ""head ornament""
+  ],
+  ""pose"": [
+    ""hand to chin"",
+    ""gazing upward"",
+    ""leaning on pillar""
+  ],
+  ""action"": [
+    ""contemplating""
+  ],
+  ""setting"": [
+    ""indoor"",
+    ""column"",
+    ""drapery""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""three-quarter view""
+  ],
+  ""mood"": [
+    ""pensive"",
+    ""thoughtful""
+  ],
+  ""lighting"": [
+    ""soft directional light"",
+    ""highlighting face and hands""
+  ],
+  ""palette"": [
+    ""warm tones"",
+    ""ochre"",
+    ""cream"",
+    ""gold"",
+    ""dark background""
+  ]
+}"
+rrv_0078.jpg,Sairandhri,train,"woman in dark sari, man with turban and spear",Sairandhri,"dark blue sari with red border, ornate orange tunic, white turban, necklace, bracelets, spear with black tip","woman covering face with hand, man standing upright holding spear","woman holding plate with offering, man guarding her","stone steps, carved elephant relief, wooden door","two figures on stairs, background architectural elements","solemn, dramatic","soft directional light from left, strong shadows on right","earthy tones, deep blue, rich orange, cream stone",y,,"{
+  ""figures"": [
+    ""woman in dark sari"",
+    ""man with turban and spear""
+  ],
+  ""characters"": [
+    ""Sairandhri""
+  ],
+  ""attire"": [
+    ""dark blue sari with red border"",
+    ""ornate orange tunic"",
+    ""white turban"",
+    ""necklace"",
+    ""bracelets"",
+    ""spear with black tip""
+  ],
+  ""pose"": [
+    ""woman covering face with hand"",
+    ""man standing upright holding spear""
+  ],
+  ""action"": [
+    ""woman holding plate with offering"",
+    ""man guarding her""
+  ],
+  ""setting"": [
+    ""stone steps"",
+    ""carved elephant relief"",
+    ""wooden door""
+  ],
+  ""composition"": [
+    ""two figures on stairs"",
+    ""background architectural elements""
+  ],
+  ""mood"": [
+    ""solemn"",
+    ""dramatic""
+  ],
+  ""lighting"": [
+    ""soft directional light from left"",
+    ""strong shadows on right""
+  ],
+  ""palette"": [
+    ""earthy tones"",
+    ""deep blue"",
+    ""rich orange"",
+    ""cream stone""
+  ]
+}"
+rrv_0081.jpg,Sakunthala Pathralekhan,train,"woman wearing pink sari, woman in dark dhoti, deer",Sakunthala,"pink draped sari, dark dhoti, flower garland, bracelets, bindi","sitting on rock, looking upward, holding leaf, leaning toward companion",sitting together by water,riverbank with trees and hills,full scene with figures centered,"serene, contemplative",soft ambient light,"earthy tones, muted pinks, greens",y,,"{
+  ""figures"": [
+    ""woman wearing pink sari"",
+    ""woman in dark dhoti"",
+    ""deer""
+  ],
+  ""characters"": ""Sakunthala"",
+  ""attire"": [
+    ""pink draped sari"",
+    ""dark dhoti"",
+    ""flower garland"",
+    ""bracelets"",
+    ""bindi""
+  ],
+  ""pose"": [
+    ""sitting on rock"",
+    ""looking upward"",
+    ""holding leaf"",
+    ""leaning toward companion""
+  ],
+  ""action"": ""sitting together by water"",
+  ""setting"": ""riverbank with trees and hills"",
+  ""composition"": ""full scene with figures centered"",
+  ""mood"": ""serene, contemplative"",
+  ""lighting"": ""soft ambient light"",
+  ""palette"": ""earthy tones, muted pinks, greens""
+}"
+rrv_0083.jpg,Shakuntala,train,"woman, man in distance",Shakuntala,"golden drape, necklace, bracelet, earring","sitting on rock, head turned slightly, hands clasped",resting outdoors,"palm tree, rocky terrain, hills, dry grass, distant figure walking","single-figure portrait, background landscape","serene, contemplative","soft daylight, even illumination","ochre, gold, brown, green, blue sky",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""man in distance""
+  ],
+  ""characters"": [
+    ""Shakuntala""
+  ],
+  ""attire"": [
+    ""golden drape"",
+    ""necklace"",
+    ""bracelet"",
+    ""earring""
+  ],
+  ""pose"": [
+    ""sitting on rock"",
+    ""head turned slightly"",
+    ""hands clasped""
+  ],
+  ""action"": [
+    ""resting outdoors""
+  ],
+  ""setting"": [
+    ""palm tree"",
+    ""rocky terrain"",
+    ""hills"",
+    ""dry grass"",
+    ""distant figure walking""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""background landscape""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""contemplative""
+  ],
+  ""lighting"": [
+    ""soft daylight"",
+    ""even illumination""
+  ],
+  ""palette"": [
+    ""ochre"",
+    ""gold"",
+    ""brown"",
+    ""green"",
+    ""blue sky""
+  ]
+}"
+rrv_0084.jpg,Thara Varini / A Tamil Lady,train,woman,Thara Varini,"red and orange draped garment, heavy gold and red jewelry, floral hair ornament","side profile, head turned slightly forward, gazing right",none,plain light background,"single-figure portrait, bust-up","serene, dignified",soft directional light from left,"reds, oranges, golds, cream",y,,"{
+  ""figures"": [""woman""],
+  ""characters"": [""Thara Varini""],
+  ""attire"": ""red and orange draped garment, heavy gold and red jewelry, floral hair ornament"",
+  ""pose"": ""side profile, head turned slightly forward, gazing right"",
+  ""action"": ""none"",
+  ""setting"": ""plain light background"",
+  ""composition"": ""single-figure portrait, bust-up"",
+  ""mood"": ""serene, dignified"",
+  ""lighting"": ""soft directional light from left"",
+  ""palette"": ""reds, oranges, golds, cream""
+}"
+rrv_0085.jpg,The Maharashtrian Lady,train,"woman with dark hair, woman holding tray",The Maharashtrian Lady,"red and gold saree with green border, necklace, earrings, nose ring, bangles","standing, holding tray with left hand, looking at viewer",presenting fruit on tray,outdoor with trees and sky in background,single-figure portrait,"calm, dignified","soft, directional light from front-left","reds, golds, greens, earth tones",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman holding tray""
+  ],
+  ""characters"": ""The Maharashtrian Lady"",
+  ""attire"": ""red and gold saree with green border, necklace, earrings, nose ring, bangles"",
+  ""pose"": ""standing, holding tray with left hand, looking at viewer"",
+  ""action"": ""presenting fruit on tray"",
+  ""setting"": ""outdoor with trees and sky in background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""calm, dignified"",
+  ""lighting"": ""soft, directional light from front-left"",
+  ""palette"": ""reds, golds, greens, earth tones""
+}"
+rrv_0086.jpg,The Miser,test,bearded old man,The Miser,"red patterned coat, striped skirt, ornate turban","seated, looking toward viewer, hands holding folded cloth",holding cloth,"indoor, dark background, red curtain to left","single-figure portrait, three-quarter view","serious, intense",soft directional light from front-right,"reds, browns, gold",y,,"{
+  ""figures"": [
+    ""bearded old man""
+  ],
+  ""characters"": [
+    ""The Miser""
+  ],
+  ""attire"": [
+    ""red patterned coat"",
+    ""striped skirt"",
+    ""ornate turban""
+  ],
+  ""pose"": [
+    ""seated"",
+    ""looking toward viewer"",
+    ""hands holding folded cloth""
+  ],
+  ""action"": [
+    ""holding cloth""
+  ],
+  ""setting"": [
+    ""indoor"",
+    ""dark background"",
+    ""red curtain to left""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""three-quarter view""
+  ],
+  ""mood"": [
+    ""serious"",
+    ""intense""
+  ],
+  ""lighting"": [
+    ""soft directional light from front-right""
+  ],
+  ""palette"": [
+    ""reds"",
+    ""browns"",
+    ""gold""
+  ]
+}"
+rrv_0087.jpg,The suckling child,train,"woman, child",The suckling child,"red draped fabric, green draped cloth, pearl necklace, bracelets, earrings","woman reclining, woman hand on head, child nursing, child leaning on woman",nursing,dark red background,"oval frame, close-up portrait","serene, intimate",soft directional light,"red, green, skin tones, gold",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""child""
+  ],
+  ""characters"": [
+    ""The suckling child""
+  ],
+  ""attire"": [
+    ""red draped fabric"",
+    ""green draped cloth"",
+    ""pearl necklace"",
+    ""bracelets"",
+    ""earrings""
+  ],
+  ""pose"": [
+    ""woman reclining"",
+    ""woman hand on head"",
+    ""child nursing"",
+    ""child leaning on woman""
+  ],
+  ""action"": [
+    ""nursing""
+  ],
+  ""setting"": [
+    ""dark red background""
+  ],
+  ""composition"": [
+    ""oval frame"",
+    ""close-up portrait""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""intimate""
+  ],
+  ""lighting"": [
+    ""soft directional light""
+  ],
+  ""palette"": [
+    ""red"",
+    ""green"",
+    ""skin tones"",
+    ""gold""
+  ]
+}"
+rrv_0088.jpg,There Comes Papa,train,"woman holding child, child, dog",none,"white draped garment with gold trim, jewellery including necklace, bangles, earrings, headpiece with pink flower, red fabric draped nearby","woman standing upright, child held against her chest, woman looking down at child, dog sitting at left side",woman cradling child,indoor space with dark wooden wall and patterned floor,full-length portrait with figures centered,"serene, tender",soft directional light from front-left,"dominant white, red, brown, gold",y,,"{
+  ""figures"": [
+    ""woman holding child"",
+    ""child"",
+    ""dog""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""white draped garment with gold trim"",
+    ""jewellery including necklace, bangles, earrings"",
+    ""headpiece with pink flower"",
+    ""red fabric draped nearby""
+  ],
+  ""pose"": [
+    ""woman standing upright"",
+    ""child held against her chest"",
+    ""woman looking down at child"",
+    ""dog sitting at left side""
+  ],
+  ""action"": ""woman cradling child"",
+  ""setting"": ""indoor space with dark wooden wall and patterned floor"",
+  ""composition"": ""full-length portrait with figures centered"",
+  ""mood"": ""serene, tender"",
+  ""lighting"": ""soft directional light from front-left"",
+  ""palette"": ""dominant white, red, brown, gold""
+}"
+rrv_0090.jpg,Yasoda with Krishna,train,"woman holding child, child","Yasoda, Krishna","woman draped in sari, child in dhoti-like garment, both adorned with necklaces and bangles, child wearing floral garland, woman with bindi and earrings","woman seated, child sitting on her lap, woman gesturing with right hand, both looking toward viewer",woman holding child while gesturing,outdoor landscape with trees and hills,portrait composition with figures centered,"serene, maternal",soft directional light from upper left,"warm earth tones, muted browns and ochres",y,,"{
+  ""figures"": [
+    ""woman holding child"",
+    ""child""
+  ],
+  ""characters"": [
+    ""Yasoda"",
+    ""Krishna""
+  ],
+  ""attire"": [
+    ""woman draped in sari"",
+    ""child in dhoti-like garment"",
+    ""both adorned with necklaces and bangles"",
+    ""child wearing floral garland"",
+    ""woman with bindi and earrings""
+  ],
+  ""pose"": [
+    ""woman seated"",
+    ""child sitting on her lap"",
+    ""woman gesturing with right hand"",
+    ""both looking toward viewer""
+  ],
+  ""action"": ""woman holding child while gesturing"",
+  ""setting"": ""outdoor landscape with trees and hills"",
+  ""composition"": ""portrait composition with figures centered"",
+  ""mood"": ""serene, maternal"",
+  ""lighting"": ""soft directional light from upper left"",
+  ""palette"": ""warm earth tones, muted browns and ochres""
+}"
+rrv_0091.jpg,Rani of Kurupam,train,"woman with dark hair, woman wearing blue sari",Rani of Kurupam,"blue sari with gold trim, pearl and gemstone necklace, earrings, bangles, head ornament","seated, hand near face, looking toward viewer",posing for portrait,"indoor, against draped background","single-figure portrait, centered","serene, regal",soft frontal illumination,"blue, gold, red, skin tones",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman wearing blue sari""
+  ],
+  ""characters"": ""Rani of Kurupam"",
+  ""attire"": ""blue sari with gold trim, pearl and gemstone necklace, earrings, bangles, head ornament"",
+  ""pose"": ""seated, hand near face, looking toward viewer"",
+  ""action"": ""posing for portrait"",
+  ""setting"": ""indoor, against draped background"",
+  ""composition"": ""single-figure portrait, centered"",
+  ""mood"": ""serene, regal"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""blue, gold, red, skin tones""
+}"
+rrv_0092.jpg,Historic Meeting,train,"man in black coat, man in white robe, man in red turban, man in blue robe, man in ornate uniform, man in ceremonial armor, man with red turban, man in white shirt, group of men in turbans, people in boat",none,"black coat, white robe, red turban, blue robe, ornate uniform, ceremonial armor, white shirt","standing on steps, standing beside boat, looking toward entrance, holding staffs","gathering for ceremony, standing near decorated hut, boarding boat","coastal village, thatched hut, palm trees, waterway, crowd in background","full scene, central focus on hut entrance, boat in foreground","formal, ceremonial, dignified","overcast sky, soft diffused light","greens, reds, whites, browns, blues",y,,"{
+  ""figures"": ""man in black coat"", ""man in white robe"", ""man in red turban"", ""man in blue robe"", ""man in ornate uniform"", ""man in ceremonial armor"", ""man with red turban"", ""man in white shirt"", ""group of men in turbans"", ""people in boat"",
+  ""characters"": ""none"",
+  ""attire"": ""black coat"", ""white robe"", ""red turban"", ""blue robe"", ""ornate uniform"", ""ceremonial armor"", ""white shirt"",
+  ""pose"": ""standing on steps"", ""standing beside boat"", ""looking toward entrance"", ""holding staffs"",
+  ""action"": ""gathering for ceremony"", ""standing near decorated hut"", ""boarding boat"",
+  ""setting"": ""coastal village"", ""thatched hut"", ""palm trees"", ""waterway"", ""crowd in background"",
+  ""composition"": ""full scene"", ""central focus on hut entrance"", ""boat in foreground"",
+  ""mood"": ""formal"", ""ceremonial"", ""dignified"",
+  ""lighting"": ""overcast sky"", ""soft diffused light"",
+  ""palette"": ""greens"", ""reds"", ""whites"", ""browns"", ""blues""
+}"
+rrv_0093.jpg,Ram & Laxman,test,"bearded man, young man with crown, woman kneeling, young man with bow","Ram, Laxman","red draped cloth, yellow dhoti, pearl necklace, crown with jewels, bracelets, red robe","sitting on rock, kneeling with hands clasped, leaning forward, holding bow","kneeling in reverence, seated together, holding bow","forest with trees, rocky ground, mountains in distance","group portrait, central figures seated, one figure kneeling in foreground","serene, respectful","soft ambient light, even illumination","reds, yellows, greens, earthy tones",y,,"{
+  ""figures"": [
+    ""bearded man"",
+    ""young man with crown"",
+    ""woman kneeling"",
+    ""young man with bow""
+  ],
+  ""characters"": [
+    ""Ram"",
+    ""Laxman""
+  ],
+  ""attire"": [
+    ""red draped cloth"",
+    ""yellow dhoti"",
+    ""pearl necklace"",
+    ""crown with jewels"",
+    ""bracelets"",
+    ""red robe""
+  ],
+  ""pose"": [
+    ""sitting on rock"",
+    ""kneeling with hands clasped"",
+    ""leaning forward"",
+    ""holding bow""
+  ],
+  ""action"": [
+    ""kneeling in reverence"",
+    ""seated together"",
+    ""holding bow""
+  ],
+  ""setting"": [
+    ""forest with trees"",
+    ""rocky ground"",
+    ""mountains in distance""
+  ],
+  ""composition"": [
+    ""group portrait"",
+    ""central figures seated"",
+    ""one figure kneeling in foreground""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""respectful""
+  ],
+  ""lighting"": [
+    ""soft ambient light"",
+    ""even illumination""
+  ],
+  ""palette"": [
+    ""reds"",
+    ""yellows"",
+    ""greens"",
+    ""earthy tones""
+  ]
+}"
+rrv_0094.jpg,Sri Rama Vanquishing the Sea,train,"shirtless man holding bow, woman in red dhoti, two women in yellow and white garments",Sri Rama,"white dhoti wrapped around waist, red dhoti, gold jewelry, crown","standing on rocks aiming bow, woman gesturing forward, women crouching","man preparing to shoot arrow, women moving through water","stormy sea with waves, rocky shore, dark sky with lightning",full scene with figures arranged across foreground and midground,"tense, dramatic, heroic","dramatic spotlight from above, contrast between dark sky and illuminated figures","deep reds, browns, greens, whites, golds",y,,"{
+  ""figures"": ""shirtless man holding bow, woman in red dhoti, two women in yellow and white garments"",
+  ""characters"": ""Sri Rama"",
+  ""attire"": ""white dhoti wrapped around waist, red dhoti, gold jewelry, crown"",
+  ""pose"": ""standing on rocks aiming bow, woman gesturing forward, women crouching"",
+  ""action"": ""man preparing to shoot arrow, women moving through water"",
+  ""setting"": ""stormy sea with waves, rocky shore, dark sky with lightning"",
+  ""composition"": ""full scene with figures arranged across foreground and midground"",
+  ""mood"": ""tense, dramatic, heroic"",
+  ""lighting"": ""dramatic spotlight from above, contrast between dark sky and illuminated figures"",
+  ""palette"": ""deep reds, browns, greens, whites, golds""
+}"
+rrv_0099.jpg,Maharani Lakshmi Bayi,train,"woman with dark hair, woman wearing floral hair ornament",Maharani Lakshmi Bayi,"red and gold saree, blue blouse, gold belt, necklace, earrings, bracelets, nose ring, flower in hair","standing, gazing forward, hand resting on table",none,"stone column, red curtain, ornate table, flower arrangement, book",single-figure portrait,formal,soft frontal illumination,"red, gold, blue, maroon",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman wearing floral hair ornament""
+  ],
+  ""characters"": [
+    ""Maharani Lakshmi Bayi""
+  ],
+  ""attire"": [
+    ""red and gold saree"",
+    ""blue blouse"",
+    ""gold belt"",
+    ""necklace"",
+    ""earrings"",
+    ""bracelets"",
+    ""nose ring"",
+    ""flower in hair""
+  ],
+  ""pose"": [
+    ""standing"",
+    ""gazing forward"",
+    ""hand resting on table""
+  ],
+  ""action"": ""none"",
+  ""setting"": [
+    ""stone column"",
+    ""red curtain"",
+    ""ornate table"",
+    ""flower arrangement"",
+    ""book""
+  ],
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""formal"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": [
+    ""red"",
+    ""gold"",
+    ""blue"",
+    ""maroon""
+  ]
+}"
+rrv_0100.jpg,Draupadi and Simhika,train,"woman in red sari, woman in black sari","Draupadi, Simhika","red sari with gold trim, black sari with gold trim, necklaces, earrings, bangles, anklets, flower in hair","standing side by side, right arm around left shoulder, left hand on chest, gazing forward, smiling woman looking right",walking through forest,dense forest with trees and undergrowth,full-length portrait in natural setting,"serene, intimate",soft diffused light filtering through canopy,"red, black, green, brown, gold",y,,"{
+  ""figures"": [
+    ""woman in red sari"",
+    ""woman in black sari""
+  ],
+  ""characters"": [
+    ""Draupadi"",
+    ""Simhika""
+  ],
+  ""attire"": [
+    ""red sari with gold trim"",
+    ""black sari with gold trim"",
+    ""necklaces"",
+    ""earrings"",
+    ""bangles"",
+    ""anklets"",
+    ""flower in hair""
+  ],
+  ""pose"": [
+    ""standing side by side"",
+    ""right arm around left shoulder"",
+    ""left hand on chest"",
+    ""gazing forward"",
+    ""smiling woman looking right""
+  ],
+  ""action"": ""walking through forest"",
+  ""setting"": ""dense forest with trees and undergrowth"",
+  ""composition"": ""full-length portrait in natural setting"",
+  ""mood"": ""serene, intimate"",
+  ""lighting"": ""soft diffused light filtering through canopy"",
+  ""palette"": [
+    ""red"",
+    ""black"",
+    ""green"",
+    ""brown"",
+    ""gold""
+  ]
+}"
+rrv_0101.jpg,A Tamil Lady Playing the Swarbat,train,woman,A Tamil Lady,"blue blouse with gold trim, golden draped fabric, necklace, earrings, bangles, bindi","sitting, holding instrument, gazing forward",playing the swarbat,dark background,single-figure portrait,"serene, focused",focused illumination on figure,"deep blue, gold, brown, black",y,,"{
+  ""figures"": [""woman""],
+  ""characters"": [""A Tamil Lady""],
+  ""attire"": [""blue blouse with gold trim"", ""golden draped fabric"", ""necklace"", ""earrings"", ""bangles"", ""bindi""],
+  ""pose"": [""sitting"", ""holding instrument"", ""gazing forward""],
+  ""action"": [""playing the swarbat""],
+  ""setting"": [""dark background""],
+  ""composition"": [""single-figure portrait""],
+  ""mood"": [""serene"", ""focused""],
+  ""lighting"": [""focused illumination on figure""],
+  ""palette"": [""deep blue"", ""gold"", ""brown"", ""black""]
+}"
+rrv_0103.jpg,Sri Rama breaking the bow,test,"man holding bow, bearded man, elderly man, woman in red dress, woman in cream dress, group of onlookers",Sri Rama,"purple sash, gold crown, necklace, cream dhoti, red dress, cream saree, turban","man stretching arm, bearded man standing, elderly man standing, onlookers watching","breaking bow, holding bow, watching","arched doorway, stone steps, ornate wall, indoor courtyard","full scene, central focus on bow-breaking, arched framing","dramatic, solemn","soft illumination, contrast between shadow and light","cream, purple, red, gold, brown",y,,"{
+  ""figures"": [
+    ""man holding bow"",
+    ""bearded man"",
+    ""elderly man"",
+    ""woman in red dress"",
+    ""woman in cream dress"",
+    ""group of onlookers""
+  ],
+  ""characters"": [
+    ""Sri Rama""
+  ],
+  ""attire"": [
+    ""purple sash"",
+    ""gold crown"",
+    ""necklace"",
+    ""cream dhoti"",
+    ""red dress"",
+    ""cream saree"",
+    ""turban""
+  ],
+  ""pose"": [
+    ""man stretching arm"",
+    ""bearded man standing"",
+    ""elderly man standing"",
+    ""onlookers watching""
+  ],
+  ""action"": [
+    ""breaking bow"",
+    ""holding bow"",
+    ""watching""
+  ],
+  ""setting"": [
+    ""arched doorway"",
+    ""stone steps"",
+    ""ornate wall"",
+    ""indoor courtyard""
+  ],
+  ""composition"": [
+    ""full scene"",
+    ""central focus on bow-breaking"",
+    ""arched framing""
+  ],
+  ""mood"": [
+    ""dramatic"",
+    ""solemn""
+  ],
+  ""lighting"": [
+    ""soft illumination"",
+    ""contrast between shadow and light""
+  ],
+  ""palette"": [
+    ""cream"",
+    ""purple"",
+    ""red"",
+    ""gold"",
+    ""brown""
+  ]
+}"
+rrv_0104.jpg,Jatayu Vadham,train,"man with raised arm, woman with hands over face, large bird with spread wings",Jatayu,"green and gold draped garment, red skirt with gold trim, necklace and crown, bracelets on wrists and ankles, yellow sari with gold border","man leaping upward with sword raised, woman crouching with head bowed, bird flying with wings outstretched","man fighting bird, bird attacking, feathers falling around","sky with distant mountains, cloudy sky","diagonal arrangement of figures, bird on left, man and woman on right","dramatic, intense","soft diffused light, high contrast between figures and sky","brown, gold, red, green, cream",y,,"{
+  ""figures"": [
+    ""man with raised arm"",
+    ""woman with hands over face"",
+    ""large bird with spread wings""
+  ],
+  ""characters"": [
+    ""Jatayu""
+  ],
+  ""attire"": [
+    ""green and gold draped garment"",
+    ""red skirt with gold trim"",
+    ""necklace and crown"",
+    ""bracelets on wrists and ankles"",
+    ""yellow sari with gold border""
+  ],
+  ""pose"": [
+    ""man leaping upward with sword raised"",
+    ""woman crouching with head bowed"",
+    ""bird flying with wings outstretched""
+  ],
+  ""action"": [
+    ""man fighting bird"",
+    ""bird attacking"",
+    ""feathers falling around""
+  ],
+  ""setting"": [
+    ""sky with distant mountains"",
+    ""cloudy sky""
+  ],
+  ""composition"": [
+    ""diagonal arrangement of figures"",
+    ""bird on left, man and woman on right""
+  ],
+  ""mood"": [
+    ""dramatic"",
+    ""intense""
+  ],
+  ""lighting"": [
+    ""soft diffused light"",
+    ""high contrast between figures and sky""
+  ],
+  ""palette"": [
+    ""brown"",
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""cream""
+  ]
+}"
+rrv_0105.jpg,Swarbat Player (detail),train,woman with dark hair,Swarbat Player,"gold necklace, pearl strands, red gemstone earrings, nose ring, yellow garment, blue fabric","head turned slightly, looking forward",none,dark background,close-up detail,serene,soft frontal light,"gold, red, blue, cream",y,,"{
+  ""figures"": [""woman with dark hair""],
+  ""characters"": [""Swarbat Player""],
+  ""attire"": ""gold necklace, pearl strands, red gemstone earrings, nose ring, yellow garment, blue fabric"",
+  ""pose"": ""head turned slightly, looking forward"",
+  ""action"": ""none"",
+  ""setting"": ""dark background"",
+  ""composition"": ""close-up detail"",
+  ""mood"": ""serene"",
+  ""lighting"": ""soft frontal light"",
+  ""palette"": ""gold, red, blue, cream""
+}"
+rrv_0107.jpg,Goddess Saraswathi,train,"woman, peacock",Goddess Saraswathi,"white sari with gold trim, red blouse, jewellery including necklace, bangles, earrings, ornate crown","sitting on stone, holding stringed instrument, gazing forward, one hand holding beads","playing stringed instrument, seated by water","riverbank, trees in background, lotus flowers floating, distant hills","single-figure portrait, figure centered, peacock at lower left","serene, graceful","soft diffuse light, gentle illumination from front","white, gold, red, green, blue-grey",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""peacock""
+  ],
+  ""characters"": [
+    ""Goddess Saraswathi""
+  ],
+  ""attire"": [
+    ""white sari with gold trim"",
+    ""red blouse"",
+    ""jewellery including necklace, bangles, earrings"",
+    ""ornate crown""
+  ],
+  ""pose"": [
+    ""sitting on stone"",
+    ""holding stringed instrument"",
+    ""gazing forward"",
+    ""one hand holding beads""
+  ],
+  ""action"": [
+    ""playing stringed instrument"",
+    ""seated by water""
+  ],
+  ""setting"": [
+    ""riverbank"",
+    ""trees in background"",
+    ""lotus flowers floating"",
+    ""distant hills""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""figure centered"",
+    ""peacock at lower left""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""graceful""
+  ],
+  ""lighting"": [
+    ""soft diffuse light"",
+    ""gentle illumination from front""
+  ],
+  ""palette"": [
+    ""white"",
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""blue-grey""
+  ]
+}"
+rrv_0113.jpg,Shakuntala In The Court Of Dushyant,train,"man in white dhoti and gold sash, woman in yellow saree, naked upper torso man in pink dhoti, elderly man in orange dhoti, woman in white saree, man in purple dhoti","Shakuntala, Dushyant","white dhoti with gold trim and green sash, pink dhoti draped over shoulder, yellow saree with gold border, orange dhoti with draped cloth, purple dhoti with gold trim, white saree with gold border","standing on steps facing forward, bending forward holding cloth, standing with hands clasped, kneeling with head bowed, standing with hand on hip","presenting a cloth to a seated figure, bowing before a royal figure, standing in court","indoor palace hall with ornate curtains and patterned rugs, staircase leading to raised platform",full scene with multiple figures arranged around central staircase,"formal, ceremonial, respectful",soft directional light from upper left,"rich earth tones, gold accents, deep purples, soft yellows",y,,"{
+  ""figures"": ""man in white dhoti and gold sash"", ""woman in yellow saree"", ""naked upper torso man in pink dhoti"", ""elderly man in orange dhoti"", ""woman in white saree"", ""man in purple dhoti"",
+  ""characters"": ""Shakuntala"", ""Dushyant"",
+  ""attire"": ""white dhoti with gold trim and green sash"", ""pink dhoti draped over shoulder"", ""yellow saree with gold border"", ""orange dhoti with draped cloth"", ""purple dhoti with gold trim"", ""white saree with gold border"",
+  ""pose"": ""standing on steps facing forward"", ""bending forward holding cloth"", ""standing with hands clasped"", ""kneeling with head bowed"", ""standing with hand on hip"",
+  ""action"": ""presenting a cloth to a seated figure"", ""bowing before a royal figure"", ""standing in court"",
+  ""setting"": ""indoor palace hall with ornate curtains and patterned rugs"", ""staircase leading to raised platform"",
+  ""composition"": ""full scene with multiple figures arranged around central staircase"",
+  ""mood"": ""formal"", ""ceremonial"", ""respectful"",
+  ""lighting"": ""soft directional light from upper left"",
+  ""palette"": ""rich earth tones"", ""gold accents"", ""deep purples"", ""soft yellows""
+}"
+rrv_0120.jpg,Sita Bhumipravesh,train,"woman holding another woman, bearded man, child, man seated on throne, woman seated beside throne",Sita,"purple and gold draped garments, pearl necklaces, golden crown, ornate jewelry","seated woman cradling another, man seated upright, child standing, woman seated beside throne","woman being comforted, man seated on throne","temple ruins with flags, dark night sky","diptych format, two panels side-by-side","grief, regal solemnity","focused illumination on central figures, dark background","deep purples, gold, dark blues, reds",y,,"{
+  ""figures"": ""woman holding another woman"", ""bearded man"", ""child"", ""man seated on throne"", ""woman seated beside throne"",
+  ""characters"": ""Sita"",
+  ""attire"": ""purple and gold draped garments"", ""pearl necklaces"", ""golden crown"", ""ornate jewelry"",
+  ""pose"": ""seated woman cradling another"", ""man seated upright"", ""child standing"", ""woman seated beside throne"",
+  ""action"": ""woman being comforted"", ""man seated on throne"",
+  ""setting"": ""temple ruins with flags"", ""dark night sky"",
+  ""composition"": ""diptych format"", ""two panels side-by-side"",
+  ""mood"": ""grief"", ""regal solemnity"",
+  ""lighting"": ""focused illumination on central figures"", ""dark background"",
+  ""palette"": ""deep purples"", ""gold"", ""dark blues"", ""reds""
+}"
+rrv_0121.jpg,Sri Krishna as Envoy,train,"man in blue robe, man in red robe, bearded old man, woman in white robe, man with sword, man seated on throne, group of men in turbans",Sri Krishna as Envoy,"blue robe with gold trim, red robe with gold embroidery, white robe with gold trim, yellow robe with patterned fabric, turbaned robes, jewelled necklaces, ornate headwear","standing with sword extended, seated on raised platform, kneeling with bowed head, gesturing with hand, looking toward central figure","presenting sword to seated figure, crowd gathered around","richly decorated palace interior, columns with drapery, ornate ceiling, stone floor","full scene with central focus, figures arranged in tiers","formal, ceremonial, solemn","soft illumination from above, contrast between lit and shadowed areas","blue, gold, red, white, yellow, maroon",y,,"{
+  ""figures"": ""man in blue robe"", ""man in red robe"", ""bearded old man"", ""woman in white robe"", ""man with sword"", ""man seated on throne"", ""group of men in turbans"",
+  ""characters"": ""Sri Krishna as Envoy"",
+  ""attire"": ""blue robe with gold trim"", ""red robe with gold embroidery"", ""white robe with gold trim"", ""yellow robe with patterned fabric"", ""turbaned robes"", ""jewelled necklaces"", ""ornate headwear"",
+  ""pose"": ""standing with sword extended"", ""seated on raised platform"", ""kneeling with bowed head"", ""gesturing with hand"", ""looking toward central figure"",
+  ""action"": ""presenting sword to seated figure"", ""crowd gathered around"",
+  ""setting"": ""richly decorated palace interior"", ""columns with drapery"", ""ornate ceiling"", ""stone floor"",
+  ""composition"": ""full scene with central focus"", ""figures arranged in tiers"",
+  ""mood"": ""formal"", ""ceremonial"", ""solemn"",
+  ""lighting"": ""soft illumination from above"", ""contrast between lit and shadowed areas"",
+  ""palette"": ""blue"", ""gold"", ""red"", ""white"", ""yellow"", ""maroon""
+}"
+rrv_0124.jpg,The Begum's Bath,train,"woman with long dark hair, woman wearing purple veil, woman draped in green and gold",none,"ornate cream dress with gold embroidery, red and blue draped cloak, purple veil and robe, green and gold draped garment, necklaces and earrings","standing upright, holding a hookah, looking down, gazing forward",standing indoors near a table,richly decorated room with patterned walls and tiled floor,full scene with figures arranged on a raised platform,"serene, formal","soft, diffused illumination","cream, red, blue, gold, purple",y,,"{
+  ""figures"": [
+    ""woman with long dark hair"",
+    ""woman wearing purple veil"",
+    ""woman draped in green and gold""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""ornate cream dress with gold embroidery"",
+    ""red and blue draped cloak"",
+    ""purple veil and robe"",
+    ""green and gold draped garment"",
+    ""necklaces and earrings""
+  ],
+  ""pose"": [
+    ""standing upright"",
+    ""holding a hookah"",
+    ""looking down"",
+    ""gazing forward""
+  ],
+  ""action"": ""standing indoors near a table"",
+  ""setting"": ""richly decorated room with patterned walls and tiled floor"",
+  ""composition"": ""full scene with figures arranged on a raised platform"",
+  ""mood"": ""serene, formal"",
+  ""lighting"": ""soft, diffused illumination"",
+  ""palette"": ""cream, red, blue, gold, purple""
+}"
+rrv_0125.jpg,The Coquette,train,"woman with dark hair, woman holding fruit",none,"green blouse, purple draped garment with gold trim, pearl necklace, earrings, bangles","head tilted slightly, looking toward viewer, hand near chin",holding a yellow fruit,dark oval background,single-figure portrait within oval frame,"thoughtful, poised",soft directional light from front-left,"green, purple, gold, skin tones, dark background",y,,"{
+  ""figures"": [
+    ""woman with dark hair"",
+    ""woman holding fruit""
+  ],
+  ""characters"": ""none"",
+  ""attire"": ""green blouse, purple draped garment with gold trim, pearl necklace, earrings, bangles"",
+  ""pose"": ""head tilted slightly, looking toward viewer, hand near chin"",
+  ""action"": ""holding a yellow fruit"",
+  ""setting"": ""dark oval background"",
+  ""composition"": ""single-figure portrait within oval frame"",
+  ""mood"": ""thoughtful, poised"",
+  ""lighting"": ""soft directional light from front-left"",
+  ""palette"": ""green, purple, gold, skin tones, dark background""
+}"
+rrv_0129.jpg,Vishvamitra,train,bearded man with hair tied up,Vishvamitra,"pink draped garment, black beaded necklace","sitting cross-legged, looking down",holding prayer beads,"stone-walled interior, cloth hanging",single-figure portrait,"contemplative, serene",soft directional light from left,"earthy tones, pink, brown, beige",y,,"{
+  ""figures"": ""bearded man with hair tied up"",
+  ""characters"": ""Vishvamitra"",
+  ""attire"": ""pink draped garment, black beaded necklace"",
+  ""pose"": ""sitting cross-legged, looking down"",
+  ""action"": ""holding prayer beads"",
+  ""setting"": ""stone-walled interior, cloth hanging"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""contemplative, serene"",
+  ""lighting"": ""soft directional light from left"",
+  ""palette"": ""earthy tones, pink, brown, beige""
+}"
+rrv_0130.jpg,Victory of Meghanada,train,"woman in pink sari, man holding her, bearded man in purple robe, man in golden armor, man in green and gold armor, man in helmet and armor, man with umbrella, woman in white sari, man in red turban, man in silver armor",Meghanada,"golden armor with jewels, green and gold armor, pink draped sari, purple robe, silver armor with red skirt, white sari with jewelry, red turban, ornate crown","woman embracing man, man in armor pointing, man in helmet standing tall, man with umbrella standing, woman looking upward, man in purple robe holding woman","a woman being held, a man pointing at something, soldiers standing guard","stone steps, arched doorway, ancient palace interior, red banner hanging","full scene, central figures on steps, background figures in archway","dramatic, tense, ceremonial","warm sunlight from right, strong contrast between light and shadow","gold, red, green, pink, brown, cream",y,,"{
+  ""figures"": [
+    ""woman in pink sari"",
+    ""man holding her"",
+    ""bearded man in purple robe"",
+    ""man in golden armor"",
+    ""man in green and gold armor"",
+    ""man in helmet and armor"",
+    ""man with umbrella"",
+    ""woman in white sari"",
+    ""man in red turban"",
+    ""man in silver armor""
+  ],
+  ""characters"": [
+    ""Meghanada""
+  ],
+  ""attire"": [
+    ""golden armor with jewels"",
+    ""green and gold armor"",
+    ""pink draped sari"",
+    ""purple robe"",
+    ""silver armor with red skirt"",
+    ""white sari with jewelry"",
+    ""red turban"",
+    ""ornate crown""
+  ],
+  ""pose"": [
+    ""woman embracing man"",
+    ""man in armor pointing"",
+    ""man in helmet standing tall"",
+    ""man with umbrella standing"",
+    ""woman looking upward"",
+    ""man in purple robe holding woman""
+  ],
+  ""action"": [
+    ""a woman being held"",
+    ""a man pointing at something"",
+    ""soldiers standing guard""
+  ],
+  ""setting"": [
+    ""stone steps"",
+    ""arched doorway"",
+    ""ancient palace interior"",
+    ""red banner hanging""
+  ],
+  ""composition"": [
+    ""full scene"",
+    ""central figures on steps"",
+    ""background figures in archway""
+  ],
+  ""mood"": [
+    ""dramatic"",
+    ""tense"",
+    ""ceremonial""
+  ],
+  ""lighting"": [
+    ""warm sunlight from right"",
+    ""strong contrast between light and shadow""
+  ],
+  ""palette"": [
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""pink"",
+    ""brown"",
+    ""cream""
+  ]
+}"
+rrv_0131.jpg,Village Belle,train,"woman with red veil, woman balancing pot on head",Village Belle,"red and yellow traditional dress, patterned border, gold bangles, headscarf","standing upright, one arm raised holding pot, other hand holding jar",carrying water pots,"outdoor, plain background with faint vegetation","single-figure portrait, vertical framing","dignified, serene",soft frontal illumination,"reds, yellows, earth tones",y,,"{
+  ""figures"": [
+    ""woman with red veil"",
+    ""woman balancing pot on head""
+  ],
+  ""characters"": ""Village Belle"",
+  ""attire"": ""red and yellow traditional dress, patterned border, gold bangles, headscarf"",
+  ""pose"": ""standing upright, one arm raised holding pot, other hand holding jar"",
+  ""action"": ""carrying water pots"",
+  ""setting"": ""outdoor, plain background with faint vegetation"",
+  ""composition"": ""single-figure portrait, vertical framing"",
+  ""mood"": ""dignified, serene"",
+  ""lighting"": ""soft frontal illumination"",
+  ""palette"": ""reds, yellows, earth tones""
+}"
