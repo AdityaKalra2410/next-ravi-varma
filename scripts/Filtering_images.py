@@ -1,62 +1,69 @@
 import os
 import shutil
-import pandas as pd
 import json
+import pandas as pd
 
-# 1. Paths
-data_dir = "."  # Current directory (/AI Course/next-ravi-varma/data)
+# 1. Paths configuration
+data_dir = "."  # Base directory
 output_dir = "./processed_dataset"
-images_dir = os.path.join(data_dir, "images")
-captions_dir = os.path.join(data_dir, "captions")
 
+# Search for captions_report.csv in current directory or ./data
+csv_path = os.path.join(data_dir, "captions_report.csv")
+if not os.path.exists(csv_path):
+    csv_path = os.path.join(data_dir, "data", "captions_report.csv")
+
+# Search for images directory
+images_dir = os.path.join(data_dir, "images")
+if not os.path.exists(images_dir):
+    images_dir = os.path.join(data_dir, "data", "images")
+
+# Clean and recreate output directory
+if os.path.exists(output_dir):
+    shutil.rmtree(output_dir)
 os.makedirs(output_dir, exist_ok=True)
+
+# 2. Read captions_report.csv
+df = pd.read_csv(csv_path)
+
+# Normalize column names to lowercase
+df.columns = [c.lower() for c in df.columns]
+
+# Filter strictly for 'train' split (52 images)
+train_df = df[df['split'].astype(str).str.lower() == 'train']
 
 metadata_list = []
 valid_count = 0
 skipped_count = 0
 
-# Trigger token to guarantee style alignment
-TRIGGER_TOKEN = "rrv_style"
-
-# 2. Match images with captions
-for img_name in os.listdir(images_dir):
-    if not img_name.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
-        continue
+# 3. Process train split images and captions
+for _, row in train_df.iterrows():
+    img_name = str(row['filename']).strip()
+    caption_text = str(row['caption']).strip()
     
-    base_name = os.path.splitext(img_name)[0]
-    caption_file = os.path.join(captions_dir, f"{base_name}.txt")
+    src_img_path = os.path.join(images_dir, img_name)
     
-    # Check if a non-empty caption text file exists
-    if os.path.exists(caption_file):
-        with open(caption_file, 'r', encoding='utf-8') as f:
-            caption_text = f.read().strip()
+    if os.path.exists(src_img_path) and caption_text:
+        dst_img_path = os.path.join(output_dir, img_name)
+        shutil.copy(src_img_path, dst_img_path)
         
-        if caption_text:
-            # Ensure trigger token is present in the caption
-            if TRIGGER_TOKEN not in caption_text:
-                caption_text = f"{caption_text}, {TRIGGER_TOKEN}"
-                
-            # Copy image to processed directory
-            src_img_path = os.path.join(images_dir, img_name)
-            dst_img_path = os.path.join(output_dir, img_name)
-            shutil.copy(src_img_path, dst_img_path)
-            
-            # Record entry for metadata.jsonl
-            metadata_list.append({
-                "file_name": img_name,
-                "text": caption_text
-            })
-            valid_count += 1
-            continue
-            
-    skipped_count += 1
+        metadata_list.append({
+            "file_name": img_name,
+            "text": caption_text
+        })
+        valid_count += 1
+    else:
+        print(f"Warning: Image file not found: {src_img_path}")
+        skipped_count += 1
 
-# 3. Write metadata.jsonl inside the processed dataset folder
+# 4. Write metadata.jsonl inside output_dir
 with open(os.path.join(output_dir, "metadata.jsonl"), "w", encoding="utf-8") as f:
     for entry in metadata_list:
         f.write(json.dumps(entry) + "\n")
 
-print(f"--- Dataset Preparation Complete ---")
-print(f"Valid image-caption pairs copied: {valid_count}")
-print(f"Uncaptioned images skipped: {skipped_count}")
+print("--- Dataset Preparation Complete ---")
+print(f"Total rows in CSV: {len(df)}")
+print(f"Train split images processed: {valid_count}")
+print(f"Test split images skipped: {len(df) - len(train_df)}")
+if skipped_count > 0:
+    print(f"Missing train images skipped: {skipped_count}")
 print(f"Processed dataset ready at: {output_dir}")
