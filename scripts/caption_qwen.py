@@ -73,10 +73,13 @@ def build_prompt(title, use_title=True):
     return PROMPT.format(title_line=tl, fields=fields, keys=", ".join(FIELDS))
 
 
-def dedupe(value: str, max_items=12) -> str:
-    """Remove repeated phrases (guards against generation loops)."""
+def dedupe(value, max_items=12) -> str:
+    """Flatten lists, strip stray quotes/brackets, remove repeated phrases (guards against loops)."""
+    if isinstance(value, (list, tuple)):
+        value = ', '.join(str(v) for v in value)
+    value = re.sub(r'[\[\]"]', '', str(value))
     seen, out = set(), []
-    for p in (x.strip() for x in str(value).split(',')):
+    for p in (x.strip(" '") for x in value.split(',')):
         if p and p.lower() not in seen:
             seen.add(p.lower()); out.append(p)
     return ', '.join(out[:max_items])
@@ -93,7 +96,7 @@ def parse(text: str):
             pass
     d = {}
     for line in text.splitlines():
-        mm = re.match(r'\s*"?(\w+)"?\s*:\s*"?(.*?)"?,?\s*$', line)
+        mm = re.match(r'\s*"?(\w+)"?\s*:\s*(.*?),?\s*$', line)
         if mm and mm.group(1).lower() in FIELDS:
             d[mm.group(1).lower()] = dedupe(mm.group(2))
     return {k: d.get(k, '') for k in FIELDS}, len(d) == len(FIELDS)
@@ -111,6 +114,7 @@ def main():
     ap.add_argument('--no-title', action='store_true')
     ap.add_argument('--overwrite', action='store_true')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--reparse', action='store_true', help='re-parse the raw column of the existing CSV, no model')
     args = ap.parse_args()
     use_title = not args.no_title
 
@@ -121,6 +125,16 @@ def main():
     for r in rows:
         r['clean_title'] = fixed.get(r['filename']) or clean_title(r['title'])
     print(f"{len(rows)} oil paintings")
+
+    if args.reparse:
+        rows_out = list(csv.DictReader(open(args.out, encoding='utf-8')))
+        for r in rows_out:
+            tags, ok = parse(r['raw'])
+            r.update(tags); r['parse_ok'] = 'y' if ok else 'n'
+        with open(args.out, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=list(rows_out[0].keys())); w.writeheader(); w.writerows(rows_out)
+        print(f"Re-parsed {len(rows_out)} rows in {args.out}")
+        return
 
     if args.dry_run:
         print(build_prompt(rows[0]['clean_title'], use_title))
