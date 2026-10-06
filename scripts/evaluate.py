@@ -102,14 +102,15 @@ def main():
         embs = []
         for i in range(0, len(paths), 16):
             ims = [Image.open(x).convert("RGB") for x in paths[i:i + 16]]
-            e = clip.get_image_features(**proc(images=ims, return_tensors="pt").to("cuda"))
+            px = proc(images=ims, return_tensors="pt")["pixel_values"].to("cuda")
+            e = clip.visual_projection(clip.vision_model(pixel_values=px).pooler_output)
             embs.append(e / e.norm(dim=-1, keepdim=True))
         return torch.cat(embs)
 
     @torch.no_grad()
     def txt_emb(texts):
-        e = clip.get_text_features(**proc(text=texts, return_tensors="pt", padding=True,
-                                          truncation=True).to("cuda"))
+        t = proc.tokenizer(texts, return_tensors="pt", padding=True, truncation=True).to("cuda")
+        e = clip.text_projection(clip.text_model(**t).pooler_output)
         return e / e.norm(dim=-1, keepdim=True)
 
     train = [os.path.join(args.images, f) for f, s in split.items() if s == "train"]
