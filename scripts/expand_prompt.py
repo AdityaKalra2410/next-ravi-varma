@@ -223,8 +223,14 @@ def load_judge(report="data/captions_report.csv", images="data/images"):
         pr = CLIPProcessor.from_pretrained(JUDGE_ID)
         train = [Path(images) / r["filename"] for r in csv.DictReader(open(report, encoding="utf-8"))
                  if r["split"] == "train"]
+        ims = []
+        for f in train:                       # skip files that aren't real images (e.g. failed downloads)
+            try:
+                ims.append(Image.open(f).convert("RGB"))
+            except Exception:
+                print(f"judge: skipping unreadable {f}")
         with torch.no_grad():
-            px = pr(images=[Image.open(f).convert("RGB") for f in train], return_tensors="pt")["pixel_values"].to("cuda")
+            px = pr(images=ims, return_tensors="pt")["pixel_values"].to("cuda")
             e = m.visual_projection(m.vision_model(pixel_values=px).pooler_output)
         e = e / e.norm(dim=-1, keepdim=True)
         c = e.mean(0); c = c / c.norm()
