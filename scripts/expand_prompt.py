@@ -38,6 +38,7 @@ Turn the user's scene from the Indian epics into a JSON object with exactly thes
 Rules:
 - Each value is a few short comma-separated phrases, not sentences.
 - Describe only what should be visible. Count the figures correctly.
+- Saris are for women only; men wear dhotis, angavastrams, armour, crowns and jewellery.
 - No style or technique words (no "oil painting", "chiaroscuro", "realistic", "dramatic lighting", "masterpiece").
 - Output only the JSON object."""
 
@@ -76,7 +77,8 @@ def clip_tokens(text):
 
 def scene_names(scene):
     """Capitalised words in the scene that look like names (Yudhishthira, Karna, Kurukshetra...)."""
-    stop = {"The", "A", "An", "On", "In", "Of", "At", "By", "And", "With", "Over", "His", "Her"}
+    stop = {"The", "A", "An", "On", "In", "Of", "At", "By", "And", "With", "Over", "His", "Her",
+            "King", "Queen", "Lord", "Prince", "Princess", "Sage", "Goddess", "God"}
     return [w for w in re.findall(r"\b[A-Z][a-z]+\b", scene) if w not in stop]
 
 
@@ -110,6 +112,12 @@ def clean(raw, scene):
         fields["setting"] = ", ".join(places + ([fields["setting"]] if fields["setting"] else []))
     # composition must agree with the number of characters
     n_chars = len([c for c in fields["characters"].split(",") if c.strip()])
+    def count(item):
+        if re.search(r"\b(three|several|many|crowd|group|soldiers|guards|army)\b", item): return 3
+        if re.search(r"\b(two|pair|couple)\b|\b(women|men|demonesses|sages|warriors|maids|attendants)\b", item): return 2
+        return 1
+    n_figs = sum(count(f.strip()) for f in fields["figures"].lower().split(",") if f.strip())
+    n_chars = max(n_chars, n_figs)
     if n_chars >= 2 and "single" in fields["composition"].lower():
         fields["composition"] = "two-figure composition" if n_chars == 2 else "group scene"
     phrases = []
