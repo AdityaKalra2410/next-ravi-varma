@@ -100,9 +100,18 @@ def clean(raw, scene):
     names = scene_names(scene)
     llm_chars = [c.strip() for c in fields["characters"].split(",") if c.strip()]
     missing = [n for n in names if n.lower() not in raw.lower()]
-    if missing:
+    # a missing name right after "of/at/in/on/near" is a place (e.g. "battlefield of Kurukshetra")
+    places = [n for n in missing if re.search(rf"\b(of|at|in|on|near|by)\s+(the\s+)?{n}\b", scene)]
+    people = [n for n in missing if n not in places]
+    if people:
         llm_chars = [c for c in llm_chars if any(w.lower() in scene.lower() for w in c.split())]
-        fields["characters"] = ", ".join(missing + llm_chars)
+    fields["characters"] = ", ".join(people + [c for c in llm_chars if c not in people])
+    if places:
+        fields["setting"] = ", ".join(places + ([fields["setting"]] if fields["setting"] else []))
+    # composition must agree with the number of characters
+    n_chars = len([c for c in fields["characters"].split(",") if c.strip()])
+    if n_chars >= 2 and "single" in fields["composition"].lower():
+        fields["composition"] = "two-figure composition" if n_chars == 2 else "group scene"
     phrases = []
     for k in FIELDS:
         phrases += [p.strip() for p in fields.get(k, "").split(",") if p.strip()]
