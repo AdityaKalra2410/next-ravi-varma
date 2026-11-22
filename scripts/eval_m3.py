@@ -1,9 +1,10 @@
 """
 Milestone 3 evaluation: does LLM prompt expansion help?
 
-For 10 short epic scenes (the kind a user would type), two conditions with SD 1.5 + our LoRA:
+For 10 short epic scenes (the kind a user would type), three conditions with SD 1.5 + our LoRA:
   raw      : "rrvarma oil painting, <scene>"
-  expanded : expand_prompt.expand(<scene>)   (Qwen2.5-7B, caption-format template)
+  expanded : LLM fields in full caption format (Qwen2.5-7B)
+  hybrid   : "rrvarma oil painting, <scene>" + LLM figures, pose, setting, composition
 Same seeds for both. Scores (CLIP ViT-L/14, same method as evaluate.py):
   scene_match : similarity to the user's ORIGINAL scene text (did we draw what was asked?), 0-100
   style_sim   : similarity to the 9 held-out Varma paintings
@@ -48,22 +49,29 @@ def main():
 
     # ---------- 1. expand all scenes (LLM loaded once) ----------
     exp_file = out / "expansions.csv"
-    if exp_file.exists():
-        prompts = {r["scene"]: r["expanded"] for r in csv.DictReader(open(exp_file, encoding="utf-8"))}
+    rows = list(csv.DictReader(open(exp_file, encoding="utf-8"))) if exp_file.exists() else []
+    if rows and "hybrid" in rows[0]:
+        prompts = {r["scene"]: r["expanded"] for r in rows}
+        hybrid = {r["scene"]: r["hybrid"] for r in rows}
     else:
-        prompts = {}
+        prompts, hybrid, raws = {}, {}, {}
         for i, sc in enumerate(SCENES):
-            p, raw = ep.expand(sc)
-            prompts[sc] = p
-            print(f"[{i}] {sc}\n    -> {p}")
+            _, raw = ep.expand(sc)
+            fields = ep.fix_fields(raw, sc)
+            prompts[sc] = ep.assemble(fields, sc, "full")
+            hybrid[sc] = ep.assemble(fields, sc, "hybrid")
+            raws[sc] = raw.strip()
+            print(f"[{i}] {sc}\n    full   -> {prompts[sc]}\n    hybrid -> {hybrid[sc]}")
         with open(exp_file, "w", newline="", encoding="utf-8") as f:
-            w = csv.writer(f); w.writerow(["scene", "expanded", "tokens"])
+            w = csv.writer(f); w.writerow(["scene", "expanded", "hybrid", "tokens_full", "tokens_hybrid", "llm_json"])
             for sc in SCENES:
-                w.writerow([sc, prompts[sc], ep.clip_tokens(prompts[sc])])
+                w.writerow([sc, prompts[sc], hybrid[sc], ep.clip_tokens(prompts[sc]),
+                            ep.clip_tokens(hybrid[sc]), raws[sc]])
         ep._llm = ep._tok = None; gc.collect(); torch.cuda.empty_cache()   # free GPU for SD
 
     # ---------- 2. generate ----------
-    conds = {"raw": lambda sc: f"{ep.TRIGGER}, {sc}", "expanded": lambda sc: prompts[sc]}
+    conds = {"raw": lambda sc: f"{ep.TRIGGER}, {sc}", "expanded": lambda sc: prompts[sc],
+             "hybrid": lambda sc: hybrid[sc]}
     records = []
     for cond, make in conds.items():
         for si, sc in enumerate(SCENES):
@@ -113,16 +121,16 @@ def main():
         summary.append({"condition": cond,
                         "scene_match": round(sum(r["scene_match"] for r in rs) / len(rs), 2),
                         "style_sim": round(sum(r["style_sim"] for r in rs) / len(rs), 4)})
-    wins = 0
+    wins = {c: 0 for c in conds}
     for si in range(len(SCENES)):
         m = {c: sum(r["scene_match"] for r in records if r["condition"] == c and r["scene_id"] == si) for c in conds}
-        wins += m["expanded"] > m["raw"]
+        wins[max(m, key=m.get)] += 1
     with open(out / "summary.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(summary[0])); w.writeheader(); w.writerows(summary)
 
     # ---------- 4. grid: raw | expanded (seed 0) ----------
     S, H = 256, 28
-    grid = Image.new("RGB", (S * 2, H + S * len(SCENES)), "white"); d = ImageDraw.Draw(grid)
+    grid = Image.new("RGB", (S * len(conds), H + S * len(SCENES)), "white"); d = ImageDraw.Draw(grid)
     for ci, cond in enumerate(conds):
         d.text((ci * S + 8, 8), cond, fill="black")
         for si in range(len(SCENES)):
@@ -132,7 +140,7 @@ def main():
     print("\n=== M3 summary ===")
     for s in summary:
         print(s)
-    print(f"expanded prompt matches the scene better on {wins}/{len(SCENES)} scenes")
+    print("best scene match per scene:", wins)
     print(f"saved: {out}/expansions.csv, scores.csv, summary.csv, grid.png")
 
 
