@@ -1,8 +1,9 @@
 """
 Milestone 3: text parsing and prompt expansion.
 
-A short epic-scene description is expanded by an open-weight LLM (Qwen2.5-3B-Instruct) into
-a prompt in the SAME format as our LoRA training captions:
+A short epic-scene description is expanded by an open-weight LLM (Qwen2.5-7B-Instruct, 4-bit) into
+a prompt in the SAME format as our LoRA training captions. The LLM fills a JSON template
+(same fields as our Qwen3-VL tags) and the code assembles it in caption order:
     rrvarma oil painting, <characters>, <figures>, <action>, <pose>, <attire>, <setting>, <composition>
 then trimmed to CLIP's 77-token limit and (optionally) rendered with SD 1.5 + our LoRA.
 
@@ -19,35 +20,44 @@ import argparse, re
 from pathlib import Path
 
 TRIGGER = "rrvarma oil painting"
-LLM_ID = "Qwen/Qwen2.5-3B-Instruct"
+LLM_ID = "Qwen/Qwen2.5-7B-Instruct"   # 4-bit: ~5.5 GB, fits on a T4 next to SD 1.5
 SD_ID = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 NEG = "blurry, deformed, extra limbs, bad anatomy, text, watermark"
 
-SYSTEM = f"""You write image prompts for a Stable Diffusion model fine-tuned on Raja Ravi Varma's oil paintings.
-Rewrite the user's scene as ONE line of short comma-separated phrases, in exactly this order:
-1. "{TRIGGER}"
-2. character names (only names from the scene)
-3. the visible figures (who: gender, age, count)
-4. the main action
-5. poses and gestures
-6. attire: 19th-century Indian clothing and jewellery as Ravi Varma painted it (saris, dhotis, angavastrams, gold crowns, necklaces, armlets), with colours
-7. setting and background
-8. composition (e.g. full scene, two-figure composition, single-figure portrait)
+FIELDS = ["characters", "figures", "action", "pose", "attire", "setting", "composition"]
+
+SYSTEM = """You plan images for a Stable Diffusion model fine-tuned on Raja Ravi Varma's oil paintings.
+Turn the user's scene from the Indian epics into a JSON object with exactly these keys:
+- "characters": the named characters, spelled exactly as in the scene (add only those the scene clearly implies)
+- "figures": every visible person/animal with gender and age, e.g. "bearded king in his fifties, young warrior lying dead"
+- "action": what is happening
+- "pose": body positions and gestures of each figure (kneeling, lying, arms raised...)
+- "attire": 19th-century Indian clothing and jewellery as Ravi Varma painted it (saris, dhotis, angavastrams, armour, gold crowns, necklaces, armlets), with colours
+- "setting": place and background
+- "composition": one of "single-figure portrait", "two-figure composition", "group scene", "full scene"
 Rules:
-- Describe only what should be visible. Short phrases, not sentences. No more than about 45 words.
-- Do NOT add style or technique words (no "oil painting texture", "chiaroscuro", "realistic", "dramatic lighting", "masterpiece"): the trigger phrase already carries the style.
-- Keep the characters faithful to the epic; do not add characters the scene does not imply.
-- Output only the prompt line, nothing else."""
+- Each value is a few short comma-separated phrases, not sentences.
+- Describe only what should be visible. Count the figures correctly.
+- No style or technique words (no "oil painting", "chiaroscuro", "realistic", "dramatic lighting", "masterpiece").
+- Output only the JSON object."""
 
 EXAMPLES = [
     ("Draupadi pleading in the royal court of Hastinapura",
-     f"{TRIGGER}, Draupadi, Dushasana, Bhishma, woman in red sari, crowned princes, seated elders, "
-     "woman pleading with hands joined, man pulling her sari, elders looking down, red silk sari with gold border, "
-     "gold crowns and jewellery, royal court with carved pillars, full scene"),
+     {"characters": "Draupadi, Dushasana, Bhishma",
+      "figures": "young woman, young prince, white-bearded elder, seated nobles",
+      "action": "woman pleading for help, prince pulling her sari",
+      "pose": "woman with hands joined in prayer, elders looking down in shame",
+      "attire": "red silk sari with gold border, gold crowns, pearl necklaces, armlets",
+      "setting": "royal court with carved pillars and a throne",
+      "composition": "full scene"}),
     ("Krishna playing the flute for Radha by the Yamuna at dusk",
-     f"{TRIGGER}, Krishna, Radha, young blue-skinned man with flute, young woman, playing the flute, "
-     "woman listening shyly, standing close together, yellow dhoti, peacock-feather crown, green sari with gold border, "
-     "riverbank at dusk, trees, two-figure composition"),
+     {"characters": "Krishna, Radha",
+      "figures": "young blue-skinned man, young woman",
+      "action": "man playing the flute, woman listening shyly",
+      "pose": "standing close together, her head tilted down",
+      "attire": "yellow dhoti, peacock-feather crown, green sari with gold border, gold jewellery",
+      "setting": "riverbank at dusk, trees",
+      "composition": "two-figure composition"}),
 ]
 
 STYLE_WORDS = re.compile(r"\b(chiaroscuro|masterpiece|realistic|photorealistic|dramatic lighting|oil painting texture|"
@@ -64,21 +74,48 @@ def clip_tokens(text):
     return len(_clip_tok(text).input_ids)
 
 
+def scene_names(scene):
+    """Capitalised words in the scene that look like names (Yudhishthira, Karna, Kurukshetra...)."""
+    stop = {"The", "A", "An", "On", "In", "Of", "At", "By", "And", "With", "Over", "His", "Her"}
+    return [w for w in re.findall(r"\b[A-Z][a-z]+\b", scene) if w not in stop]
+
+
+def parse_json(raw):
+    import json
+    m = re.search(r"\{.*\}", raw, flags=re.S)
+    try:
+        d = json.loads(m.group(0)) if m else {}
+    except json.JSONDecodeError:
+        d = {}
+    return {k: str(d.get(k, "")).strip() for k in FIELDS}
+
+
 def clean(raw, scene):
-    """Turn the LLM output into a valid prompt: one line, trigger first, no style words, <= 77 tokens."""
-    line = next((l for l in raw.splitlines() if l.strip()), "").strip().strip('"').strip()
-    line = re.sub(r"^(prompt|output)\s*:\s*", "", line, flags=re.I)
-    phrases = [p.strip() for p in line.split(",") if p.strip()]
-    phrases = [STYLE_WORDS.sub("", p).strip() for p in phrases]
-    phrases = [p for p in phrases if p and p.lower() != TRIGGER]
-    if len(phrases) < 3:                           # LLM failed: fall back to the raw scene
+    """LLM output -> valid prompt: trigger first, caption-order fields, scene names kept,
+    no style words, no repeats, <= 77 CLIP tokens."""
+    fields = parse_json(raw)
+    if sum(bool(v) for v in fields.values()) < 3:     # no usable JSON: fall back to the raw scene
+        return f"{TRIGGER}, {scene.strip().rstrip('.')}"
+    # keep every name the user typed; if the LLM garbled one, also drop names it invented
+    names = scene_names(scene)
+    llm_chars = [c.strip() for c in fields["characters"].split(",") if c.strip()]
+    missing = [n for n in names if n.lower() not in raw.lower()]
+    if missing:
+        llm_chars = [c for c in llm_chars if any(w.lower() in scene.lower() for w in c.split())]
+        fields["characters"] = ", ".join(missing + llm_chars)
+    phrases = []
+    for k in FIELDS:
+        phrases += [p.strip() for p in fields.get(k, "").split(",") if p.strip()]
+    phrases = [STYLE_WORDS.sub("", p).strip(" .") for p in phrases]
+    phrases = [p for p in phrases if p and p.lower() not in (TRIGGER, "none")]
+    if len(phrases) < 3:                              # LLM failed: fall back to the raw scene
         phrases = [scene.strip().rstrip(".")]
     seen, out = set(), []
-    for p in phrases:                              # drop repeated phrases
+    for p in phrases:
         if p.lower() not in seen:
             seen.add(p.lower()); out.append(p)
     prompt = ", ".join([TRIGGER] + out)
-    while clip_tokens(prompt) > 77 and len(out) > 1:   # trim least important (last) phrases first
+    while clip_tokens(prompt) > 77 and len(out) > 1:  # trim least important (last) phrases first
         out.pop(); prompt = ", ".join([TRIGGER] + out)
     return prompt
 
@@ -100,13 +137,14 @@ def expand(scene):
     import torch
     llm, tok = load_llm()
     msgs = [{"role": "system", "content": SYSTEM}]
+    import json
     for user, answer in EXAMPLES:
-        msgs += [{"role": "user", "content": user}, {"role": "assistant", "content": answer}]
+        msgs += [{"role": "user", "content": user}, {"role": "assistant", "content": json.dumps(answer)}]
     msgs.append({"role": "user", "content": scene})
     text = tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
     inputs = tok(text, return_tensors="pt").to(llm.device)
     with torch.no_grad():
-        out = llm.generate(**inputs, max_new_tokens=120, do_sample=False, repetition_penalty=1.1)
+        out = llm.generate(**inputs, max_new_tokens=250, do_sample=False, repetition_penalty=1.1)
     raw = tok.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
     return clean(raw, scene), raw
 
