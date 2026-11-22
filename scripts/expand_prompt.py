@@ -92,12 +92,15 @@ def parse_json(raw):
     return {k: str(d.get(k, "")).strip() for k in FIELDS}
 
 
-def clean(raw, scene):
-    """LLM output -> valid prompt: trigger first, caption-order fields, scene names kept,
-    no style words, no repeats, <= 77 CLIP tokens."""
+HYBRID_FIELDS = ["figures", "pose", "setting", "composition"]
+
+
+def fix_fields(raw, scene):
+    """Parse the LLM JSON and repair it: scene names kept, places moved to setting,
+    composition consistent with the number of figures. Returns None if unusable."""
     fields = parse_json(raw)
-    if sum(bool(v) for v in fields.values()) < 3:     # no usable JSON: fall back to the raw scene
-        return f"{TRIGGER}, {scene.strip().rstrip('.')}"
+    if sum(bool(v) for v in fields.values()) < 3:
+        return None
     # keep every name the user typed; if the LLM garbled one, also drop names it invented
     names = scene_names(scene)
     llm_chars = [c.strip() for c in fields["characters"].split(",") if c.strip()]
@@ -120,21 +123,35 @@ def clean(raw, scene):
     n_chars = max(n_chars, n_figs)
     if n_chars >= 2 and "single" in fields["composition"].lower():
         fields["composition"] = "two-figure composition" if n_chars == 2 else "group scene"
-    phrases = []
-    for k in FIELDS:
+    return fields
+
+
+def assemble(fields, scene, mode="hybrid"):
+    """mode="full":   trigger + all fields in caption order (pure caption format)
+       mode="hybrid": trigger + the user's scene sentence + figures, pose, setting, composition"""
+    scene = scene.strip().rstrip(".")
+    if fields is None:
+        return f"{TRIGGER}, {scene}"
+    keys = FIELDS if mode == "full" else HYBRID_FIELDS
+    phrases = [scene] if mode == "hybrid" else []
+    for k in keys:
         phrases += [p.strip() for p in fields.get(k, "").split(",") if p.strip()]
     phrases = [STYLE_WORDS.sub("", p).strip(" .") for p in phrases]
     phrases = [p for p in phrases if p and p.lower() not in (TRIGGER, "none")]
-    if len(phrases) < 3:                              # LLM failed: fall back to the raw scene
-        phrases = [scene.strip().rstrip(".")]
+    if not phrases:
+        phrases = [scene]
     seen, out = set(), []
-    for p in phrases:
+    for p in phrases:                                 # drop repeated phrases
         if p.lower() not in seen:
             seen.add(p.lower()); out.append(p)
     prompt = ", ".join([TRIGGER] + out)
     while clip_tokens(prompt) > 77 and len(out) > 1:  # trim least important (last) phrases first
         out.pop(); prompt = ", ".join([TRIGGER] + out)
     return prompt
+
+
+def clean(raw, scene, mode="full"):
+    return assemble(fix_fields(raw, scene), scene, mode)
 
 
 def load_llm(four_bit=True):
@@ -149,8 +166,8 @@ def load_llm(four_bit=True):
     return _llm, _tok
 
 
-def expand(scene):
-    """Short scene description -> (expanded prompt, raw LLM output)."""
+def expand(scene, mode="hybrid"):
+    """Short scene description -> (expanded prompt, raw LLM output). mode: "hybrid" or "full"."""
     import torch
     llm, tok = load_llm()
     msgs = [{"role": "system", "content": SYSTEM}]
@@ -163,7 +180,7 @@ def expand(scene):
     with torch.no_grad():
         out = llm.generate(**inputs, max_new_tokens=250, do_sample=False, repetition_penalty=1.1)
     raw = tok.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-    return clean(raw, scene), raw
+    return clean(raw, scene, mode), raw
 
 
 def load_pipe(lora="models/lora_v1.safetensors", lora_scale=1.0):
@@ -195,13 +212,14 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--lora", default="models/lora_v1.safetensors")
     ap.add_argument("--out", default="m3_outputs")
+    ap.add_argument("--mode", choices=["hybrid", "full"], default="hybrid")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
     if a.dry_run:
         print(SYSTEM); print("\nfallback if the LLM fails:", f"{TRIGGER}, {a.scene}")
         return
-    prompt, raw = expand(a.scene)
+    prompt, raw = expand(a.scene, a.mode)
     print("scene   :", a.scene)
     print("LLM raw :", raw.strip())
     print(f"prompt  : {prompt}   ({clip_tokens(prompt)} tokens)")
