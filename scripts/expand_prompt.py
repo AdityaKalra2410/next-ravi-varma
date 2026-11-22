@@ -23,6 +23,8 @@ TRIGGER = "rrvarma oil painting"
 LLM_ID = "Qwen/Qwen2.5-7B-Instruct"   # 4-bit: ~5.5 GB, fits on a T4 next to SD 1.5
 SD_ID = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 NEG = "blurry, deformed, extra limbs, bad anatomy, text, watermark"
+# Also steer away from the calendar-print / poster look that "Ravi Varma" usually produces online
+NEG_PLUS = NEG + ", calendar art, poster, flat colors, oversaturated, cartoon, anime, photograph, 3d render"
 
 FIELDS = ["characters", "figures", "action", "pose", "attire", "setting", "composition"]
 
@@ -64,7 +66,7 @@ EXAMPLES = [
 STYLE_WORDS = re.compile(r"\b(chiaroscuro|masterpiece|realistic|photorealistic|dramatic lighting|oil painting texture|"
                          r"oil canvas|oil on canvas|in the style of[^,]*|ravi varma style|highly detailed|8k|4k)\b", re.I)
 
-_llm = _tok = _clip_tok = _pipe = None
+_llm = _tok = _clip_tok = _pipe = _judge = None
 
 
 def clip_tokens(text):
@@ -197,12 +199,66 @@ def load_pipe(lora="models/lora_v1.safetensors", lora_scale=1.0):
     return _pipe
 
 
-def generate(prompt, seed=0, steps=30, guidance=7.5, lora="models/lora_v1.safetensors"):
+def generate(prompt, seed=0, steps=30, guidance=7.5, lora="models/lora_v1.safetensors", negative=NEG):
     import torch
     pipe = load_pipe(lora)
     g = torch.Generator("cuda").manual_seed(seed)
-    return pipe(prompt, negative_prompt=NEG, num_inference_steps=steps,
+    return pipe(prompt, negative_prompt=negative, num_inference_steps=steps,
                 guidance_scale=guidance, generator=g).images[0]
+
+
+# ---------- best-of-N selection ----------
+# The judge is CLIP ViT-B/32: a DIFFERENT model from the ViT-L/14 used for evaluation, and its
+# style reference is the TRAINING paintings only, so the 9 held-out test paintings are never used.
+JUDGE_ID = "openai/clip-vit-base-patch32"
+
+
+def load_judge(report="data/captions_report.csv", images="data/images"):
+    global _judge
+    if _judge is None:
+        import csv, torch
+        from PIL import Image
+        from transformers import CLIPModel, CLIPProcessor
+        m = CLIPModel.from_pretrained(JUDGE_ID).to("cuda").eval()
+        pr = CLIPProcessor.from_pretrained(JUDGE_ID)
+        train = [Path(images) / r["filename"] for r in csv.DictReader(open(report, encoding="utf-8"))
+                 if r["split"] == "train"]
+        with torch.no_grad():
+            px = pr(images=[Image.open(f).convert("RGB") for f in train], return_tensors="pt")["pixel_values"].to("cuda")
+            e = m.visual_projection(m.vision_model(pixel_values=px).pooler_output)
+        e = e / e.norm(dim=-1, keepdim=True)
+        c = e.mean(0); c = c / c.norm()
+        _judge = (m, pr, c)
+    return _judge
+
+
+def judge_scores(images, text):
+    """score = similarity to the scene text + similarity to the training-set style centroid"""
+    import torch
+    m, pr, centroid = load_judge()
+    with torch.no_grad():
+        px = pr(images=[im.convert("RGB") for im in images], return_tensors="pt")["pixel_values"].to("cuda")
+        ie = m.visual_projection(m.vision_model(pixel_values=px).pooler_output)
+        t = pr.tokenizer([text], return_tensors="pt", padding=True, truncation=True).to("cuda")
+        te = m.text_projection(m.text_model(**t).pooler_output)
+    ie = ie / ie.norm(dim=-1, keepdim=True); te = te / te.norm(dim=-1, keepdim=True)
+    return ((ie @ te.T).squeeze(1) + ie @ centroid).tolist()
+
+
+def generate_best(prompt, scene=None, n=4, seed=0, lora="models/lora_v1.safetensors", negative=NEG_PLUS, gen=None):
+    """Generate n candidates (seeds seed*100 .. seed*100+n-1) and return (best image, all scores).
+    `gen` lets ControlNet reuse this: gen(prompt, seed, negative) -> image."""
+    gen = gen or (lambda p, s, neg: generate(p, s, lora=lora, negative=neg))
+    cands = [gen(prompt, seed * 100 + k, negative) for k in range(n)]
+    scores = judge_scores(cands, scene or prompt.replace(TRIGGER + ", ", ""))
+    best = max(range(n), key=lambda i: scores[i])
+    return cands[best], scores
+
+
+def _llm_free():
+    global _llm, _tok
+    import gc, torch
+    _llm = _tok = None; gc.collect(); torch.cuda.empty_cache()
 
 
 def main():
@@ -212,6 +268,7 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--lora", default="models/lora_v1.safetensors")
     ap.add_argument("--out", default="m3_outputs")
+    ap.add_argument("--best-of", type=int, default=4, help="candidates to generate and pick from (1 = no selection)")
     ap.add_argument("--mode", choices=["hybrid", "full"], default="hybrid")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
@@ -227,7 +284,13 @@ def main():
         Path(a.out).mkdir(exist_ok=True)
         slug = re.sub(r"[^a-z0-9]+", "_", a.scene.lower())[:50].strip("_")
         path = Path(a.out) / f"{slug}_s{a.seed}.png"
-        generate(prompt, a.seed, lora=a.lora).save(path)
+        if a.best_of > 1:
+            _llm_free()
+            img, scores = generate_best(prompt, a.scene, a.best_of, a.seed, a.lora)
+            print("judge  :", [round(x, 3) for x in scores])
+        else:
+            img = generate(prompt, a.seed, lora=a.lora, negative=NEG_PLUS)
+        img.save(path)
         print("saved   :", path)
 
 
