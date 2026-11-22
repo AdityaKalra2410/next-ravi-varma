@@ -103,10 +103,11 @@ def expand(scene):
     for user, answer in EXAMPLES:
         msgs += [{"role": "user", "content": user}, {"role": "assistant", "content": answer}]
     msgs.append({"role": "user", "content": scene})
-    ids = tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt").to(llm.device)
+    text = tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
+    inputs = tok(text, return_tensors="pt").to(llm.device)
     with torch.no_grad():
-        out = llm.generate(ids, max_new_tokens=120, do_sample=False, repetition_penalty=1.1)
-    raw = tok.decode(out[0][ids.shape[1]:], skip_special_tokens=True)
+        out = llm.generate(**inputs, max_new_tokens=120, do_sample=False, repetition_penalty=1.1)
+    raw = tok.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
     return clean(raw, scene), raw
 
 
