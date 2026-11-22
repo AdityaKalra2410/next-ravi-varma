@@ -1766,3 +1766,390 @@ rrv_0131.jpg,Village Belle,train,"woman with red veil, woman balancing pot on he
   ""lighting"": ""soft frontal illumination"",
   ""palette"": ""reds, yellows, earth tones""
 }"
+rrv_0005.jpg,Bheeshma oath,train,"man with red cap, man in white dhoti, woman in blue dress, child, rooster, chicken, man in turban",none,"red cap, white dhoti with belt, blue dress with red trim, orange-red dhoti, white turban","man gesturing upward, man holding cap, woman standing, child standing, man in turban standing",man offering cap to another man,"village with thatched hut, chickens, distant buildings",full scene with multiple figures,"solemn, ceremonial","soft, diffused daylight","reds, whites, earth tones, blues",y,,"{
+  ""figures"": [
+    ""man with red cap"",
+    ""man in white dhoti"",
+    ""woman in blue dress"",
+    ""child"",
+    ""rooster"",
+    ""chicken"",
+    ""man in turban""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""red cap"",
+    ""white dhoti with belt"",
+    ""blue dress with red trim"",
+    ""orange-red dhoti"",
+    ""white turban""
+  ],
+  ""pose"": [
+    ""man gesturing upward"",
+    ""man holding cap"",
+    ""woman standing"",
+    ""child standing"",
+    ""man in turban standing""
+  ],
+  ""action"": ""man offering cap to another man"",
+  ""setting"": ""village with thatched hut, chickens, distant buildings"",
+  ""composition"": ""full scene with multiple figures"",
+  ""mood"": ""solemn, ceremonial"",
+  ""lighting"": ""soft, diffused daylight"",
+  ""palette"": ""reds, whites, earth tones, blues""
+}"
+rrv_0009.jpg,Draupadi Vastraharan,train,"woman in red sari, man holding her sari, man in green and gold robe, bearded man in white robe, men in turbans",Draupadi,"red sari with gold trim, green and gold robe with belt, blue turban with jewels, necklaces and bangles, turbaned men in robes","woman standing with sari pulled, man holding sari, man standing with hands on hips, bearded man seated","sari being torn, men surrounding","ornate palace hall, red curtains, golden throne, arched doorways","full scene, central focus on woman and man","dramatic, tense","soft illumination from above, shadows under figures","reds, greens, gold, blue",y,,"{
+  ""figures"": ""woman in red sari"", ""man holding her sari"", ""man in green and gold robe"", ""bearded man in white robe"", ""men in turbans"",
+  ""characters"": ""Draupadi"",
+  ""attire"": ""red sari with gold trim"", ""green and gold robe with belt"", ""blue turban with jewels"", ""necklaces and bangles"", ""turbaned men in robes"",
+  ""pose"": ""woman standing with sari pulled"", ""man holding sari"", ""man standing with hands on hips"", ""bearded man seated"",
+  ""action"": ""sari being torn"", ""men surrounding"",
+  ""setting"": ""ornate palace hall"", ""red curtains"", ""golden throne"", ""arched doorways"",
+  ""composition"": ""full scene"", ""central focus on woman and man"",
+  ""mood"": ""dramatic"", ""tense"",
+  ""lighting"": ""soft illumination from above"", ""shadows under figures"",
+  ""palette"": ""reds"", ""greens"", ""gold"", ""blue""
+}"
+rrv_0016.jpg,Tilottama,train,"naked woman, woman with long dark hair",Tilottama,"red draped garment with gold trim, pearl necklaces, bangles, earrings, bindi","one arm raised, other hand holding fabric, looking upward",dancing or posing gracefully,cloudy sky background,single-figure portrait,"elegant, serene",soft diffused light,"reds, golds, soft blues and creams",y,,"{
+  ""figures"": [
+    ""naked woman"",
+    ""woman with long dark hair""
+  ],
+  ""characters"": ""Tilottama"",
+  ""attire"": ""red draped garment with gold trim, pearl necklaces, bangles, earrings, bindi"",
+  ""pose"": ""one arm raised, other hand holding fabric, looking upward"",
+  ""action"": ""dancing or posing gracefully"",
+  ""setting"": ""cloudy sky background"",
+  ""composition"": ""single-figure portrait"",
+  ""mood"": ""elegant, serene"",
+  ""lighting"": ""soft diffused light"",
+  ""palette"": ""reds, golds, soft blues and creams""
+}"
+rrv_0024.jpg,Sri Krishna as Envoy,train,"man in blue robe, man in red robe, bearded old man, woman in white robe, man with sword, man seated on throne, group of men in turbans",Sri Krishna as Envoy,"blue robe with gold trim, red robe with gold embroidery, white robe with gold trim, yellow robe with patterned fabric, turbaned robes, jewelled necklaces, ornate headwear","standing with sword extended, seated on raised platform, kneeling with bowed head, gesturing with hand, looking toward central figure","presenting sword to seated figure, crowd gathered around","richly decorated palace interior, columns with drapery, ornate ceiling, stone floor","full scene with central focus, figures arranged in tiers","formal, ceremonial, solemn","soft illumination from above, contrast between lit and shadowed areas","blue, gold, red, white, yellow, maroon",y,,"{
+  ""figures"": ""man in blue robe"", ""man in red robe"", ""bearded old man"", ""woman in white robe"", ""man with sword"", ""man seated on throne"", ""group of men in turbans"",
+  ""characters"": ""Sri Krishna as Envoy"",
+  ""attire"": ""blue robe with gold trim"", ""red robe with gold embroidery"", ""white robe with gold trim"", ""yellow robe with patterned fabric"", ""turbaned robes"", ""jewelled necklaces"", ""ornate headwear"",
+  ""pose"": ""standing with sword extended"", ""seated on raised platform"", ""kneeling with bowed head"", ""gesturing with hand"", ""looking toward central figure"",
+  ""action"": ""presenting sword to seated figure"", ""crowd gathered around"",
+  ""setting"": ""richly decorated palace interior"", ""columns with drapery"", ""ornate ceiling"", ""stone floor"",
+  ""composition"": ""full scene with central focus"", ""figures arranged in tiers"",
+  ""mood"": ""formal"", ""ceremonial"", ""solemn"",
+  ""lighting"": ""soft illumination from above"", ""contrast between lit and shadowed areas"",
+  ""palette"": ""blue"", ""gold"", ""red"", ""white"", ""yellow"", ""maroon""
+}"
+rrv_0025.jpg,Sri Krishna as Envoy,train,"man in blue robe, man in red robe, bearded old man, woman in white robe, man with sword, man seated on throne, group of men in turbans",Sri Krishna as Envoy,"blue robe with gold trim, red robe with gold embroidery, white robe with gold trim, yellow robe with patterned fabric, turbaned robes, jewelled necklaces, ornate headwear","standing with sword extended, seated on raised platform, kneeling with bowed head, gesturing with hand, looking toward central figure","presenting sword to seated figure, crowd gathered around","richly decorated palace interior, columns with drapery, ornate ceiling, stone floor","full scene with central focus, figures arranged in tiers","formal, ceremonial, solemn","soft illumination from above, contrast between lit and shadowed areas","blue, gold, red, white, yellow, maroon",y,,"{
+  ""figures"": ""man in blue robe"", ""man in red robe"", ""bearded old man"", ""woman in white robe"", ""man with sword"", ""man seated on throne"", ""group of men in turbans"",
+  ""characters"": ""Sri Krishna as Envoy"",
+  ""attire"": ""blue robe with gold trim"", ""red robe with gold embroidery"", ""white robe with gold trim"", ""yellow robe with patterned fabric"", ""turbaned robes"", ""jewelled necklaces"", ""ornate headwear"",
+  ""pose"": ""standing with sword extended"", ""seated on raised platform"", ""kneeling with bowed head"", ""gesturing with hand"", ""looking toward central figure"",
+  ""action"": ""presenting sword to seated figure"", ""crowd gathered around"",
+  ""setting"": ""richly decorated palace interior"", ""columns with drapery"", ""ornate ceiling"", ""stone floor"",
+  ""composition"": ""full scene with central focus"", ""figures arranged in tiers"",
+  ""mood"": ""formal"", ""ceremonial"", ""solemn"",
+  ""lighting"": ""soft illumination from above"", ""contrast between lit and shadowed areas"",
+  ""palette"": ""blue"", ""gold"", ""red"", ""white"", ""yellow"", ""maroon""
+}"
+rrv_0057.jpg,Goddess Saraswathi,train,"woman, peacock",Goddess Saraswathi,"white sari with gold trim, red blouse, jewellery including necklace, bangles, earrings, ornate crown","sitting on stone, holding stringed instrument, gazing forward, one hand holding beads","playing stringed instrument, seated by water","riverbank, trees in background, lotus flowers floating, distant hills","single-figure portrait, figure centered, peacock at lower left","serene, graceful","soft diffuse light, gentle illumination from front","white, gold, red, green, blue-grey",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""peacock""
+  ],
+  ""characters"": [
+    ""Goddess Saraswathi""
+  ],
+  ""attire"": [
+    ""white sari with gold trim"",
+    ""red blouse"",
+    ""jewellery including necklace, bangles, earrings"",
+    ""ornate crown""
+  ],
+  ""pose"": [
+    ""sitting on stone"",
+    ""holding stringed instrument"",
+    ""gazing forward"",
+    ""one hand holding beads""
+  ],
+  ""action"": [
+    ""playing stringed instrument"",
+    ""seated by water""
+  ],
+  ""setting"": [
+    ""riverbank"",
+    ""trees in background"",
+    ""lotus flowers floating"",
+    ""distant hills""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""figure centered"",
+    ""peacock at lower left""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""graceful""
+  ],
+  ""lighting"": [
+    ""soft diffuse light"",
+    ""gentle illumination from front""
+  ],
+  ""palette"": [
+    ""white"",
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""blue-grey""
+  ]
+}"
+rrv_0067.jpg,Jatayu Vadham,train,"man with raised arm, woman with hands over face, large bird with spread wings",Jatayu,"green and gold draped garment, red skirt with gold trim, necklace and crown, bracelets on wrists and ankles, yellow sari with gold border","man leaping upward with sword raised, woman crouching with head bowed, bird flying with wings outstretched","man fighting bird, bird attacking, feathers falling around","sky with distant mountains, cloudy sky","diagonal arrangement of figures, bird on left, man and woman on right","dramatic, intense","soft diffused light, high contrast between figures and sky","brown, gold, red, green, cream",y,,"{
+  ""figures"": [
+    ""man with raised arm"",
+    ""woman with hands over face"",
+    ""large bird with spread wings""
+  ],
+  ""characters"": [
+    ""Jatayu""
+  ],
+  ""attire"": [
+    ""green and gold draped garment"",
+    ""red skirt with gold trim"",
+    ""necklace and crown"",
+    ""bracelets on wrists and ankles"",
+    ""yellow sari with gold border""
+  ],
+  ""pose"": [
+    ""man leaping upward with sword raised"",
+    ""woman crouching with head bowed"",
+    ""bird flying with wings outstretched""
+  ],
+  ""action"": [
+    ""man fighting bird"",
+    ""bird attacking"",
+    ""feathers falling around""
+  ],
+  ""setting"": [
+    ""sky with distant mountains"",
+    ""cloudy sky""
+  ],
+  ""composition"": [
+    ""diagonal arrangement of figures"",
+    ""bird on left, man and woman on right""
+  ],
+  ""mood"": [
+    ""dramatic"",
+    ""intense""
+  ],
+  ""lighting"": [
+    ""soft diffused light"",
+    ""high contrast between figures and sky""
+  ],
+  ""palette"": [
+    ""brown"",
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""cream""
+  ]
+}"
+rrv_0079.jpg,Sairandhri,train,"woman in dark sari, man with turban and spear",Sairandhri,"dark blue sari with red border, ornate orange tunic, white turban, necklace, bracelets, spear with black tip","woman covering face with hand, man standing upright holding spear","woman holding plate with offering, man guarding her","stone steps, carved elephant relief, wooden door","two figures on stairs, background architectural elements","solemn, dramatic","soft directional light from left, strong shadows on right","earthy tones, deep blue, rich orange, cream stone",y,,"{
+  ""figures"": [
+    ""woman in dark sari"",
+    ""man with turban and spear""
+  ],
+  ""characters"": [
+    ""Sairandhri""
+  ],
+  ""attire"": [
+    ""dark blue sari with red border"",
+    ""ornate orange tunic"",
+    ""white turban"",
+    ""necklace"",
+    ""bracelets"",
+    ""spear with black tip""
+  ],
+  ""pose"": [
+    ""woman covering face with hand"",
+    ""man standing upright holding spear""
+  ],
+  ""action"": [
+    ""woman holding plate with offering"",
+    ""man guarding her""
+  ],
+  ""setting"": [
+    ""stone steps"",
+    ""carved elephant relief"",
+    ""wooden door""
+  ],
+  ""composition"": [
+    ""two figures on stairs"",
+    ""background architectural elements""
+  ],
+  ""mood"": [
+    ""solemn"",
+    ""dramatic""
+  ],
+  ""lighting"": [
+    ""soft directional light from left"",
+    ""strong shadows on right""
+  ],
+  ""palette"": [
+    ""earthy tones"",
+    ""deep blue"",
+    ""rich orange"",
+    ""cream stone""
+  ]
+}"
+rrv_0111.jpg,Goddess Saraswathi,train,"woman, peacock",Goddess Saraswathi,"white sari with gold trim, red blouse, jewellery including necklace, bangles, earrings, ornate crown","sitting on stone, holding stringed instrument, gazing forward, one hand holding beads","playing stringed instrument, seated by water","riverbank, trees in background, lotus flowers floating, distant hills","single-figure portrait, figure centered, peacock at lower left","serene, graceful","soft diffuse light, gentle illumination from front","white, gold, red, green, blue-grey",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""peacock""
+  ],
+  ""characters"": [
+    ""Goddess Saraswathi""
+  ],
+  ""attire"": [
+    ""white sari with gold trim"",
+    ""red blouse"",
+    ""jewellery including necklace, bangles, earrings"",
+    ""ornate crown""
+  ],
+  ""pose"": [
+    ""sitting on stone"",
+    ""holding stringed instrument"",
+    ""gazing forward"",
+    ""one hand holding beads""
+  ],
+  ""action"": [
+    ""playing stringed instrument"",
+    ""seated by water""
+  ],
+  ""setting"": [
+    ""riverbank"",
+    ""trees in background"",
+    ""lotus flowers floating"",
+    ""distant hills""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""figure centered"",
+    ""peacock at lower left""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""graceful""
+  ],
+  ""lighting"": [
+    ""soft diffuse light"",
+    ""gentle illumination from front""
+  ],
+  ""palette"": [
+    ""white"",
+    ""gold"",
+    ""red"",
+    ""green"",
+    ""blue-grey""
+  ]
+}"
+rrv_0116.jpg,Shakuntala,train,"woman, man in distance",Shakuntala,"golden drape, necklace, bracelet, earring","sitting on rock, head turned slightly, hands clasped",resting outdoors,"palm tree, rocky terrain, hills, dry grass, distant figure walking","single-figure portrait, background landscape","serene, contemplative","soft daylight, even illumination","ochre, gold, brown, green, blue sky",y,,"{
+  ""figures"": [
+    ""woman"",
+    ""man in distance""
+  ],
+  ""characters"": [
+    ""Shakuntala""
+  ],
+  ""attire"": [
+    ""golden drape"",
+    ""necklace"",
+    ""bracelet"",
+    ""earring""
+  ],
+  ""pose"": [
+    ""sitting on rock"",
+    ""head turned slightly"",
+    ""hands clasped""
+  ],
+  ""action"": [
+    ""resting outdoors""
+  ],
+  ""setting"": [
+    ""palm tree"",
+    ""rocky terrain"",
+    ""hills"",
+    ""dry grass"",
+    ""distant figure walking""
+  ],
+  ""composition"": [
+    ""single-figure portrait"",
+    ""background landscape""
+  ],
+  ""mood"": [
+    ""serene"",
+    ""contemplative""
+  ],
+  ""lighting"": [
+    ""soft daylight"",
+    ""even illumination""
+  ],
+  ""palette"": [
+    ""ochre"",
+    ""gold"",
+    ""brown"",
+    ""green"",
+    ""blue sky""
+  ]
+}"
+rrv_0127.jpg,There Comes Papa,train,"woman holding child, child, dog",none,"white draped garment with gold trim, jewellery including necklace, bangles, earrings, headpiece with pink flower, red fabric draped nearby","woman standing upright, child held against her chest, woman looking down at child, dog sitting at left side",woman cradling child,indoor space with dark wooden wall and patterned floor,full-length portrait with figures centered,"serene, tender",soft directional light from front-left,"dominant white, red, brown, gold",y,,"{
+  ""figures"": [
+    ""woman holding child"",
+    ""child"",
+    ""dog""
+  ],
+  ""characters"": ""none"",
+  ""attire"": [
+    ""white draped garment with gold trim"",
+    ""jewellery including necklace, bangles, earrings"",
+    ""headpiece with pink flower"",
+    ""red fabric draped nearby""
+  ],
+  ""pose"": [
+    ""woman standing upright"",
+    ""child held against her chest"",
+    ""woman looking down at child"",
+    ""dog sitting at left side""
+  ],
+  ""action"": ""woman cradling child"",
+  ""setting"": ""indoor space with dark wooden wall and patterned floor"",
+  ""composition"": ""full-length portrait with figures centered"",
+  ""mood"": ""serene, tender"",
+  ""lighting"": ""soft directional light from front-left"",
+  ""palette"": ""dominant white, red, brown, gold""
+}"
+rrv_0134.jpg,Yasoda with Krishna,train,"woman holding child, child","Yasoda, Krishna","woman draped in sari, child in dhoti-like garment, both adorned with necklaces and bangles, child wearing floral garland, woman with bindi and earrings","woman seated, child sitting on her lap, woman gesturing with right hand, both looking toward viewer",woman holding child while gesturing,outdoor landscape with trees and hills,portrait composition with figures centered,"serene, maternal",soft directional light from upper left,"warm earth tones, muted browns and ochres",y,,"{
+  ""figures"": [
+    ""woman holding child"",
+    ""child""
+  ],
+  ""characters"": [
+    ""Yasoda"",
+    ""Krishna""
+  ],
+  ""attire"": [
+    ""woman draped in sari"",
+    ""child in dhoti-like garment"",
+    ""both adorned with necklaces and bangles"",
+    ""child wearing floral garland"",
+    ""woman with bindi and earrings""
+  ],
+  ""pose"": [
+    ""woman seated"",
+    ""child sitting on her lap"",
+    ""woman gesturing with right hand"",
+    ""both looking toward viewer""
+  ],
+  ""action"": ""woman holding child while gesturing"",
+  ""setting"": ""outdoor landscape with trees and hills"",
+  ""composition"": ""portrait composition with figures centered"",
+  ""mood"": ""serene, maternal"",
+  ""lighting"": ""soft directional light from upper left"",
+  ""palette"": ""warm earth tones, muted browns and ochres""
+}"
