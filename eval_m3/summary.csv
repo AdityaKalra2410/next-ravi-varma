@@ -1,0 +1,7 @@
+condition,scene_match,style_sim
+raw,28.2,0.823
+expanded,27.28,0.8114
+hybrid,28.71,0.8149
+hybrid_neg,27.67,0.8173
+raw_neg_best4,30.4,0.8309
+hybrid_neg_best4,29.17,0.8235
