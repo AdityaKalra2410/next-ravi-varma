@@ -128,6 +128,9 @@ HEADER = f"""
     <p>Describe a scene from the <b>Ramayana</b> or <b>Mahabharata</b> and get a new painting
     in the style of Raja Ravi Varma's oil paintings. Stable Diffusion 1.5 + our LoRA, trained
     on his work.</p>
+    <div class="rrv-feats"><span>Stable Diffusion 1.5 + LoRA</span><span>Best-of-4, picked by a
+    CLIP judge</span><span>Optional prompt expansion (Qwen2.5-7B)</span><span>{'Pose control (ControlNet)' if POSE_READY
+    else 'Pose control: coming soon'}</span></div>
   </div>
   {header_strip()}
 </div>
@@ -178,6 +181,14 @@ THEME = gr.themes.Soft(
     button_primary_border_color_dark="*secondary_600",
     checkbox_background_color_selected="*primary_600",
     slider_color="*primary_600",
+    block_title_background_fill="transparent",
+    block_title_background_fill_dark="transparent",
+    block_title_text_weight="700",
+    block_title_text_size="*text_sm",
+    block_label_background_fill="rgba(255, 250, 240, .9)",
+    block_label_background_fill_dark="rgba(30, 22, 19, .85)",
+    block_radius="12px",
+    block_shadow="0 1px 2px rgba(80, 40, 20, .06)",
 )
 
 HEAD = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
@@ -199,10 +210,63 @@ CSS = """
 .rrv-strip img { flex: 1 1 0; min-width: 0; height: 120px; object-fit: cover; border-radius: 6px;
   border: 2px solid #c9952a; box-shadow: 0 4px 12px rgba(0, 0, 0, .35); }
 @media (max-width: 700px) { .rrv-strip img:nth-child(n+4) { display: none; }
-  .rrv-strip img { height: 110px; } .rrv-hero { padding: 20px 18px; } }
-#paint-btn { font-size: 18px; font-weight: 700; letter-spacing: .04em; min-height: 52px; }
-#painting { border: 2px solid #c9952a !important; }
-#status { min-height: 24px; }
+  .rrv-strip img { height: 110px; } .rrv-hero { padding: 20px 18px; } .rrv-feats { display: none; } }
+.rrv-feats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.rrv-feats span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; color: #f3dfae;
+  border: 1px solid rgba(217, 178, 90, .45); background: rgba(0, 0, 0, .18); }
+
+/* cards */
+.rrv-card { background: #fffcf6 !important; border: 1px solid #e6d6b8 !important;
+  border-radius: 14px !important; padding: 14px 16px 16px !important;
+  box-shadow: 0 2px 10px rgba(90, 50, 20, .06) !important; }
+.rrv-card > div, .rrv-card .block { box-shadow: none !important; }
+.rrv-card .block { border: none !important; background: transparent !important; padding-left: 0 !important;
+  padding-right: 0 !important; }
+.rrv-card .block textarea, .rrv-card .block input[type=number] { border: 1px solid #e3cfa6 !important; }
+.rrv-step { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 700;
+  color: #6e1c1f; margin: 0 0 2px; display: flex; align-items: center; gap: 10px; }
+.rrv-step i { font-style: normal; display: inline-grid; place-items: center; width: 26px; height: 26px;
+  border-radius: 50%; background: linear-gradient(135deg, #c9952a, #8a5f1c); color: #fff8e6;
+  font-family: Lato, sans-serif; font-size: 13px; font-weight: 700; }
+.rrv-step-row { margin-bottom: -4px; }
+
+/* paint button */
+#paint-btn { font-size: 19px; font-weight: 700; letter-spacing: .06em; min-height: 56px;
+  border-radius: 12px !important; border: 1px solid #c9952a !important;
+  box-shadow: 0 6px 18px rgba(110, 28, 31, .35), inset 0 1px 0 rgba(255, 230, 170, .25);
+  transition: transform .15s ease, box-shadow .15s ease; }
+#paint-btn:hover { transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(110, 28, 31, .42), inset 0 1px 0 rgba(255, 230, 170, .3); }
+
+/* gilded frame around the painting */
+#frame { padding: 14px !important; border-radius: 6px !important;
+  background: linear-gradient(135deg, #8a5f1c 0%, #e9c65c 22%, #a87622 45%, #f2dd96 62%,
+    #86591f 82%, #c9952a 100%) !important;
+  box-shadow: 0 18px 40px rgba(60, 25, 10, .35), inset 0 0 0 2px rgba(60, 30, 5, .45) !important;
+  border: none !important; }
+#painting { border: none !important; border-radius: 2px !important; background: #2a1a14 !important;
+  box-shadow: inset 0 0 0 3px #3b2414, inset 0 0 28px rgba(0, 0, 0, .65) !important; }
+#painting img { object-fit: contain; }
+#painting .wrap { background: rgba(42, 26, 20, .92) !important; color: #e9c65c !important; }
+#painting .empty, #painting [class*=empty] { color: #c9a467 !important; }
+#status { min-height: 24px; text-align: center; margin-top: 4px; }
+#status p { font-size: 14px; color: #6b4a2e; }
+.rrv-details { margin-top: 2px; }
+
+.rrv-h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 700;
+  color: #6e1c1f; margin: 18px 0 2px; }
+.rrv-credit { text-align: center; font-size: 12.5px; opacity: .7; margin-top: 8px; }
+
+.rrv-card .form { background: transparent !important; border: none !important; gap: 12px !important; }
+
+/* dark mode: one selector per rule (Gradio only scopes the first selector of a .dark list) */
+.dark .rrv-card { background: #241a17 !important; border-color: #3d2c25 !important; }
+.dark .rrv-card textarea { border-color: #4a372d !important; }
+.dark .rrv-card input[type=number] { border-color: #4a372d !important; }
+.dark .rrv-step { color: #f0cf7e; }
+.dark .rrv-h2 { color: #f0cf7e; }
+.dark .rrv-pills button:hover { color: #f3cf7a; }
+.dark #status p { color: #d9c19a; }
 #history .grid-container { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
 #history .grid-wrap { height: auto !important; min-height: 120px; max-height: none !important; }
 #history { height: auto !important; min-height: 0 !important; }
@@ -232,39 +296,47 @@ with gr.Blocks(title="The Next Ravi Varma", **({} if GR6 else STYLE)) as demo:
 
     with gr.Row(equal_height=False):
         with gr.Column(scale=5):
-            scene = gr.Textbox(
-                label="Scene", lines=3, max_lines=6, autofocus=True,
-                placeholder="e.g. Yudhishthira weeping over Karna at Kurukshetra")
+            with gr.Column(elem_classes="rrv-card"):
+                gr.HTML('<div class="rrv-step"><i>1</i>Describe a scene</div>')
+                scene = gr.Textbox(
+                    label="Scene", show_label=False, lines=3, max_lines=6, autofocus=True,
+                    placeholder="e.g. Yudhishthira weeping over Karna at Kurukshetra")
+                with gr.Accordion("Pose reference (optional)"
+                                  + ("" if POSE_READY else " · coming soon"), open=False):
+                    pose_img = gr.Image(label="A photo of someone posing, or a stick figure",
+                                        type="pil", height=220, interactive=POSE_READY)
+                    pose_strength = gr.Slider(0.5, 1.2, value=1.0, step=0.05, label="Pose strength",
+                                              interactive=POSE_READY)
+                    if not POSE_READY:
+                        gr.Markdown("The painting will follow the pose you upload. Arriving with "
+                                    "Milestone 4 (ControlNet).", elem_classes="rrv-note")
 
-            with gr.Accordion("Pose reference (optional)" + ("" if POSE_READY else " · coming soon"),
-                              open=False):
-                pose_img = gr.Image(label="Pose reference: a photo of someone posing, or a stick figure",
-                                    type="pil", height=220, interactive=POSE_READY)
-                pose_strength = gr.Slider(0.5, 1.2, value=1.0, step=0.05, label="Pose strength",
-                                          interactive=POSE_READY)
-                if not POSE_READY:
-                    gr.Markdown("The painting will follow the pose you upload. Arriving with "
-                                "Milestone 4 (ControlNet).", elem_classes="rrv-note")
+            with gr.Column(elem_classes="rrv-card"):
+                gr.HTML('<div class="rrv-step"><i>2</i>Settings</div>')
+                expand = gr.Checkbox(label="Expand my prompt with AI (helps for very short inputs)",
+                                     value=False)
+                quality = gr.Radio(QUALITY, value=QUALITY[0], label="Quality")
+                with gr.Row(equal_height=False, elem_id="seed-row"):
+                    seed = gr.Number(label="Seed (-1 = random)", value=-1, precision=0, scale=3)
+                    reuse = gr.Button("↺ Reuse last seed", size="sm", scale=2, elem_id="reuse-btn")
 
-            expand = gr.Checkbox(label="Expand my prompt with AI (helps for very short inputs)",
-                                 value=False)
-            quality = gr.Radio(QUALITY, value=QUALITY[0], label="Quality")
-            with gr.Row(equal_height=False, elem_id="seed-row"):
-                seed = gr.Number(label="Seed (-1 = random)", value=-1, precision=0, scale=3)
-                reuse = gr.Button("↺ Reuse last seed", size="sm", scale=2, elem_id="reuse-btn")
-            btn = gr.Button("Paint", variant="primary", elem_id="paint-btn")
+            btn = gr.Button("🖌  Paint", variant="primary", elem_id="paint-btn")
 
-            gr.Markdown("**Try a scene** · ✨ = short input, uses *Expand my prompt with AI*",
-                        elem_classes="rrv-pills-title")
-            with gr.Row(elem_classes="rrv-pills"):
-                example_btns = [(gr.Button(("✨ " if e else "") + t, size="sm", variant="secondary"),
-                                 t, e) for t, e in EXAMPLES]
+            with gr.Column(elem_classes="rrv-card"):
+                gr.HTML('<div class="rrv-step"><i>✦</i>Try a scene</div>')
+                gr.Markdown("Click one to fill the box. ✨ = short input, uses *Expand my prompt "
+                            "with AI*.", elem_classes="rrv-note")
+                with gr.Row(elem_classes="rrv-pills"):
+                    example_btns = [(gr.Button(("✨ " if e else "") + t, size="sm",
+                                               variant="secondary"), t, e) for t, e in EXAMPLES]
 
         with gr.Column(scale=6):
-            out_img = gr.Image(label="Painting", type="pil", height=560, elem_id="painting",
-                               interactive=False, format="png")
-            status = gr.Markdown(elem_id="status")
-            with gr.Row():
+            with gr.Column(elem_id="frame"):
+                out_img = gr.Image(label="Painting", show_label=False, type="pil", height=560,
+                                   elem_id="painting", interactive=False, format="png")
+            status = gr.Markdown("*Your painting will appear here. Pick a scene and press "
+                                 "**Paint**.*", elem_id="status")
+            with gr.Row(elem_classes="rrv-details"):
                 out_prompt = gr.Textbox(label="Prompt sent to the model", interactive=False,
                                         lines=2, scale=4, **copy_btn)
                 out_seed = gr.Number(label="Seed used", interactive=False, precision=0, scale=1)
@@ -272,12 +344,15 @@ with gr.Blocks(title="The Next Ravi Varma", **({} if GR6 else STYLE)) as demo:
                                 interactive=False, visible=POSE_READY)
 
     with gr.Column(elem_classes="rrv-section"):
-        gallery = gr.Gallery(label="Your paintings this session", columns=6, height="auto",
-                             object_fit="cover", show_label=True, allow_preview=True,
+        gr.HTML('<div class="rrv-h2">Your paintings this session</div>')
+        gallery = gr.Gallery(label="Your paintings this session", show_label=False, columns=6,
+                             height="auto", object_fit="cover", allow_preview=True,
                              elem_id="history")
         clear = gr.Button("Clear session gallery", size="sm", variant="secondary")
         with gr.Accordion("About the project", open=False):
             gr.Markdown(ABOUT)
+        gr.HTML('<div class="rrv-credit">New paintings generated by AI in the style of Raja Ravi '
+                'Varma (1848–1906). Header paintings: Raja Ravi Varma, public domain.</div>')
 
     # ------------------------------------------------------------ events
     go = dict(fn=run, inputs=[scene, expand, quality, seed, history],
