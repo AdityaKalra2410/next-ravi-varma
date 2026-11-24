@@ -52,33 +52,45 @@ def extract_pose(image, is_skeleton=False):
 
 
 def load_cn_pipe(lora="models/lora_v1.safetensors", lora_scale=1.0):
+    """SD 1.5 + LoRA + ControlNet-OpenPose. If the plain pipeline (expand_prompt.load_pipe) is already
+    in memory, e.g. in the app, its parts (UNet with the LoRA already fused, VAE, text encoder) are
+    shared instead of loading SD a second time: saves ~2.5 GB of GPU memory on the T4."""
     global _cnpipe
     if _cnpipe is None:
         import torch
         from diffusers import ControlNetModel, StableDiffusionControlNetPipeline, DPMSolverMultistepScheduler
-        cn = ControlNetModel.from_pretrained(CN_ID, torch_dtype=torch.float16)
-        _cnpipe = StableDiffusionControlNetPipeline.from_pretrained(
-            ep.SD_ID, controlnet=cn, torch_dtype=torch.float16, safety_checker=None).to("cuda")
-        _cnpipe.scheduler = DPMSolverMultistepScheduler.from_config(_cnpipe.scheduler.config)
-        lp = Path(lora)
-        _cnpipe.load_lora_weights(str(lp.parent), weight_name=lp.name)
-        _cnpipe.fuse_lora(lora_scale=lora_scale)
+        cn = ControlNetModel.from_pretrained(CN_ID, torch_dtype=torch.float16).to("cuda")
+        if ep._pipe is not None:
+            parts = {k: v for k, v in ep._pipe.components.items() if k != "safety_checker"}
+            _cnpipe = StableDiffusionControlNetPipeline(**parts, controlnet=cn, safety_checker=None,
+                                                        requires_safety_checker=False)
+        else:
+            _cnpipe = StableDiffusionControlNetPipeline.from_pretrained(
+                ep.SD_ID, controlnet=cn, torch_dtype=torch.float16, safety_checker=None).to("cuda")
+            _cnpipe.scheduler = DPMSolverMultistepScheduler.from_config(_cnpipe.scheduler.config)
+            lp = Path(lora)
+            _cnpipe.load_lora_weights(str(lp.parent), weight_name=lp.name)
+            _cnpipe.fuse_lora(lora_scale=lora_scale)
     return _cnpipe
 
 
 def generate_with_pose(prompt, pose, seed=0, steps=30, guidance=7.5, cn_scale=1.0,
-                       lora="models/lora_v1.safetensors"):
+                       lora="models/lora_v1.safetensors", negative=ep.NEG_PLUS):
     import torch
     pipe = load_cn_pipe(lora)
     g = torch.Generator("cuda").manual_seed(seed)
-    return pipe(prompt, image=pose, negative_prompt=ep.NEG, num_inference_steps=steps,
+    return pipe(prompt, image=pose, negative_prompt=negative, num_inference_steps=steps,
                 guidance_scale=guidance, controlnet_conditioning_scale=cn_scale,
                 width=pose.width, height=pose.height, generator=g).images[0]
 
 
+def has_person(pose):
+    """False if OpenPose found nobody (the skeleton image is all black)."""
+    return pose.convert("L").getextrema()[1] > 0
+
+
 def free_llm():
-    import torch
-    ep._llm = ep._tok = None; gc.collect(); torch.cuda.empty_cache()
+    ep._llm_free()
 
 
 def side_by_side(images, h=512):
@@ -99,20 +111,17 @@ def main():
     ap.add_argument("--no-expand", action="store_true", help="use 'trigger, scene' instead of the LLM prompt")
     ap.add_argument("--cn-scale", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--best-of", type=int, default=1, help="candidates to pick from with the CLIP judge")
     ap.add_argument("--lora", default="models/lora_v1.safetensors")
     ap.add_argument("--out", default="m4_outputs")
     a = ap.parse_args()
 
     ref = Image.open(a.pose)
-    pose = extract_pose(ref, a.is_skeleton)
-    if a.no_expand:
-        prompt = f"{ep.TRIGGER}, {a.scene.strip().rstrip('.')}"
-    else:
-        prompt, _ = ep.expand(a.scene, "hybrid"); free_llm()
+    img, prompt, pose = ep.paint_with_pose(a.scene, ref, expand=not a.no_expand, best_of=a.best_of,
+                                           seed=a.seed, cn_scale=a.cn_scale,
+                                           is_skeleton=a.is_skeleton, lora=a.lora)
     print(f"prompt : {prompt}   ({ep.clip_tokens(prompt)} tokens)")
     print(f"size   : {pose.width}x{pose.height}")
-
-    img = generate_with_pose(prompt, pose, a.seed, cn_scale=a.cn_scale, lora=a.lora)
     Path(a.out).mkdir(exist_ok=True)
     name = re.sub(r"[^a-z0-9]+", "_", a.scene.lower())[:40].strip("_") + f"_s{a.seed}"
     pose.save(Path(a.out) / f"{name}_pose.png")

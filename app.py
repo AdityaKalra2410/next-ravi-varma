@@ -61,6 +61,10 @@ if ARGS.mock:
         if expand:
             prompt += ", (mock) figures, pose, setting, composition"
         return im, prompt
+
+    def paint_pose(scene, expand, best_of, seed, pose_image, cn_scale):
+        im, prompt = paint(scene, expand, best_of, seed)
+        return im, prompt, pose_image.convert("L").convert("RGB")   # (mock) the "skeleton"
 else:
     print("Loading Stable Diffusion + LoRA and the image judge (first time ~2 min)...")
     ep.load_pipe()
@@ -79,8 +83,12 @@ else:
             img = ep.generate(prompt, seed, negative=ep.NEG_PLUS)
         return img, prompt
 
+    def paint_pose(scene, expand, best_of, seed, pose_image, cn_scale):
+        return ep.paint_with_pose(scene, pose_image, expand=expand, best_of=best_of, seed=seed,
+                                  cn_scale=cn_scale, keep_llm=True)
 
-def run(scene, expand, quality, seed, history, progress=gr.Progress()):
+
+def run(scene, expand, quality, seed, pose_image, cn_scale, history, progress=gr.Progress()):
     if not scene or not scene.strip():
         raise gr.Error("Please describe a scene first, e.g. "
                        "\"Sita sitting alone in the Ashoka grove, guarded by demonesses\".")
@@ -88,9 +96,15 @@ def run(scene, expand, quality, seed, history, progress=gr.Progress()):
     seed = random.randint(0, 9999) if seed is None or seed < 0 else int(seed)
     best_of = 4 if quality.startswith("Best") else 1
     progress(0, desc="Expanding your prompt, then painting..." if expand else "Painting...")
+    use_pose = POSE_READY and pose_image is not None
     t = time.time()
     try:
-        img, prompt = paint(scene, expand, best_of, seed)
+        if use_pose:
+            img, prompt, skeleton = paint_pose(scene, expand, best_of, seed, pose_image, float(cn_scale))
+        else:
+            (img, prompt), skeleton = paint(scene, expand, best_of, seed), None
+    except ValueError as e:                  # e.g. no person found in the pose photo
+        raise gr.Error(str(e))
     except Exception as e:
         print(f"paint failed: {e!r}")
         raise gr.Error(f"Something went wrong while painting: {type(e).__name__}. "
@@ -98,9 +112,10 @@ def run(scene, expand, quality, seed, history, progress=gr.Progress()):
     secs = time.time() - t
     status = (f"Painted in **{secs:.1f} s** · "
               f"{'best of 4 candidates' if best_of > 1 else 'fast preview'} · "
-              f"seed **{seed}**{' · prompt expanded by AI' if expand else ''}")
+              f"seed **{seed}**{' · prompt expanded by AI' if expand else ''}"
+              f"{f' · following your pose (strength {float(cn_scale):.2f})' if use_pose else ''}")
     history = ([(img, f"{scene} · seed {seed}")] + (history or []))[:HISTORY_MAX]
-    return img, prompt, seed, status, history, history
+    return img, prompt, seed, status, history, history, skeleton
 
 
 # ---------------------------------------------------------------- look & feel
@@ -355,8 +370,8 @@ with gr.Blocks(title="The Next Ravi Varma", **({} if GR6 else STYLE)) as demo:
                 'Varma (1848–1906). Header paintings: Raja Ravi Varma, public domain.</div>')
 
     # ------------------------------------------------------------ events
-    go = dict(fn=run, inputs=[scene, expand, quality, seed, history],
-              outputs=[out_img, out_prompt, out_seed, status, history, gallery])
+    go = dict(fn=run, inputs=[scene, expand, quality, seed, pose_img, pose_strength, history],
+              outputs=[out_img, out_prompt, out_seed, status, history, gallery, out_pose])
     if int(gr.__version__.split(".")[0]) >= 5:
         go["show_progress_on"] = [out_img]   # one progress bar, on the painting
     btn.click(**go)
@@ -365,7 +380,6 @@ with gr.Blocks(title="The Next Ravi Varma", **({} if GR6 else STYLE)) as demo:
         b.click(lambda t=t, e=e: (t, e), None, [scene, expand])
     reuse.click(lambda s: s if s is not None else -1, out_seed, seed)
     clear.click(lambda: ([], []), None, [history, gallery])
-    # M4: wire pose_img / pose_strength / out_pose to ep.paint_with_pose here.
 
 if __name__ == "__main__":
     demo.queue().launch(share=not ARGS.no_share, server_port=ARGS.port,

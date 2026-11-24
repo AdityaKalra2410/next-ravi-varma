@@ -283,6 +283,32 @@ def paint(scene, expand=False, best_of=4, seed=0, lora="models/lora_v1.safetenso
     return img, prompt
 
 
+def paint_with_pose(scene, pose_image, expand=False, best_of=4, seed=0, cn_scale=1.0, is_skeleton=False,
+                    lora="models/lora_v1.safetensors", keep_llm=False):
+    """Milestone 4: like paint(), but the figures follow the pose in pose_image (ControlNet OpenPose).
+    pose_image : PIL image, a photo of someone posing (or an OpenPose skeleton if is_skeleton=True)
+    cn_scale   : how strictly to follow the pose (0.5 loose .. 1.2 strict)
+    returns    : (PIL image, prompt used, skeleton image)"""
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    import controlnet_pose as cp
+    pose = cp.extract_pose(pose_image, is_skeleton)
+    if not cp.has_person(pose):
+        raise ValueError("No person found in the pose image. Try a clearer full-body photo.")
+    if expand:
+        prompt, _ = expand_fn(scene, "hybrid")
+        if not keep_llm:
+            _llm_free()
+    else:
+        prompt = f"{TRIGGER}, {scene.strip().rstrip('.')}"
+    gen = lambda p, s, neg: cp.generate_with_pose(p, pose, s, cn_scale=cn_scale, lora=lora, negative=neg)
+    if best_of > 1:
+        img, _ = generate_best(prompt, scene, best_of, seed, lora, negative=NEG_PLUS, gen=gen)
+    else:
+        img = gen(prompt, seed, NEG_PLUS)
+    return img, prompt, pose
+
+
 def _llm_free():
     global _llm, _tok
     import gc, torch
