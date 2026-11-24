@@ -27,7 +27,7 @@ NEG = "blurry, deformed, extra limbs, bad anatomy, text, watermark"
 # Also steer away from the calendar-print / poster look that "Ravi Varma" usually produces online
 NEG_PLUS = NEG + ", calendar art, poster, flat colors, oversaturated, cartoon, anime, photograph, 3d render"
 # With a pose and no clothes in the prompt, SD sometimes paints the figure nude
-NEG_POSE = NEG_PLUS + ", nude, naked"
+NEG_POSE = NEG_PLUS + ", nude, naked, extra figures, extra people, deformed face, deformed hands"
 
 FIELDS = ["characters", "figures", "action", "pose", "attire", "setting", "composition"]
 
@@ -78,14 +78,14 @@ LOOKS = {
     "rama":         "Rama a young man with blue skin, gold crown, yellow silk dhoti, holding a bow",
     "lakshmana":    "Lakshmana a young man, gold crown, dhoti, holding a bow",
     "sita":         "Sita a young woman in a silk sari with gold jewellery",
-    "hanuman":      "Hanuman a monkey-faced god with a long tail, gold crown and mace",
+    "hanuman":      "Hanuman the monkey god with a monkey face, long tail, gold crown, holding a mace",
     "ravana":       "Ravana a dark demon king with a moustache, tall gold crown, rich robes",
     "vibhishana":   "Vibhishana a middle-aged man with a moustache, gold crown, silk dhoti",
     "bharata":      "Bharata a young man with a moustache, simple white dhoti, no crown",
     "dasharatha":   "Dasharatha an old king with a white beard, gold crown",
     "krishna":      "Krishna a young man with blue skin, peacock-feather crown, yellow silk dhoti",
     "radha":        "Radha a young woman in a silk sari with gold jewellery",
-    "arjuna":       "Arjuna a young warrior man with a moustache, gold crown, armour, holding a large bow",
+    "arjuna":       "Arjuna a young warrior man with a moustache, gold crown, armour, holding a tall wooden bow with a bowstring",
     "bhima":        "Bhima a muscular warrior man with a moustache, gold crown, holding a mace",
     "yudhishthira": "Yudhishthira a bearded king in white silk, gold crown",
     "karna":        "Karna a warrior man with gold armour and earrings",
@@ -101,7 +101,7 @@ LOOKS = {
     "vishwamitra":  "Vishwamitra an old sage with a long white beard and matted hair, saffron cloth",
     "valmiki":      "Valmiki an old sage with a long white beard, saffron cloth",
     "vasishtha":    "Vasishtha an old sage with a long white beard, saffron cloth",
-    "bhagiratha":   "Bhagiratha a young king with a moustache, gold crown, white dhoti",
+    "bhagiratha":   "Bhagiratha a young man with a moustache, bare chest, white dhoti, empty hands",
     "shiva":        "Shiva a man with ash-blue skin, matted hair, crescent moon, tiger skin, snake around his neck",
     "saraswati":    "Saraswati a young woman in a white sari, holding a veena",
     "lakshmi":      "Lakshmi a young woman in a red silk sari, standing on a lotus",
@@ -138,7 +138,7 @@ def add_looks(prompt, scene, max_chars=None):
     return out
 
 
-_llm = _tok = _clip_tok = _pipe = _judge = None
+_llm = _tok = _clip_tok = _pipe = _judge = _i2i = None
 
 
 def clip_tokens(text):
@@ -354,15 +354,37 @@ def paint(scene, expand=False, best_of=4, seed=0, lora="models/lora_v1.safetenso
     return img, prompt
 
 
+def refine(image, prompt, seed=0, negative=NEG_PLUS, scale=1.5, strength=0.35, steps=30, base=None):
+    """High-res fix: upscale the chosen painting 1.5x and repaint it lightly (img2img, strength 0.35) with the
+    same SD + LoRA. At 512 px a full-body figure's face is ~40 px, which SD 1.5 renders badly; at 768 px with
+    the composition fixed, faces, hands and jewellery come out much cleaner. Pose and layout are kept
+    (only 35% noise is added). base: the pipeline whose parts (UNet with the LoRA fused) are reused."""
+    global _i2i
+    import torch
+    from PIL import Image
+    if _i2i is None:
+        from diffusers import StableDiffusionImg2ImgPipeline
+        base = base or _pipe or load_pipe()
+        parts = {k: v for k, v in base.components.items() if k not in ("controlnet", "safety_checker")}
+        _i2i = StableDiffusionImg2ImgPipeline(**parts, safety_checker=None, requires_safety_checker=False)
+        _i2i.enable_vae_slicing()
+    W, H = int(image.width * scale) // 8 * 8, int(image.height * scale) // 8 * 8
+    big = image.resize((W, H), Image.LANCZOS)
+    g = torch.Generator("cuda").manual_seed(seed)
+    return _i2i(prompt, image=big, negative_prompt=negative, strength=strength, num_inference_steps=steps,
+                guidance_scale=7.5, generator=g).images[0]
+
+
 def paint_with_pose(scene, pose_image, expand=False, best_of=4, seed=0, cn_scale=1.0, is_skeleton=False,
                     lora="models/lora_v1.safetensors", keep_llm=False, looks=True, pose_select=True,
-                    return_info=False):
+                    hires=True, return_info=False):
     """Milestone 4: like paint(), but the figures follow the pose in pose_image (ControlNet OpenPose).
     pose_image : PIL image, a photo of someone posing (or an OpenPose skeleton if is_skeleton=True)
     cn_scale   : how strictly to follow the pose (0.5 loose .. 1.2 strict)
     looks      : add the named characters' gender, age and attire (fixes "Arjuna painted as a woman")
     pose_select: best-of-N also checks the pose: OpenPose is run again on every candidate, candidates
                  clearly worse at following the pose are dropped, then the CLIP judge picks as in paint()
+    hires      : repaint the chosen image at 1.5x resolution (cleaner faces and hands, +~10 s)
     returns    : (PIL image, prompt used, skeleton image)  [+ info dict if return_info]"""
     import sys
     sys.path.insert(0, str(Path(__file__).parent))
@@ -399,10 +421,11 @@ def paint_with_pose(scene, pose_image, expand=False, best_of=4, seed=0, cn_scale
             top = max(pose_sims)
             ok = [i for i in ok if pose_sims[i] >= top - 0.15]   # drop clearly worse poses
         best = max(ok, key=lambda i: clip_scores[i])
+    final = refine(cands[best], prompt, seeds[best], NEG_POSE, base=cp.load_cn_pipe(lora)) if hires else cands[best]
     if return_info:
-        return cands[best], prompt, pose, {"seeds": seeds, "pose_sims": pose_sims, "clip_scores": clip_scores,
+        return final, prompt, pose, {"seeds": seeds, "pose_sims": pose_sims, "clip_scores": clip_scores,
                                            "best": best, "candidates": cands, "ref": ref}
-    return cands[best], prompt, pose
+    return final, prompt, pose
 
 
 def _llm_free():
