@@ -367,7 +367,6 @@ def refine(image, prompt, seed=0, negative=NEG_PLUS, scale=1.5, strength=0.35, s
         base = base or _pipe or load_pipe()
         parts = {k: v for k, v in base.components.items() if k not in ("controlnet", "safety_checker")}
         _i2i = StableDiffusionImg2ImgPipeline(**parts, safety_checker=None, requires_safety_checker=False)
-        _i2i.enable_vae_slicing()
     W, H = int(image.width * scale) // 8 * 8, int(image.height * scale) // 8 * 8
     big = image.resize((W, H), Image.LANCZOS)
     g = torch.Generator("cuda").manual_seed(seed)
