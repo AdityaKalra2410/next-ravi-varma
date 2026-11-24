@@ -89,6 +89,56 @@ def has_person(pose):
     return pose.convert("L").getextrema()[1] > 0
 
 
+# ---------- pose accuracy: re-detect the skeleton on a painting and compare ----------
+_kp_warned = False
+
+
+def keypoints(image):
+    """OpenPose body keypoints of every person: list of 18 (x, y) or None, x and y in 0..1.
+    Returns None if this controlnet_aux version has no detect_poses (then pose scoring is skipped)."""
+    global _detector, _kp_warned
+    import numpy as np
+    if _detector is None:
+        from controlnet_aux import OpenposeDetector
+        _detector = OpenposeDetector.from_pretrained("lllyasviel/Annotators")
+    try:
+        arr = np.array(image.convert("RGB"))
+        people = _detector.detect_poses(arr, include_hand=False, include_face=False)
+        return [[(k.x, k.y) if k is not None else None for k in p.body.keypoints] for p in people]
+    except Exception as e:
+        if not _kp_warned:
+            print(f"pose scoring unavailable ({type(e).__name__}: {e}); selecting by CLIP only")
+            _kp_warned = True
+        return None
+
+
+def main_person(people):
+    """The person with the most detected joints (our pose photos have one person)."""
+    return max(people, key=lambda p: sum(k is not None for k in p)) if people else None
+
+
+def pose_similarity(ref, out, aspect=1.0, alpha=0.1):
+    """PCK@alpha: share of the reference's joints that the painting has within alpha * (size of the
+    reference body) of the same place. 1.0 = every joint in place, 0.0 = none (or nobody detected).
+    aspect = width / height, so distances are measured in the same units along x and y."""
+    if ref is None:
+        return None
+    if out is None:
+        return 0.0
+    pts = [(x * aspect, y) for k in ref if k is not None for x, y in [k]]
+    if len(pts) < 4:
+        return None
+    size = max(max(p[0] for p in pts) - min(p[0] for p in pts), max(p[1] for p in pts) - min(p[1] for p in pts))
+    hit = total = 0
+    for r, o in zip(ref, out):
+        if r is None:
+            continue
+        total += 1
+        if o is not None and ((r[0] - o[0]) * aspect) ** 2 + (r[1] - o[1]) ** 2 <= (alpha * size) ** 2:
+            hit += 1
+    return hit / total
+
+
 def free_llm():
     ep._llm_free()
 

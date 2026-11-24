@@ -26,6 +26,8 @@ SD_ID = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 NEG = "blurry, deformed, extra limbs, bad anatomy, text, watermark"
 # Also steer away from the calendar-print / poster look that "Ravi Varma" usually produces online
 NEG_PLUS = NEG + ", calendar art, poster, flat colors, oversaturated, cartoon, anime, photograph, 3d render"
+# With a pose and no clothes in the prompt, SD sometimes paints the figure nude
+NEG_POSE = NEG_PLUS + ", nude, naked"
 
 FIELDS = ["characters", "figures", "action", "pose", "attire", "setting", "composition"]
 
@@ -66,6 +68,75 @@ EXAMPLES = [
 
 STYLE_WORDS = re.compile(r"\b(chiaroscuro|masterpiece|realistic|photorealistic|dramatic lighting|oil painting texture|"
                          r"oil canvas|oil on canvas|in the style of[^,]*|ravi varma style|highly detailed|8k|4k)\b", re.I)
+
+# ---------- character looks ----------
+# SD 1.5 does not know what most epic characters look like (it painted Bharata as an old bald sage and
+# Arjuna as a woman) and, with no clothes in the prompt, it picks anything (even nude). This short look-up
+# adds each named character's gender, age and traditional attire/attributes, as Ravi Varma painted them.
+# Content only, no style words. Spelling variants map to one entry.
+LOOKS = {
+    "rama":         "Rama a young man with blue skin, gold crown, yellow silk dhoti, holding a bow",
+    "lakshmana":    "Lakshmana a young man, gold crown, dhoti, holding a bow",
+    "sita":         "Sita a young woman in a silk sari with gold jewellery",
+    "hanuman":      "Hanuman a monkey-faced god with a long tail, gold crown and mace",
+    "ravana":       "Ravana a dark demon king with a moustache, tall gold crown, rich robes",
+    "vibhishana":   "Vibhishana a middle-aged man with a moustache, gold crown, silk dhoti",
+    "bharata":      "Bharata a young man with a moustache, simple white dhoti, no crown",
+    "dasharatha":   "Dasharatha an old king with a white beard, gold crown",
+    "krishna":      "Krishna a young man with blue skin, peacock-feather crown, yellow silk dhoti",
+    "radha":        "Radha a young woman in a silk sari with gold jewellery",
+    "arjuna":       "Arjuna a young warrior man with a moustache, gold crown, armour, holding a large bow",
+    "bhima":        "Bhima a muscular warrior man with a moustache, gold crown, holding a mace",
+    "yudhishthira": "Yudhishthira a bearded king in white silk, gold crown",
+    "karna":        "Karna a warrior man with gold armour and earrings",
+    "duryodhana":   "Duryodhana a warrior king with a moustache, gold crown, holding a mace",
+    "dushasana":    "Dushasana a young prince with a moustache, gold crown",
+    "draupadi":     "Draupadi a young woman in a red silk sari with gold jewellery",
+    "bhishma":      "Bhishma an old warrior with a long white beard, armour",
+    "drona":        "Drona an old man with a white beard, holding a bow",
+    "shakuntala":   "Shakuntala a young woman in a simple sari, flowers in her hair",
+    "dushyanta":    "Dushyanta a young king with a moustache, gold crown",
+    "damayanti":    "Damayanti a young woman in a silk sari with gold jewellery",
+    "nala":         "Nala a young king with a moustache, gold crown",
+    "vishwamitra":  "Vishwamitra an old sage with a long white beard and matted hair, saffron cloth",
+    "valmiki":      "Valmiki an old sage with a long white beard, saffron cloth",
+    "vasishtha":    "Vasishtha an old sage with a long white beard, saffron cloth",
+    "bhagiratha":   "Bhagiratha a young king with a moustache, gold crown, white dhoti",
+    "shiva":        "Shiva a man with ash-blue skin, matted hair, crescent moon, tiger skin, snake around his neck",
+    "saraswati":    "Saraswati a young woman in a white sari, holding a veena",
+    "lakshmi":      "Lakshmi a young woman in a red silk sari, standing on a lotus",
+    "jatayu":       "Jatayu a giant eagle",
+}
+ALIASES = {"droupathi": "draupadi", "sakunthala": "shakuntala", "sairandhri": "draupadi", "sairandri": "draupadi",
+           "vishvamitra": "vishwamitra", "bheema": "bhima", "bheeshma": "bhishma", "sri rama": "rama", "ram": "rama",
+           "vibheeshana": "vibhishana", "yudhisthira": "yudhishthira", "dushyant": "dushyanta"}
+
+
+def character_looks(scene):
+    """Looks of the characters named in the scene, in the order they appear."""
+    found = []
+    for key in list(LOOKS) + list(ALIASES):
+        m = re.search(rf"\b{key}\b", scene, re.I)
+        if m:
+            name = ALIASES.get(key, key)
+            if name not in [n for _, n in found]:
+                found.append((m.start(), name))
+    return [LOOKS[n] for _, n in sorted(found)]
+
+
+def add_looks(prompt, scene, max_chars=None):
+    """prompt + the named characters' looks, within CLIP's 77 tokens (the scene itself always stays).
+    max_chars: with a pose, only the first N characters (N = people in the skeleton) get a look, otherwise
+    e.g. "Vibhishana asking Rama for refuge" would give the ONE posed figure Rama's blue skin and bow."""
+    looks = character_looks(scene)[:max_chars]
+    out = prompt
+    for look in looks:
+        cand = f"{out}, {look}"
+        if clip_tokens(cand) > 77:
+            break
+        out = cand
+    return out
+
 
 _llm = _tok = _clip_tok = _pipe = _judge = None
 
@@ -284,29 +355,54 @@ def paint(scene, expand=False, best_of=4, seed=0, lora="models/lora_v1.safetenso
 
 
 def paint_with_pose(scene, pose_image, expand=False, best_of=4, seed=0, cn_scale=1.0, is_skeleton=False,
-                    lora="models/lora_v1.safetensors", keep_llm=False):
+                    lora="models/lora_v1.safetensors", keep_llm=False, looks=True, pose_select=True,
+                    return_info=False):
     """Milestone 4: like paint(), but the figures follow the pose in pose_image (ControlNet OpenPose).
     pose_image : PIL image, a photo of someone posing (or an OpenPose skeleton if is_skeleton=True)
     cn_scale   : how strictly to follow the pose (0.5 loose .. 1.2 strict)
-    returns    : (PIL image, prompt used, skeleton image)"""
+    looks      : add the named characters' gender, age and attire (fixes "Arjuna painted as a woman")
+    pose_select: best-of-N also checks the pose: OpenPose is run again on every candidate, candidates
+                 clearly worse at following the pose are dropped, then the CLIP judge picks as in paint()
+    returns    : (PIL image, prompt used, skeleton image)  [+ info dict if return_info]"""
     import sys
     sys.path.insert(0, str(Path(__file__).parent))
     import controlnet_pose as cp
     pose = cp.extract_pose(pose_image, is_skeleton)
     if not cp.has_person(pose):
         raise ValueError("No person found in the pose image. Try a clearer full-body photo.")
+    ref_people = None if is_skeleton else cp.keypoints(pose_image)
+    ref = cp.main_person(ref_people) if ref_people else None
+    n_people = len(ref_people) if ref_people else 1
     if expand:
         prompt, _ = expand_fn(scene, "hybrid")
         if not keep_llm:
             _llm_free()
     else:
         prompt = f"{TRIGGER}, {scene.strip().rstrip('.')}"
-    gen = lambda p, s, neg: cp.generate_with_pose(p, pose, s, cn_scale=cn_scale, lora=lora, negative=neg)
-    if best_of > 1:
-        img, _ = generate_best(prompt, scene, best_of, seed, lora, negative=NEG_PLUS, gen=gen)
+    if looks:
+        prompt = add_looks(prompt, scene, max_chars=n_people)
+    gen = lambda s: cp.generate_with_pose(prompt, pose, s, cn_scale=cn_scale, lora=lora, negative=NEG_POSE)
+    aspect = pose.width / pose.height
+    seeds = [seed * 100 + k for k in range(best_of)] if best_of > 1 else [seed]
+    cands = [gen(s) for s in seeds]
+    pose_sims = [None] * len(cands)
+    if ref is not None and (pose_select or return_info):
+        for i, c in enumerate(cands):
+            people = cp.keypoints(c)
+            pose_sims[i] = cp.pose_similarity(ref, cp.main_person(people) if people else None, aspect)
+    if len(cands) == 1:
+        best, clip_scores = 0, [None]
     else:
-        img = gen(prompt, seed, NEG_PLUS)
-    return img, prompt, pose
+        clip_scores = judge_scores(cands, scene)
+        ok = list(range(len(cands)))
+        if pose_select and None not in pose_sims:
+            top = max(pose_sims)
+            ok = [i for i in ok if pose_sims[i] >= top - 0.15]   # drop clearly worse poses
+        best = max(ok, key=lambda i: clip_scores[i])
+    if return_info:
+        return cands[best], prompt, pose, {"seeds": seeds, "pose_sims": pose_sims, "clip_scores": clip_scores,
+                                           "best": best, "candidates": cands, "ref": ref}
+    return cands[best], prompt, pose
 
 
 def _llm_free():
