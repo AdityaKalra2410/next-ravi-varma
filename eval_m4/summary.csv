@@ -1,0 +1,4 @@
+condition,pose_pck,person_found,scene_match,style_sim,n
+no_cn,0.097,1.0,28.22,0.8335,16
+cn,0.962,1.0,28.27,0.8141,16
+cn_posesel,0.969,1.0,28.57,0.8146,16
