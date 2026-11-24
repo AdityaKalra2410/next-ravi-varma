@@ -52,7 +52,7 @@ POSES = [
      "Bhagiratha standing with both arms raised, praying for the Ganga to descend"),
 ]
 
-UA = {"User-Agent": "rrv-course-project/1.0 (student project; python-requests)"}
+UA = {"User-Agent": "RRVPoseFetcher/1.0 (educational course project; contact via https://commons.wikimedia.org/)"}
 
 
 def fetch(url, tries=6):
