@@ -1,20 +1,21 @@
 """
-Milestone 3: text parsing and prompt expansion.
+Milestone 3: text parsing, prompt expansion and generation.
 
-A short epic-scene description is expanded by an open-weight LLM (Qwen2.5-7B-Instruct, 4-bit) into
-a prompt in the SAME format as our LoRA training captions. The LLM fills a JSON template
-(same fields as our Qwen3-VL tags) and the code assembles it in caption order:
-    rrvarma oil painting, <characters>, <figures>, <action>, <pose>, <attire>, <setting>, <composition>
-then trimmed to CLIP's 77-token limit and (optionally) rendered with SD 1.5 + our LoRA.
+FRONT END: call  paint(scene, expand=False, best_of=4, seed=0) -> (image, prompt)
 
-The functions expand() and generate() are reused by the Gradio app in Milestone 4.
+Final pipeline (best scores in eval_m3):
+    "rrvarma oil painting, <scene>"  +  style-aware negative prompt  +  best-of-4 selection
+    (4 candidates, the best picked by CLIP ViT-B/32 against the TRAINING paintings)
+Optional LLM expansion (expand=True): Qwen2.5-7B-Instruct (4-bit) fills a JSON template with the same
+fields as our training tags; "hybrid" keeps the user's sentence and adds figures, pose, setting,
+composition. Useful for very short inputs.
 
 Colab (T4) from the repo root:
     !pip install -q diffusers transformers accelerate peft bitsandbytes
     !pip uninstall -y torchao
-    !python scripts/expand_prompt.py --dry-run "Arjuna aiming his bow"           # show the LLM instructions
-    !python scripts/expand_prompt.py "Yudhishthira weeping over the body of Karna at Kurukshetra"
-    !python scripts/expand_prompt.py --generate --seed 0 "Sita in the Ashoka grove, guarded by demonesses"
+    !python scripts/expand_prompt.py --generate "Bhishma lying on a bed of arrows"            # final pipeline
+    !python scripts/expand_prompt.py --generate --expand "Bhishma dying"                      # with LLM
+    !python scripts/expand_prompt.py "Arjuna aiming his bow"                                  # show expansion only
 """
 import argparse, re
 from pathlib import Path
@@ -261,6 +262,27 @@ def generate_best(prompt, scene=None, n=4, seed=0, lora="models/lora_v1.safetens
     return cands[best], scores
 
 
+def paint(scene, expand=False, best_of=4, seed=0, lora="models/lora_v1.safetensors", keep_llm=False):
+    """ONE CALL FOR THE FRONT END.
+    scene   : what the user typed
+    expand  : False (default, best scores) -> "rrvarma oil painting, <scene>"
+              True  -> LLM hybrid expansion (useful for very short inputs like "Bhishma dying")
+    best_of : candidates generated; the best is kept (1 = fastest, 4 = best quality, ~25 s on a T4)
+    keep_llm: True keeps the LLM in GPU memory between calls (use in the app: avoids a ~1 min reload)
+    returns : (PIL image, prompt used)"""
+    if expand:
+        prompt, _ = expand_fn(scene, "hybrid")
+        if not keep_llm:
+            _llm_free()                              # free GPU memory for Stable Diffusion
+    else:
+        prompt = f"{TRIGGER}, {scene.strip().rstrip('.')}"
+    if best_of > 1:
+        img, _ = generate_best(prompt, scene, best_of, seed, lora, negative=NEG_PLUS)
+    else:
+        img = generate(prompt, seed, lora=lora, negative=NEG_PLUS)
+    return img, prompt
+
+
 def _llm_free():
     global _llm, _tok
     import gc, torch
@@ -276,29 +298,29 @@ def main():
     ap.add_argument("--out", default="m3_outputs")
     ap.add_argument("--best-of", type=int, default=4, help="candidates to generate and pick from (1 = no selection)")
     ap.add_argument("--mode", choices=["hybrid", "full"], default="hybrid")
+    ap.add_argument("--expand", action="store_true", help="use the LLM to expand the scene (default: off)")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
     if a.dry_run:
         print(SYSTEM); print("\nfallback if the LLM fails:", f"{TRIGGER}, {a.scene}")
         return
-    prompt, raw = expand(a.scene, a.mode)
+    if not a.generate:                               # just show the expansion
+        prompt, raw = expand(a.scene, a.mode)
+        print("scene   :", a.scene); print("LLM raw :", raw.strip())
+        print(f"prompt  : {prompt}   ({clip_tokens(prompt)} tokens)")
+        return
+    img, prompt = paint(a.scene, expand=a.expand, best_of=a.best_of, seed=a.seed, lora=a.lora)
     print("scene   :", a.scene)
-    print("LLM raw :", raw.strip())
     print(f"prompt  : {prompt}   ({clip_tokens(prompt)} tokens)")
-    if a.generate:
-        Path(a.out).mkdir(exist_ok=True)
-        slug = re.sub(r"[^a-z0-9]+", "_", a.scene.lower())[:50].strip("_")
-        path = Path(a.out) / f"{slug}_s{a.seed}.png"
-        if a.best_of > 1:
-            _llm_free()
-            img, scores = generate_best(prompt, a.scene, a.best_of, a.seed, a.lora)
-            print("judge  :", [round(x, 3) for x in scores])
-        else:
-            img = generate(prompt, a.seed, lora=a.lora, negative=NEG_PLUS)
-        img.save(path)
-        print("saved   :", path)
-
+    Path(a.out).mkdir(exist_ok=True)
+    slug = re.sub(r"[^a-z0-9]+", "_", a.scene.lower())[:50].strip("_")
+    path = Path(a.out) / f"{slug}_s{a.seed}.png"
+    img.save(path)
+    print("saved   :", path)
 
 if __name__ == "__main__":
     main()
+
+
+expand_fn = expand   # alias so paint(expand=...) can still reach the expand() function
