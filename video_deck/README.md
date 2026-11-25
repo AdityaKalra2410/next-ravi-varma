@@ -1,15 +1,13 @@
 # The Next Ravi Varma: 3-minute video deck
 
 `index.html` is a self-playing, cinematic deck (about 2:46). Every element appears at the second its words
-are spoken, so one narrator reads the script below at a steady pace and it lines up. There are no on-screen
+are spoken, so one narrator reads the script at a steady pace and it lines up. There are no on-screen
 subtitles or speaker tags. The whole deck runs at `SPEED=1.0` (set near the bottom of `index.html`; 1 = slower).
 
 ## Before recording
-1. **New paintings (heroines):** in Colab run `!python scripts/make_showcase.py`, then
-   `!zip -qr showcase.zip showcase`, download it and unzip into `video_deck/assets/` so you get
-   `video_deck/assets/showcase/…`. The deck uses them automatically (without them it falls back to older
-   outputs). Each scene has two seeds, `_s0` and `_s1`; the deck uses `_s0`. If `_s1` looks better, swap the
-   two file names.
+1. **New paintings (heroines):** `assets/showcase/` holds paintings made with the app's own pipeline
+   (`paint()` / `paint_with_pose()`), with seed 0 (`_s0`) or 1 (`_s1`). Without them the deck falls back to
+   older outputs.
 2. **Live-demo clips** (Colab app, Win + Alt + R, cut the waiting in Clipchamp):
    - `clips/demo_text.mp4` (~20 s): click "Damayanti talking to a golden swan…", Paint, show result, prompt
      and seed, then one Fast paint.
@@ -22,9 +20,8 @@ Open `index.html` in Chrome (right-click → Open with → Chrome), F11, start r
 press **Space**. It plays by itself; → or a click skips ahead, ← goes back, R restarts.
 
 ## Script
-The narration is in **`voiceover_tts.txt`** (11 blocks, spelled for an AI voice, with each block's start time
-and slot length; total 2:46 at `SPEED=1.0`). `final_subtitles.srt` has the subtitles of the final video and
-`voiceover_aligned.wav` the AI voiceover aligned to the deck. Generate one audio clip per block and place it at its start time.
+The narration for each slide is in its `<script type="text/caps">` block in `index.html`, with the second
+each line starts. `voiceover_aligned.wav` is the AI voiceover, aligned to the deck (2:46 at `SPEED=1.0`).
 
 ## Editing
 Everything is in `index.html` (plain HTML/CSS/JS). Each slide is a `<section class="slide">`:
