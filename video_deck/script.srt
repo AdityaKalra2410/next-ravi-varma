@@ -1,0 +1,132 @@
+1
+00:00:00,000 --> 00:00:03,700
+Raja Ravi Varma painted the Indian epics in a European oil style.
+
+2
+00:00:03,750 --> 00:00:07,450
+What if he could paint any scene you describe, in a pose you choose?
+
+3
+00:00:07,500 --> 00:00:09,950
+This is The Next Ravi Varma, by Team The Unsupervised.
+
+4
+00:00:10,000 --> 00:00:12,450
+You type a scene from the Mahabharata or Ramayana,
+
+5
+00:00:12,500 --> 00:00:14,950
+optionally add a photo of someone posing,
+
+6
+00:00:15,000 --> 00:00:18,283
+and get a new painting in his oil style.
+
+7
+00:00:18,333 --> 00:00:21,283
+Our project follows the four milestones of our proposal:
+
+8
+00:00:21,333 --> 00:00:26,617
+the data, the style, the words, and the pose, all inside one web app.
+
+9
+00:00:26,667 --> 00:00:31,617
+Milestone one: the data. We collected 135 images of his work from Wikimedia Commons.
+
+10
+00:00:31,667 --> 00:00:37,450
+Printed copies, called oleographs, look flat, so we kept only his 61 oil paintings and held nine out for testing.
+
+11
+00:00:37,500 --> 00:00:41,617
+Older captioning models wrote poor labels, so Qwen3-VL described every painting,
+
+12
+00:00:41,667 --> 00:00:44,950
+and each caption starts with our trigger phrase: rrvarma oil painting.
+
+13
+00:00:45,000 --> 00:00:50,783
+Milestone two: the style. We trained a three-megabyte LoRA on frozen Stable Diffusion 1.5.
+
+14
+00:00:50,833 --> 00:00:55,783
+Plain Stable Diffusion paints a photo, and asking for Ravi Varma gives a calendar print.
+
+15
+00:00:55,833 --> 00:01:03,283
+Our LoRA paints in oil: style similarity 0.82, close to 0.84 for his real paintings.
+
+16
+00:01:03,333 --> 00:01:08,283
+Milestone three: the words. Qwen 2.5 expands a short scene into a detailed prompt.
+
+17
+00:01:08,333 --> 00:01:11,617
+Then four paintings are made, and a CLIP judge keeps the best one.
+
+18
+00:01:11,667 --> 00:01:14,950
+That raised scene match from 28.2 to 30.4.
+
+19
+00:01:15,000 --> 00:01:18,283
+Milestone four: the pose. OpenPose turns a photo into a skeleton,
+
+20
+00:01:18,333 --> 00:01:22,033
+and ControlNet paints a figure that follows it.
+
+21
+00:01:22,083 --> 00:01:26,617
+We also describe each character, check the pose of every candidate, and refine at high resolution.
+
+22
+00:01:26,667 --> 00:01:29,950
+With text alone, the model gets poses wrong and adds extra people.
+
+23
+00:01:30,000 --> 00:01:33,283
+With a pose photo, pose accuracy jumps from 10 to 97 percent,
+
+24
+00:01:33,333 --> 00:01:36,617
+with no loss in how well the painting matches the scene.
+
+25
+00:01:36,667 --> 00:01:41,617
+Here is our web app. I type a scene and press Paint.
+
+26
+00:01:41,667 --> 00:01:47,450
+Four paintings are made and the best is kept; the prompt and seed are shown below.
+
+27
+00:01:47,500 --> 00:01:53,283
+Fast mode gives a quick single-image preview.
+
+28
+00:01:53,333 --> 00:01:57,867
+Now I upload a photo of someone drawing a bow.
+
+29
+00:01:57,917 --> 00:02:03,283
+The app shows the skeleton and paints Chitrangada in exactly that pose.
+
+30
+00:02:03,333 --> 00:02:08,283
+If a photo has no person in it, the app says so instead of guessing.
+
+31
+00:02:08,333 --> 00:02:13,283
+All of this runs on a free Colab T4 GPU.
+
+32
+00:02:13,333 --> 00:02:17,450
+His style, any scene, any pose.
+
+33
+00:02:17,500 --> 00:02:23,283
+Our code, data and evaluations are public on GitHub. Thank you.
+
