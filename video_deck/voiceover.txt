@@ -1,0 +1,35 @@
+VOICEOVER - one audio clip per slide. Paste ONLY the text under each heading into the TTS.
+Place each clip on the timeline at its start time.
+
+=== Title  |  starts 0:00.0  |  length 10.0 s ===
+Raja Ravi Varma painted the Indian epics in a European oil style. What if he could paint any scene you describe, in a pose you choose? This is The Next Ravi Varma, by Team The Unsupervised.
+
+=== Two inputs  |  starts 0:10.0  |  length 8.3 s ===
+You type a scene from the Mahabharata or Ramayana, optionally add a photo of someone posing, and get a new painting in his oil style.
+
+=== Four milestones  |  starts 0:18.3  |  length 8.3 s ===
+Our project follows the four milestones of our proposal: the data, the style, the words, and the pose, all inside one web app.
+
+=== Milestone 1 - Data  |  starts 0:26.7  |  length 18.3 s ===
+Milestone one: the data. We collected 135 images of his work from Wikimedia Commons. Printed copies, called oleographs, look flat, so we kept only his 61 oil paintings and held nine out for testing. Older captioning models wrote poor labels, so Qwen3-VL described every painting, and each caption starts with our trigger phrase: rrvarma oil painting.
+
+=== Milestone 2 - Style  |  starts 0:45.0  |  length 18.3 s ===
+Milestone two: the style. We trained a three-megabyte LoRA on frozen Stable Diffusion 1.5. Plain Stable Diffusion paints a photo, and asking for Ravi Varma gives a calendar print. Our LoRA paints in oil: style similarity 0.82, close to 0.84 for his real paintings.
+
+=== Milestone 3 - Words  |  starts 1:03.3  |  length 11.7 s ===
+Milestone three: the words. Qwen 2.5 expands a short scene into a detailed prompt. Then four paintings are made, and a CLIP judge keeps the best one. That raised scene match from 28.2 to 30.4.
+
+=== Milestone 4 - Pose  |  starts 1:15.0  |  length 11.7 s ===
+Milestone four: the pose. OpenPose turns a photo into a skeleton, and ControlNet paints a figure that follows it. We also describe each character, check the pose of every candidate, and refine at high resolution.
+
+=== Results  |  starts 1:26.7  |  length 10.0 s ===
+With text alone, the model gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from 10 to 97 percent, with no loss in how well the painting matches the scene.
+
+=== Live demo 1  |  starts 1:36.7  |  length 16.7 s ===
+Here is our web app. I type a scene and press Paint. Four paintings are made and the best is kept; the prompt and seed are shown below. Fast mode gives a quick single-image preview.
+
+=== Live demo 2  |  starts 1:53.3  |  length 20.0 s ===
+Now I upload a photo of someone drawing a bow. The app shows the skeleton and paints Chitrangada in exactly that pose. If a photo has no person in it, the app says so instead of guessing. All of this runs on a free Colab T4 GPU.
+
+=== Closing  |  starts 2:13.3  |  length 10.0 s ===
+His style, any scene, any pose. Our code, data and evaluations are public on GitHub. Thank you.
