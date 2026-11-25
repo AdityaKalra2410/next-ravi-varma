@@ -1,128 +1,128 @@
 1
-00:00:00,000 --> 00:00:03,700
-Raja Ravi Varma painted the Indian epics in a European oil style.
+00:00:00,000 --> 00:00:03,950
+Raja Ravi Varma painted the Indian epics in oil.
 
 2
-00:00:03,750 --> 00:00:07,450
-What if he could paint any scene you describe, in a pose you choose?
+00:00:04,000 --> 00:00:07,450
+What if he could paint any scene you describe?
 
 3
-00:00:07,500 --> 00:00:09,950
+00:00:07,500 --> 00:00:11,950
 This is The Next Ravi Varma, by Team The Unsupervised.
 
 4
-00:00:10,000 --> 00:00:12,450
+00:00:12,000 --> 00:00:14,950
 You type a scene from the Mahabharata or Ramayana,
 
 5
-00:00:12,500 --> 00:00:14,950
+00:00:15,000 --> 00:00:17,950
 optionally add a photo of someone posing,
 
 6
-00:00:15,000 --> 00:00:18,283
+00:00:18,000 --> 00:00:21,950
 and get a new painting in his oil style.
 
 7
-00:00:18,333 --> 00:00:21,283
+00:00:22,000 --> 00:00:25,550
 Our project follows the four milestones of our proposal:
 
 8
-00:00:21,333 --> 00:00:26,617
+00:00:25,600 --> 00:00:31,950
 the data, the style, the words, and the pose, all inside one web app.
 
 9
-00:00:26,667 --> 00:00:31,617
-Milestone one: the data. We collected 135 images of his work from Wikimedia Commons.
+00:00:32,000 --> 00:00:35,950
+Milestone one: the data. From 135 images,
 
 10
-00:00:31,667 --> 00:00:37,450
-Printed copies, called oleographs, look flat, so we kept only his 61 oil paintings and held nine out for testing.
+00:00:36,000 --> 00:00:44,950
+we kept only his 61 oil paintings, not the flat printed copies, and held nine out for testing.
 
 11
-00:00:37,500 --> 00:00:41,617
-Older captioning models wrote poor labels, so Qwen3-VL described every painting,
+00:00:45,000 --> 00:00:48,950
+Qwen3-VL captioned every painting,
 
 12
-00:00:41,667 --> 00:00:44,950
+00:00:49,000 --> 00:00:53,950
 and each caption starts with our trigger phrase: rrvarma oil painting.
 
 13
-00:00:45,000 --> 00:00:50,783
+00:00:54,000 --> 00:01:00,950
 Milestone two: the style. We trained a three-megabyte LoRA on frozen Stable Diffusion 1.5.
 
 14
-00:00:50,833 --> 00:00:55,783
+00:01:01,000 --> 00:01:06,950
 Plain Stable Diffusion paints a photo, and asking for Ravi Varma gives a calendar print.
 
 15
-00:00:55,833 --> 00:01:03,283
+00:01:07,000 --> 00:01:15,950
 Our LoRA paints in oil: style similarity 0.82, close to 0.84 for his real paintings.
 
 16
-00:01:03,333 --> 00:01:08,283
-Milestone three: the words. Qwen 2.5 expands a short scene into a detailed prompt.
+00:01:16,000 --> 00:01:21,950
+Milestone three: the words. Qwen 2.5 expands a scene into a full prompt.
 
 17
-00:01:08,333 --> 00:01:11,617
-Then four paintings are made, and a CLIP judge keeps the best one.
+00:01:22,000 --> 00:01:25,950
+A CLIP judge then picks the best of four paintings,
 
 18
-00:01:11,667 --> 00:01:14,950
-That raised scene match from 28.2 to 30.4.
+00:01:26,000 --> 00:01:29,950
+raising scene match from 28 to 30.
 
 19
-00:01:15,000 --> 00:01:18,283
+00:01:30,000 --> 00:01:33,950
 Milestone four: the pose. OpenPose turns a photo into a skeleton,
 
 20
-00:01:18,333 --> 00:01:22,033
-and ControlNet paints a figure that follows it.
+00:01:34,000 --> 00:01:38,450
+and ControlNet paints a figure that follows it,
 
 21
-00:01:22,083 --> 00:01:26,617
-We also describe each character, check the pose of every candidate, and refine at high resolution.
+00:01:38,500 --> 00:01:43,950
+with character looks, pose checks and a high-resolution refine.
 
 22
-00:01:26,667 --> 00:01:29,950
-With text alone, the model gets poses wrong and adds extra people.
+00:01:44,000 --> 00:01:47,950
+Text alone gets poses wrong and adds extra people.
 
 23
-00:01:30,000 --> 00:01:33,283
+00:01:48,000 --> 00:01:51,950
 With a pose photo, pose accuracy jumps from 10 to 97 percent,
 
 24
-00:01:33,333 --> 00:01:36,617
-with no loss in how well the painting matches the scene.
+00:01:52,000 --> 00:01:55,950
+with no loss in scene match.
 
 25
-00:01:36,667 --> 00:01:41,617
+00:01:56,000 --> 00:02:01,950
 Here is our web app. I type a scene and press Paint.
 
 26
-00:01:41,667 --> 00:01:47,450
+00:02:02,000 --> 00:02:08,950
 Four paintings are made and the best is kept; the prompt and seed are shown below.
 
 27
-00:01:47,500 --> 00:01:54,950
+00:02:09,000 --> 00:02:17,950
 Fast mode gives a quick single-image preview.
 
 28
-00:01:55,000 --> 00:02:00,783
+00:02:18,000 --> 00:02:24,950
 Now I upload a photo of someone drawing a bow and press Paint.
 
 29
-00:02:00,833 --> 00:02:04,950
+00:02:25,000 --> 00:02:29,950
 The app shows the skeleton and paints Chitrangada in exactly that pose.
 
 30
-00:02:05,000 --> 00:02:08,283
+00:02:30,000 --> 00:02:33,950
 All of this runs on a free Colab T4 GPU.
 
 31
-00:02:08,333 --> 00:02:12,450
+00:02:34,000 --> 00:02:38,950
 His style, any scene, any pose.
 
 32
-00:02:12,500 --> 00:02:18,283
+00:02:39,000 --> 00:02:45,950
 Our code, data and evaluations are public on GitHub. Thank you.
 

@@ -1,35 +1,35 @@
 VOICEOVER - one audio clip per slide. Paste ONLY the text under each heading into the TTS.
 Place each clip on the timeline at its start time.
 
-=== Title  |  starts 0:00.0  |  length 10.0 s ===
-Raja Ravi Varma painted the Indian epics in a European oil style. What if he could paint any scene you describe, in a pose you choose? This is The Next Ravi Varma, by Team The Unsupervised.
+=== Title  |  starts 0:00.0  |  length 12.0 s ===
+Raja Ravi Varma painted the Indian epics in oil. What if he could paint any scene you describe? This is The Next Ravi Varma, by Team The Unsupervised.
 
-=== Two inputs  |  starts 0:10.0  |  length 8.3 s ===
+=== Two inputs  |  starts 0:12.0  |  length 10.0 s ===
 You type a scene from the Mahabharata or Ramayana, optionally add a photo of someone posing, and get a new painting in his oil style.
 
-=== Four milestones  |  starts 0:18.3  |  length 8.3 s ===
+=== Four milestones  |  starts 0:22.0  |  length 10.0 s ===
 Our project follows the four milestones of our proposal: the data, the style, the words, and the pose, all inside one web app.
 
-=== Milestone 1 - Data  |  starts 0:26.7  |  length 18.3 s ===
-Milestone one: the data. We collected 135 images of his work from Wikimedia Commons. Printed copies, called oleographs, look flat, so we kept only his 61 oil paintings and held nine out for testing. Older captioning models wrote poor labels, so Qwen3-VL described every painting, and each caption starts with our trigger phrase: rrvarma oil painting.
+=== Milestone 1 - Data  |  starts 0:32.0  |  length 22.0 s ===
+Milestone one: the data. From 135 images, we kept only his 61 oil paintings, not the flat printed copies, and held nine out for testing. Qwen3-VL captioned every painting, and each caption starts with our trigger phrase: rrvarma oil painting.
 
-=== Milestone 2 - Style  |  starts 0:45.0  |  length 18.3 s ===
+=== Milestone 2 - Style  |  starts 0:54.0  |  length 22.0 s ===
 Milestone two: the style. We trained a three-megabyte LoRA on frozen Stable Diffusion 1.5. Plain Stable Diffusion paints a photo, and asking for Ravi Varma gives a calendar print. Our LoRA paints in oil: style similarity 0.82, close to 0.84 for his real paintings.
 
-=== Milestone 3 - Words  |  starts 1:03.3  |  length 11.7 s ===
-Milestone three: the words. Qwen 2.5 expands a short scene into a detailed prompt. Then four paintings are made, and a CLIP judge keeps the best one. That raised scene match from 28.2 to 30.4.
+=== Milestone 3 - Words  |  starts 1:16.0  |  length 14.0 s ===
+Milestone three: the words. Qwen 2.5 expands a scene into a full prompt. A CLIP judge then picks the best of four paintings, raising scene match from 28 to 30.
 
-=== Milestone 4 - Pose  |  starts 1:15.0  |  length 11.7 s ===
-Milestone four: the pose. OpenPose turns a photo into a skeleton, and ControlNet paints a figure that follows it. We also describe each character, check the pose of every candidate, and refine at high resolution.
+=== Milestone 4 - Pose  |  starts 1:30.0  |  length 14.0 s ===
+Milestone four: the pose. OpenPose turns a photo into a skeleton, and ControlNet paints a figure that follows it, with character looks, pose checks and a high-resolution refine.
 
-=== Results  |  starts 1:26.7  |  length 10.0 s ===
-With text alone, the model gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from 10 to 97 percent, with no loss in how well the painting matches the scene.
+=== Results  |  starts 1:44.0  |  length 12.0 s ===
+Text alone gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from 10 to 97 percent, with no loss in scene match.
 
-=== Live demo 1  |  starts 1:36.7  |  length 18.3 s ===
+=== Live demo 1  |  starts 1:56.0  |  length 22.0 s ===
 Here is our web app. I type a scene and press Paint. Four paintings are made and the best is kept; the prompt and seed are shown below. Fast mode gives a quick single-image preview.
 
-=== Live demo 2  |  starts 1:55.0  |  length 13.3 s ===
+=== Live demo 2  |  starts 2:18.0  |  length 16.0 s ===
 Now I upload a photo of someone drawing a bow and press Paint. The app shows the skeleton and paints Chitrangada in exactly that pose. All of this runs on a free Colab T4 GPU.
 
-=== Closing  |  starts 2:08.3  |  length 10.0 s ===
+=== Closing  |  starts 2:34.0  |  length 12.0 s ===
 His style, any scene, any pose. Our code, data and evaluations are public on GitHub. Thank you.

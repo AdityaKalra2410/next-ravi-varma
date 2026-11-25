@@ -115,9 +115,9 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
     </div>
   </div>
   <script type="text/caps">
-0 | Raja Ravi Varma painted the Indian epics in a European oil style.
-4.5 | What if he could paint any scene you describe, in a pose you choose?
-9 | This is The Next Ravi Varma, by Team The Unsupervised.
+0 | Raja Ravi Varma painted the Indian epics in oil.
+4 | What if he could paint any scene you describe?
+7.5 | This is The Next Ravi Varma, by Team The Unsupervised.
   </script>
 </section>
 
@@ -200,10 +200,10 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
     </div>
   </div>
   <script type="text/caps">
-0 | Milestone one: the data. We collected 135 images of his work from Wikimedia Commons.
-6 | Printed copies, called oleographs, look flat, so we kept only his 61 oil paintings and held nine out for testing.
-13 | Older captioning models wrote poor labels, so Qwen3-VL described every painting,
-18 | and each caption starts with our trigger phrase: rrvarma oil painting.
+0 | Milestone one: the data. From 135 images,
+4 | we kept only his 61 oil paintings, not the flat printed copies, and held nine out for testing.
+13 | Qwen3-VL captioned every painting,
+17 | and each caption starts with our trigger phrase: rrvarma oil painting.
   </script>
 </section>
 
@@ -254,9 +254,9 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
     </div>
   </div>
   <script type="text/caps">
-0 | Milestone three: the words. Qwen 2.5 expands a short scene into a detailed prompt.
-6 | Then four paintings are made, and a CLIP judge keeps the best one.
-10 | That raised scene match from 28.2 to 30.4.
+0 | Milestone three: the words. Qwen 2.5 expands a scene into a full prompt.
+6 | A CLIP judge then picks the best of four paintings,
+10 | raising scene match from 28 to 30.
   </script>
 </section>
 
@@ -298,8 +298,8 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
   </div>
   <script type="text/caps">
 0 | Milestone four: the pose. OpenPose turns a photo into a skeleton,
-4 | and ControlNet paints a figure that follows it.
-8.5 | We also describe each character, check the pose of every candidate, and refine at high resolution.
+4 | and ControlNet paints a figure that follows it,
+8.5 | with character looks, pose checks and a high-resolution refine.
   </script>
 </section>
 
@@ -323,9 +323,9 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
     </div>
   </div>
   <script type="text/caps">
-0 | With text alone, the model gets poses wrong and adds extra people.
+0 | Text alone gets poses wrong and adds extra people.
 4 | With a pose photo, pose accuracy jumps from 10 to 97 percent,
-8 | with no loss in how well the painting matches the scene.
+8 | with no loss in scene match.
   </script>
 </section>
 
@@ -382,7 +382,7 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 
 <script>
 const DUR=[12,10,10,22,22,14,14,12,22,16,12];       // seconds per slide in script time (matched to the voiceover)
-const SPEED=1.2;                                      // whole deck runs this much faster (1 = original pace)
+const SPEED=1.0;                                      // whole deck runs this much faster (1 = original pace)
 const stage=document.getElementById("stage");
 function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
 addEventListener("resize",fit);fit();

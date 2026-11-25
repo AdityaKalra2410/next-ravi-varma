@@ -1,35 +1,37 @@
 FINAL AI VOICEOVER (TTS-ready spelling). Generate one audio clip per block.
-In the video editor, place each clip at its start time. Total length about 2:18.
+In the video editor, place each clip at its start time. Each clip must be shorter than its slot.
 
-01 · Title · starts 0:00 · max 10 s
-Raja Ravi Varma painted the Indian epics in a European oil style. What if he could paint any scene you describe, in a pose you choose? This is The Next Ravi Varma, by Team The Unsupervised.
+01 · Title · starts 0:00 · slot 12 s · about 11 s at the AI's pace
+Raja Ravi Varma painted the Indian epics in oil. What if he could paint any scene you describe? This is The Next Ravi Varma, by Team The Unsupervised.
 
-02 · Two inputs · starts 0:10 · max 8 s
+02 · Two inputs · starts 0:12 · slot 10 s · about 10 s at the AI's pace
 You type a scene from the Mahabharata or Ramayana, optionally add a photo of someone posing, and get a new painting in his oil style.
 
-03 · Four milestones · starts 0:18 · max 8 s
+03 · Four milestones · starts 0:22 · slot 10 s · about 9 s at the AI's pace
 Our project follows the four milestones of our proposal: the data, the style, the words, and the pose, all inside one web app.
 
-04 · Data · starts 0:27 · max 18 s
-Milestone one: the data. We collected one hundred and thirty-five images of his work from Wikimedia Commons. Printed copies, called oleographs, look flat, so we kept only his sixty-one oil paintings, and held nine out for testing. Older captioning models wrote poor labels, so Qwen three V L described every painting, and each caption starts with our trigger phrase: R R Varma oil painting.
+04 · Data · starts 0:32 · slot 22 s · about 19 s at the AI's pace
+Milestone one: the data. From one hundred and thirty-five images, we kept only his sixty-one oil paintings, not the flat printed copies, and held nine out for testing. Qwen three V L captioned every painting, and each caption starts with our trigger phrase: R R Varma oil painting.
 
-05 · Style · starts 0:45 · max 18 s
+05 · Style · starts 0:54 · slot 22 s · about 21 s at the AI's pace
 Milestone two: the style. We trained a three-megabyte Lora on frozen Stable Diffusion one point five. Plain Stable Diffusion paints a photo, and asking for Ravi Varma gives a calendar print. Our Lora paints in oil: style similarity zero point eight two, close to zero point eight four for his real paintings.
 
-06 · Words · starts 1:03 · max 11 s
-Milestone three: the words. Qwen two point five expands a short scene into a detailed prompt. Then four paintings are made, and a clip judge keeps the best one. That raised scene match from twenty-eight point two to thirty point four.
+06 · Words · starts 1:16 · slot 14 s · about 12 s at the AI's pace
+Milestone three: the words. Qwen two point five expands a scene into a full prompt. A clip judge then picks the best of four paintings, raising scene match from twenty-eight to thirty.
 
-07 · Pose · starts 1:15 · max 11 s
-Milestone four: the pose. Open Pose turns a photo into a skeleton, and Control Net paints a figure that follows it. We also describe each character, check the pose of every candidate, and refine at high resolution.
+07 · Pose · starts 1:30 · slot 14 s · about 12 s at the AI's pace
+Milestone four: the pose. Open Pose turns a photo into a skeleton, and Control Net paints a figure that follows it, with character looks, pose checks and a high-resolution refine.
 
-08 · Results · starts 1:27 · max 10 s
-With text alone, the model gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from ten to ninety-seven percent, with no loss in how well the painting matches the scene.
+08 · Results · starts 1:44 · slot 12 s · about 11 s at the AI's pace
+Text alone gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from ten to ninety-seven percent, with no loss in scene match.
 
-09 · Live demo 1 · starts 1:37 · max 18 s
+09 · Live demo 1 · starts 1:56 · slot 22 s · about 15 s at the AI's pace
 Here is our web app. I choose a scene and press Paint. Four paintings are made and the best one is kept; the prompt and the seed are shown below. Fast mode gives a quick, single-image preview.
 
-10 · Live demo 2 · starts 1:55 · max 13 s
+10 · Live demo 2 · starts 2:18 · slot 16 s · about 14 s at the AI's pace
 Now I upload a photo of someone drawing a bow, and press Paint. The app shows the skeleton, and paints Chitrangada in exactly that pose. All of this runs on a free Colab T four GPU.
 
-11 · Closing · starts 2:08 · max 10 s
+11 · Closing · starts 2:34 · slot 12 s · about 7 s at the AI's pace
 His style. Any scene. Any pose. Our code, data and evaluations are public on GitHub. Thank you.
+
+Total: 2:46
