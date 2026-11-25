@@ -1,4 +1,0 @@
-condition,clip_score,style_sim,max_train,n_over_0.95
-base,28.05,0.7344,0.8715,0
-base+style,25.46,0.7902,0.8548,0
-lora,28.28,0.813,0.8675,0

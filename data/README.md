@@ -17,8 +17,8 @@
 |---|---|
 | Files found | 319 |
 | Downloaded (size/format filter) | 135 |
-| After cleaning | 94 |
-| Oil paintings (used for training) | 62 |
+| After cleaning | 93 |
+| Oil paintings (52 train + 9 held-out test) | 61 |
 | Oleographs (kept aside for comparison) | 32 |
 
 ## metadata.csv columns

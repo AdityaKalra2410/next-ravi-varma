@@ -23,8 +23,8 @@ press **Space**. It plays by itself; → or a click skips ahead, ← goes back, 
 
 ## Script
 The narration is in **`voiceover_tts.txt`** (11 blocks, spelled for an AI voice, with each block's start time
-and slot length; total 2:46 at `SPEED=1.0`). `voiceover.txt` and `script.srt` hold the same lines with exact
-timings. Generate one audio clip per block and place it at its start time.
+and slot length; total 2:46 at `SPEED=1.0`). `final_subtitles.srt` has the subtitles of the final video and
+`voiceover_aligned.wav` the AI voiceover aligned to the deck. Generate one audio clip per block and place it at its start time.
 
 ## Editing
 Everything is in `index.html` (plain HTML/CSS/JS). Each slide is a `<section class="slide">`:

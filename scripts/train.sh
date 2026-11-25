@@ -1,6 +1,7 @@
 #!/bin/bash
-# LoRA v2 training (same settings as Rishit's v2 run, with the two paths fixed).
-# Run from the repo root:  bash scripts/train.sh
+# LoRA training on Stable Diffusion 1.5.
+# First build the training folder: cd data && python ../scripts/Filtering_images.py && cd ..
+# then, from the repo root:  bash scripts/train.sh
 accelerate launch \
   --num_processes=1 \
   --num_machines=1 \
@@ -22,6 +23,6 @@ accelerate launch \
   --lr_warmup_steps=100 \
   --checkpointing_steps=500 \
   --report_to="tensorboard" \
-  --output_dir="runs/lora_v2" \
+  --output_dir="runs/lora" \
   --mixed_precision="fp16" \
   --seed=42
