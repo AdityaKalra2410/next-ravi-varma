@@ -12,7 +12,7 @@ Course project for **CS F407 Artificial Intelligence**, BITS Pilani Goa. Team **
 | Aditya Kalra | 2024A7PS0536G |
 | Eshan Singhai | 2024ADPS0836G |
 | Rishit Khanna | 2024A3PS0343G |
-| Mayank Bhojwani | |
+| Mayank Bhojwani | 2024A7PS0639G |
 
 ## Pipeline
 
