@@ -103,30 +103,26 @@ Here is our web app. I type a scene and press Paint.
 Four paintings are made and the best is kept; the prompt and seed are shown below.
 
 27
-00:01:47,500 --> 00:01:53,283
+00:01:47,500 --> 00:01:54,950
 Fast mode gives a quick single-image preview.
 
 28
-00:01:53,333 --> 00:01:57,867
-Now I upload a photo of someone drawing a bow.
+00:01:55,000 --> 00:02:00,783
+Now I upload a photo of someone drawing a bow and press Paint.
 
 29
-00:01:57,917 --> 00:02:03,283
+00:02:00,833 --> 00:02:04,950
 The app shows the skeleton and paints Chitrangada in exactly that pose.
 
 30
-00:02:03,333 --> 00:02:08,283
-If a photo has no person in it, the app says so instead of guessing.
-
-31
-00:02:08,333 --> 00:02:13,283
+00:02:05,000 --> 00:02:08,283
 All of this runs on a free Colab T4 GPU.
 
-32
-00:02:13,333 --> 00:02:17,450
+31
+00:02:08,333 --> 00:02:12,450
 His style, any scene, any pose.
 
-33
-00:02:17,500 --> 00:02:23,283
+32
+00:02:12,500 --> 00:02:18,283
 Our code, data and evaluations are public on GitHub. Thank you.
 

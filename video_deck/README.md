@@ -1,6 +1,6 @@
 # The Next Ravi Varma: 3-minute video deck
 
-`index.html` is a self-playing, cinematic deck (about 2:25). Every element appears at the second its words
+`index.html` is a self-playing, cinematic deck (about 2:18). Every element appears at the second its words
 are spoken, so one narrator reads the script below at a steady pace and it lines up. There are no on-screen
 subtitles or speaker tags. The whole deck runs at `SPEED=1.2` (set near the bottom of `index.html`; 1 = slower).
 
@@ -52,12 +52,11 @@ press **Space**. It plays by itself; → or a click skips ahead, ← goes back, 
 | 1:37 | **9 Live demo** | “Here is our web app. I type a scene and press Paint.” | your clip `demo_text.mp4` |
 | 1:42 | | “Four paintings are made and the best is kept; the prompt and seed are shown below.” | |
 | 1:48 | | “Fast mode gives a quick single-image preview.” | |
-| 1:53 | **10 Live demo** | “Now I upload a photo of someone drawing a bow.” | your clip `demo_pose.mp4` |
-| 1:58 | | “The app shows the skeleton and paints Chitrangada in exactly that pose.” | |
-| 2:03 | | “If a photo has no person in it, the app says so instead of guessing.” | |
-| 2:08 | | “All of this runs on a free Colab T4 GPU.” | |
-| 2:13 | **11 Close** | “His style, any scene, any pose.” | collage of generated paintings; the line rises word by word |
-| 2:18 | | “Our code, data and evaluations are public on GitHub. Thank you.” | GitHub link, names, “Thank you.” |
+| 1:55 | **10 Live demo** | “Now I upload a photo of someone drawing a bow and press Paint.” | your clip `demo_pose.mp4` |
+| 2:01 | | “The app shows the skeleton and paints Chitrangada in exactly that pose.” | |
+| 2:05 | | “All of this runs on a free Colab T4 GPU.” | |
+| 2:08 | **11 Close** | “His style, any scene, any pose.” | collage of generated paintings; the line rises word by word |
+| 2:12 | | “Our code, data and evaluations are public on GitHub. Thank you.” | GitHub link, names, “Thank you.” |
 
 Voiceover (one narrator): record the deck silently, then in Clipchamp use Record → Audio and read the script
 while watching it, or record the screen with the mic on and read the script live as the deck plays.

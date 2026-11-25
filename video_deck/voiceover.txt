@@ -25,11 +25,11 @@ Milestone four: the pose. OpenPose turns a photo into a skeleton, and ControlNet
 === Results  |  starts 1:26.7  |  length 10.0 s ===
 With text alone, the model gets poses wrong and adds extra people. With a pose photo, pose accuracy jumps from 10 to 97 percent, with no loss in how well the painting matches the scene.
 
-=== Live demo 1  |  starts 1:36.7  |  length 16.7 s ===
+=== Live demo 1  |  starts 1:36.7  |  length 18.3 s ===
 Here is our web app. I type a scene and press Paint. Four paintings are made and the best is kept; the prompt and seed are shown below. Fast mode gives a quick single-image preview.
 
-=== Live demo 2  |  starts 1:53.3  |  length 20.0 s ===
-Now I upload a photo of someone drawing a bow. The app shows the skeleton and paints Chitrangada in exactly that pose. If a photo has no person in it, the app says so instead of guessing. All of this runs on a free Colab T4 GPU.
+=== Live demo 2  |  starts 1:55.0  |  length 13.3 s ===
+Now I upload a photo of someone drawing a bow and press Paint. The app shows the skeleton and paints Chitrangada in exactly that pose. All of this runs on a free Colab T4 GPU.
 
-=== Closing  |  starts 2:13.3  |  length 10.0 s ===
+=== Closing  |  starts 2:08.3  |  length 10.0 s ===
 His style, any scene, any pose. Our code, data and evaluations are public on GitHub. Thank you.

@@ -353,10 +353,9 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
       <img class="fallback" src="assets/app_pose.jpg" style="object-fit:contain;background:#000"></div>
   </div>
   <script type="text/caps">
-0 | Now I upload a photo of someone drawing a bow.
-5.5 | The app shows the skeleton and paints Chitrangada in exactly that pose.
-12 | If a photo has no person in it, the app says so instead of guessing.
-18 | All of this runs on a free Colab T4 GPU.
+0 | Now I upload a photo of someone drawing a bow and press Paint.
+7 | The app shows the skeleton and paints Chitrangada in exactly that pose.
+12 | All of this runs on a free Colab T4 GPU.
   </script>
 </section>
 
@@ -382,7 +381,7 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 <div id="hint">Space / click: start · → or click: next slide · ←: back · R: restart · C: subtitles · H: hide</div>
 
 <script>
-const DUR=[12,10,10,22,22,14,14,12,20,24,12];       // seconds per slide in script time (matched to the voiceover)
+const DUR=[12,10,10,22,22,14,14,12,22,16,12];       // seconds per slide in script time (matched to the voiceover)
 const SPEED=1.2;                                      // whole deck runs this much faster (1 = original pace)
 const stage=document.getElementById("stage");
 function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
