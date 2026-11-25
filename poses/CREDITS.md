@@ -10,3 +10,5 @@ Used only as pose references: OpenPose extracts the skeleton, nothing else is co
 - `seated_cross_legged.jpg`: Thamizhpparithi Maari, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:A_style_of_Padmasana.JPG
 - `folded_hands.jpg`: Thamizhpparithi Maari, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:A_view_of_Surya_namaskar_position.JPG
 - `arms_raised.jpg`: Hindisign, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Tadasana_yoga_pose.jpg
+- `woman_warrior1.jpg`: lululemon athletica, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Yoga_Warrior_I.jpg
+- `woman_seated.jpg`: Chi Chang Wu, CC BY-SA 2.0, https://commons.wikimedia.org/wiki/File:Cross-legged_sitting_woman.jpg

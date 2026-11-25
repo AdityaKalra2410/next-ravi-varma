@@ -106,6 +106,8 @@ LOOKS = {
     "saraswati":    "Saraswati a young woman in a white sari, holding a veena",
     "lakshmi":      "Lakshmi a young woman in a red silk sari, standing on a lotus",
     "jatayu":       "Jatayu a giant eagle",
+    "chitrangada":  "Chitrangada a young warrior princess, gold crown, silk sari with armour, holding a tall wooden bow with a bowstring",
+    "satyabhama":   "Satyabhama a young queen in a silk sari with gold jewellery, gold crown",
 }
 ALIASES = {"droupathi": "draupadi", "sakunthala": "shakuntala", "sairandhri": "draupadi", "sairandri": "draupadi",
            "vishvamitra": "vishwamitra", "bheema": "bhima", "bheeshma": "bhishma", "sri rama": "rama", "ram": "rama",
