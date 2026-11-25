@@ -1,8 +1,10 @@
 """
-The Next Ravi Varma: Gradio web app (Milestone 3 front end, with room for the M4 pose controls).
+The Next Ravi Varma: Gradio web app (text -> painting, optional pose photo via ControlNet).
 
-Run in Colab (T4 GPU) from the repo root:
-    !pip install -q diffusers transformers accelerate peft bitsandbytes gradio
+Run in Colab (T4 GPU) from the repo root. The -c line stops pip from replacing Colab's GPU build of
+torch with a CPU-only one ("Torch not compiled with CUDA enabled"):
+    !pip freeze | grep -iE "^(torch|torchvision|torchaudio)==" > /tmp/keep_torch.txt
+    !pip install -q -c /tmp/keep_torch.txt diffusers transformers accelerate peft bitsandbytes controlnet_aux gradio
     !pip uninstall -y torchao
     !python app.py
 Open the public link it prints (https://....gradio.live).
@@ -38,7 +40,7 @@ EXAMPLES = [
     ["Arjuna and Krishna", True],
     ["Ravana and Jatayu", True],
 ]
-QUALITY = ["Best (4 candidates, ~25 s)", "Fast (1 image, ~6 s)"]
+QUALITY = ["Best (4 candidates · ~25 s, ~60 s with a pose)", "Fast (1 image · ~6 s, ~25 s with a pose)"]
 HISTORY_MAX = 12
 
 # Pose control (Milestone 4). The components are in the layout; they get wired up once
