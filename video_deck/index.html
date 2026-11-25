@@ -12,8 +12,18 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-family:Inter,system-ui,sans-serif}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;background:radial-gradient(1400px 800px at 75% 30%,#1d1512,var(--bg) 70%)}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none}
-.slide.on{opacity:1}
+.slide{position:absolute;inset:0;opacity:0;transform:scale(1.04);transition:opacity .55s ease,transform .9s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.slide.on{opacity:1;transform:none}
+.veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,10,9,.96) 0%,rgba(12,10,9,.86) 45%,rgba(12,10,9,.35) 100%);clip-path:inset(0 100% 0 0)}
+.veil.in{clip-path:inset(0 0 0 0)}
+.slowz{animation:kb 14s ease-in-out infinite alternate}
+.chars .c{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(40%);transition:opacity .5s ease,filter .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.chars.in .c{opacity:1;filter:none;transform:none}
+.shine{background:linear-gradient(100deg,#ffb35c 0%,#e4572e 35%,#ffe0b0 50%,#e4572e 65%,#ffb35c 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 4s ease-in-out infinite}
+@keyframes sh{from{background-position:100% 0}to{background-position:0 0}}
+.line{height:4px;width:260px;background:var(--grad);border-radius:2px;margin:24px 0 22px;transform:scaleX(0);transform-origin:left}
+.line.in{transform:scaleX(1)}
+.ex{width:520px}
 .pad{position:absolute;inset:0;padding:110px 110px 190px}
 /* chrome */
 #bar{position:absolute;left:0;top:0;height:5px;width:0;background:var(--grad);z-index:30}
@@ -35,7 +45,7 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 .sub{font:400 28px Inter;color:var(--muted);line-height:1.4}
 .mono{font-family:'JetBrains Mono',monospace}
 /* builds */
-[data-at]{transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1),clip-path 1.1s cubic-bezier(.7,0,.2,1)}
+[data-at]{transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1),clip-path .8s cubic-bezier(.7,0,.2,1)}
 .up{opacity:0;transform:translateY(40px)} .up.in{opacity:1;transform:none}
 .fade{opacity:0} .fade.in{opacity:1}
 .zoom{opacity:0;transform:scale(.92)} .zoom.in{opacity:1;transform:none}
@@ -79,16 +89,24 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 <div id="stage">
 
 <!-- ================= 1 · TITLE ================= -->
-<section class="slide" data-ch="" data-spk="Aditya Kalra" data-role="Team The Unsupervised">
-  <div class="img kb fade" data-at="0" style="position:absolute;right:0;top:0;width:1080px;height:1080px;border-radius:0">
-    <img src="assets/title_painting.jpg"><div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(12,10,9,.55) 35%,rgba(12,10,9,0) 70%)"></div></div>
-  <div class="pad">
-    <div class="kick up" data-at="0.4" style="margin-top:40px">CS F407 Artificial Intelligence · Final project</div>
-    <div class="h1 words" data-at="1" style="margin-top:28px">The Next<br><em>Ravi Varma</em></div>
-    <div class="sub up" data-at="4.5" style="margin-top:34px;max-width:900px">Text-to-image generation of scenes from the Indian epics, in the oil-painting style of Raja Ravi Varma</div>
-    <div class="up" data-at="9" style="margin-top:46px">
-      <div style="font:800 24px Inter;letter-spacing:.06em">TEAM THE UNSUPERVISED</div>
-      <div style="display:flex;gap:42px;margin-top:14px;font:600 24px Inter">
+<section class="slide" data-ch="">
+  <div style="position:absolute;inset:0;display:flex">
+    <div class="img rise" data-at="0.1" style="flex:1;border-radius:0;box-shadow:none"><img class="slowz" src="assets/rrv_0094.jpg"></div>
+    <div class="img rise" data-at="0.3" style="flex:1;border-radius:0;box-shadow:none"><img class="slowz" src="assets/rrv_0049.jpg"></div>
+    <div class="img rise" data-at="0.5" style="flex:1;border-radius:0;box-shadow:none"><img class="slowz" src="assets/title_painting.jpg"></div>
+    <div class="img rise" data-at="0.7" style="flex:1;border-radius:0;box-shadow:none"><img class="slowz" src="assets/rrv_0008.jpg"></div>
+    <div class="img rise" data-at="0.9" style="flex:1;border-radius:0;box-shadow:none"><img class="slowz" src="assets/rrv_0068.jpg"></div>
+  </div>
+  <div class="veil" data-at="2.2"></div>
+  <div class="pad" style="display:flex;flex-direction:column;justify-content:center;padding-bottom:110px">
+    <div class="kick up" data-at="2.8">CS F407 Artificial Intelligence · Final project</div>
+    <div class="h1 chars" data-at="3.1" style="margin-top:26px;font-size:150px">The Next</div>
+    <div class="h1 chars shine" data-at="3.6" style="font-size:150px;font-style:italic;font-weight:600">Ravi Varma</div>
+    <div class="line" data-at="4.6"></div>
+    <div class="sub up" data-at="4.8" style="max-width:880px;color:#d8cdc2">Text-to-image generation of scenes from the Indian epics, in the oil-painting style of Raja Ravi Varma</div>
+    <div class="up" data-at="9" style="margin-top:40px">
+      <div style="font:800 22px Inter;letter-spacing:.14em;color:var(--saf)">TEAM THE UNSUPERVISED</div>
+      <div style="display:flex;gap:42px;margin-top:12px;font:600 24px Inter">
         <div>Aditya Kalra<div class="mono" style="font-size:15px;color:var(--muted)">2024A7PS0536G</div></div>
         <div>Eshan Singhai<div class="mono" style="font-size:15px;color:var(--muted)">2024ADPS0836G</div></div>
         <div>Rishit Khanna<div class="mono" style="font-size:15px;color:var(--muted)">2024A3PS0343G</div></div>
@@ -104,22 +122,35 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 </section>
 
 <!-- ================= 2 · TWO INPUTS ================= -->
-<section class="slide" data-ch="" data-spk="Aditya Kalra" data-role="Project overview">
-  <div class="pad">
+<section class="slide" data-ch="">
+  <div class="pad" style="padding-top:90px">
     <div class="h2 words" data-at="0.2">Two inputs. <em>One painting.</em></div>
-    <div style="display:flex;align-items:center;gap:60px;margin-top:56px">
-      <div style="width:620px">
-        <div class="card up" data-at="0.5"><div class="kick" style="font-size:15px">1 · The scene</div>
-          <div style="font:italic 400 38px Fraunces;margin-top:12px;line-height:1.25">“Chitrangada, the warrior princess, drawing her bow”</div></div>
-        <div class="up" data-at="3" style="display:flex;gap:26px;align-items:center;margin-top:30px">
-          <div class="img" style="width:230px;height:300px"><img src="assets/pose_archer.jpg"></div>
-          <div><div class="kick" style="font-size:15px">2 · The pose <span style="color:var(--muted)">(optional)</span></div>
-            <div class="sub" style="font-size:24px;margin-top:10px">any phone photo<br>of a person posing</div></div>
+    <div class="sub up" data-at="0.4" style="font-size:24px;margin-top:10px">a scene in words · an optional photo of someone posing</div>
+    <div style="display:flex;gap:40px;margin-top:30px">
+      <div class="ex">
+        <div class="card up" data-at="0.6" style="padding:18px 22px;height:110px"><div style="font:italic 400 25px Fraunces;line-height:1.25">“Chitrangada, the warrior princess, drawing her bow”</div></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
+          <div class="up" data-at="3"><div class="img" style="width:150px;height:210px"><img src="assets/pose_archer.jpg"></div></div>
+          <div class="up" data-at="6" style="font:300 46px Inter;color:var(--saf)">→</div>
+          <div class="zoom" data-at="6"><div class="img" style="width:300px;height:400px"><img data-try="showcase/chitrangada_s0.jpg|out_arjuna.jpg"></div></div>
         </div>
       </div>
-      <div class="up" data-at="6" style="font:300 110px Inter;color:var(--saf)">→</div>
-      <div class="zoom" data-at="6.2"><div class="img" style="width:540px;height:680px"><img data-try="showcase/chitrangada_s0.jpg|out_arjuna.jpg"></div>
-        <div class="cap2"><b>Generated by our system</b> · in his oil style</div></div>
+      <div class="ex">
+        <div class="card up" data-at="1.0" style="padding:18px 22px;height:110px"><div style="font:italic 400 25px Fraunces;line-height:1.25">“Vibhishana standing with folded hands, asking Rama for refuge”</div></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
+          <div class="up" data-at="3.4"><div class="img" style="width:150px;height:210px"><img src="assets/pose_folded_hands.jpg"></div></div>
+          <div class="up" data-at="6.4" style="font:300 46px Inter;color:var(--saf)">→</div>
+          <div class="zoom" data-at="6.4"><div class="img" style="width:300px;height:400px"><img src="assets/out_vibhishana.jpg"></div></div>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="card up" data-at="1.4" style="padding:18px 22px;height:110px"><div style="font:italic 400 25px Fraunces;line-height:1.25">“Satyabhama in a battle stance on the battlefield”</div></div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
+          <div class="up" data-at="3.8"><div class="img" style="width:150px;height:210px"><img src="assets/pose_warrior.jpg"></div></div>
+          <div class="up" data-at="6.8" style="font:300 46px Inter;color:var(--saf)">→</div>
+          <div class="zoom" data-at="6.8"><div class="img" style="width:300px;height:400px"><img data-try="showcase/satyabhama_s0.jpg|out_bhima.jpg"></div></div>
+        </div>
+      </div>
     </div>
   </div>
   <script type="text/caps">
@@ -230,24 +261,39 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 </section>
 
 <!-- ================= 7 · M4 POSE (morph) ================= -->
-<section class="slide" data-ch="<b>04</b> The pose" data-spk="Aditya Kalra" data-role="ControlNet">
-  <div class="pad">
+<section class="slide" data-ch="<b>04</b> The pose">
+  <div class="pad" style="padding-top:90px">
     <div class="h2 words" data-at="0.2">Photo, <em>skeleton,</em> painting</div>
-    <div style="display:flex;gap:90px;margin-top:40px;align-items:center">
-      <div class="zoom" data-at="0.5" style="position:relative">
-        <div class="img morph" style="width:470px;height:640px">
-          <img id="mphoto" src="assets/pose_archer.jpg" style="object-fit:cover">
-          <img id="mskel" style="opacity:0;object-fit:contain;background:#000">
-          <img id="mpaint" style="opacity:0">
+    <div style="display:flex;gap:40px;margin-top:30px">
+      <div class="zoom" data-at="0.4">
+        <div class="img morph" data-off="0" style="width:400px;height:520px">
+          <img src="assets/pose_kneeling_side.jpg" style="object-fit:cover">
+          <img src="assets/skel_hanuman.jpg" style="opacity:0;object-fit:contain;background:#000">
+          <img src="assets/out_hanuman.jpg" style="opacity:0">
         </div>
-        <div class="cap2" id="mlab" style="font-size:20px"><b>The pose photo</b></div>
+        <div class="cap2" style="font-size:19px"><span class="mlab"><b>The pose photo</b></span> · Hanuman</div>
       </div>
-      <div style="flex:1;display:flex;flex-direction:column;gap:22px">
-        <div class="up" data-at="1.5"><span class="big grad" style="font-size:64px">OpenPose</span><div class="sub" style="font-size:24px">turns the photo into a skeleton</div></div>
-        <div class="up" data-at="4.5"><span class="big grad" style="font-size:64px">ControlNet</span><div class="sub" style="font-size:24px">paints a figure that follows it</div></div>
-        <div class="up" data-at="8.5" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
-          <div class="chip">who each character is</div><div class="chip">pose-checked best of four</div><div class="chip">high-res refine</div></div>
+      <div class="zoom" data-at="0.9">
+        <div class="img morph" data-off="0.5" style="width:400px;height:520px">
+          <img src="assets/pose_woman_seated.jpg" style="object-fit:cover">
+          <img src="assets/showcase/shakuntala_seated_skeleton.png" style="opacity:0;object-fit:contain;background:#000">
+          <img src="assets/showcase/shakuntala_seated_s0.jpg" style="opacity:0">
+        </div>
+        <div class="cap2" style="font-size:19px"><span class="mlab"><b>The pose photo</b></span> · Shakuntala</div>
       </div>
+      <div class="zoom" data-at="1.4">
+        <div class="img morph" data-off="1.0" style="width:400px;height:520px">
+          <img src="assets/pose_warrior.jpg" style="object-fit:cover">
+          <img src="assets/showcase/satyabhama_skeleton.png" style="opacity:0;object-fit:contain;background:#000">
+          <img src="assets/out_bhima.jpg" style="opacity:0">
+        </div>
+        <div class="cap2" style="font-size:19px"><span class="mlab"><b>The pose photo</b></span> · Bhima</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:24px;align-items:center;flex-wrap:wrap">
+      <div class="chip up" data-at="1.2"><b style="color:var(--saf)">OpenPose</b>&nbsp;photo → skeleton</div>
+      <div class="chip up" data-at="4.2"><b style="color:var(--saf)">ControlNet</b>&nbsp;skeleton → painting</div>
+      <div class="chip up" data-at="8.5">+ character looks · pose-checked best of four · high-res refine</div>
     </div>
   </div>
   <script type="text/caps">
@@ -258,20 +304,21 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 </section>
 
 <!-- ================= 8 · RESULTS ================= -->
-<section class="slide" data-ch="<b>04</b> The pose" data-spk="Aditya Kalra" data-role="Evaluation">
-  <div class="pad">
+<section class="slide" data-ch="<b>04</b> The pose">
+  <div class="pad" style="padding-top:90px">
     <div class="h2 words" data-at="0.2">Text alone <em>vs</em> text + pose</div>
-    <div style="display:flex;gap:56px;margin-top:40px;align-items:flex-start">
-      <div style="display:flex;gap:20px">
-        <div class="up" data-at="0.5"><div class="img wipe" data-wipe="1.2" style="width:260px;height:450px"><img data-try="showcase/satyabhama_nocn_s0.jpg|no_hanuman.jpg"><div class="top"><img data-try="showcase/satyabhama_s0.jpg|cn_hanuman.jpg"></div><div class="ln"></div><div class="tl">TEXT ONLY</div><div class="tr">+ POSE</div></div></div>
-        <div class="up" data-at="0.8"><div class="img wipe" data-wipe="1.8" style="width:260px;height:450px"><img data-try="showcase/draupadi_nocn_s0.jpg|no_bharata.jpg"><div class="top"><img data-try="showcase/draupadi_s0.jpg|cn_bharata.jpg"></div><div class="ln"></div><div class="tl">TEXT ONLY</div><div class="tr">+ POSE</div></div></div>
-        <div class="up" data-at="1.1"><div class="img wipe" data-wipe="2.4" style="width:260px;height:450px"><img data-try="showcase/shakuntala_seated_nocn_s0.jpg|no_vibhishana.jpg"><div class="top"><img data-try="showcase/shakuntala_seated_s0.jpg|cn_vibhishana.jpg"></div><div class="ln"></div><div class="tl">TEXT ONLY</div><div class="tr">+ POSE</div></div></div>
+    <div style="display:flex;gap:44px;margin-top:40px;align-items:flex-start">
+      <div style="display:flex;gap:16px">
+        <div class="up" data-at="0.4"><div class="img wipe" data-wipe="1.0" style="width:215px;height:390px"><img src="assets/showcase/satyabhama_nocn_s0.jpg"><div class="top"><img src="assets/showcase/satyabhama_s0.jpg"></div><div class="ln"></div><div class="tl">TEXT</div><div class="tr">+ POSE</div></div></div>
+        <div class="up" data-at="0.6"><div class="img wipe" data-wipe="1.4" style="width:215px;height:390px"><img src="assets/no_hanuman.jpg"><div class="top"><img src="assets/cn_hanuman.jpg"></div><div class="ln"></div><div class="tl">TEXT</div><div class="tr">+ POSE</div></div></div>
+        <div class="up" data-at="0.8"><div class="img wipe" data-wipe="1.8" style="width:215px;height:390px"><img src="assets/showcase/draupadi_nocn_s0.jpg"><div class="top"><img src="assets/showcase/draupadi_s0.jpg"></div><div class="ln"></div><div class="tl">TEXT</div><div class="tr">+ POSE</div></div></div>
+        <div class="up" data-at="1.0"><div class="img wipe" data-wipe="2.2" style="width:215px;height:390px"><img src="assets/no_vibhishana.jpg"><div class="top"><img src="assets/cn_vibhishana.jpg"></div><div class="ln"></div><div class="tl">TEXT</div><div class="tr">+ POSE</div></div></div>
       </div>
-      <div style="flex:1;padding-top:30px">
-        <div class="up" data-at="4"><div style="display:flex;align-items:baseline;gap:22px"><div class="big" style="color:#d9897a">10%</div><div style="font:300 80px Inter;color:var(--saf)">→</div><div class="big grad">97%</div></div>
-          <div class="sub" style="font-size:24px;margin-top:8px">of the pose's joints in the right place</div></div>
-        <div class="up" data-at="8" style="margin-top:40px"><div class="big" style="font-size:80px">28.2 → 28.6</div>
-          <div class="sub" style="font-size:24px">scene match: no loss</div></div>
+      <div style="flex:1;padding-top:20px">
+        <div class="up" data-at="4"><div style="display:flex;align-items:baseline;gap:18px"><div class="big" style="color:#d9897a;font-size:120px">10%</div><div style="font:300 64px Inter;color:var(--saf)">→</div><div class="big grad" style="font-size:120px">97%</div></div>
+          <div class="sub" style="font-size:23px;margin-top:8px">of the pose's joints in the right place</div></div>
+        <div class="up" data-at="8" style="margin-top:36px"><div class="big" style="font-size:72px">28.2 → 28.6</div>
+          <div class="sub" style="font-size:23px">scene match: no loss</div></div>
       </div>
     </div>
   </div>
@@ -331,13 +378,12 @@ html,body{height:100%;background:#000;overflow:hidden;color:var(--text);font-fam
 
 <div id="bar"></div>
 <div id="chap"></div>
-<div id="lower"><div class="acc"></div><div><div class="nm" id="lnm"></div><div class="rl" id="lrl"></div></div></div>
-<div id="cap"></div>
 </div>
 <div id="hint">Space / click: start · → or click: next slide · ←: back · R: restart · C: subtitles · H: hide</div>
 
 <script>
-const DUR=[12,10,10,22,22,14,14,12,20,24,12];       // seconds per slide (matched to the voiceover)
+const DUR=[12,10,10,22,22,14,14,12,20,24,12];       // seconds per slide in script time (matched to the voiceover)
+const SPEED=1.2;                                      // whole deck runs this much faster (1 = original pace)
 const stage=document.getElementById("stage");
 function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
 addEventListener("resize",fit);fit();
@@ -349,12 +395,9 @@ document.querySelectorAll("img[data-try]").forEach(img=>{const list=img.dataset.
   const go=()=>{if(k<list.length){img.src="assets/"+list[k++]}};img.addEventListener("error",go);go()});
 // word-by-word headlines
 document.querySelectorAll(".words").forEach(el=>{let i=0;const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();
-  c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return}const sp=document.createElement("span");sp.className="w";sp.style.transitionDelay=(i++*0.09)+"s";sp.textContent=t;f.appendChild(sp)});c.replaceWith(f)}else if(c.nodeName!=="BR")walk(c)})};walk(el)});
-// pose morph: woman archer set if the showcase paintings exist, else the kneeling Hanuman set (all three must match)
-(function(){const sk=document.getElementById("mskel"),pt=document.getElementById("mpaint"),ph=document.getElementById("mphoto");
-  sk.onerror=()=>{sk.onerror=null;sk.src="assets/skel_hanuman.jpg";pt.src="assets/out_hanuman.jpg";ph.src="assets/pose_kneeling_side.jpg";ph.style.objectFit="contain";ph.style.background="#fff"};
-  pt.onerror=()=>{pt.onerror=null;sk.onerror()};
-  sk.src="assets/showcase/chitrangada_skeleton.png";pt.src="assets/showcase/chitrangada_s0.jpg"})();
+  c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return}const sp=document.createElement("span");sp.className="w";sp.style.transitionDelay=(i++*0.06)+"s";sp.textContent=t;f.appendChild(sp)});c.replaceWith(f)}else if(c.nodeName!=="BR")walk(c)})};walk(el)});
+// letter-by-letter title
+document.querySelectorAll(".chars").forEach(el=>{const t=el.textContent;el.textContent="";[...t].forEach((ch,i)=>{const sp=document.createElement("span");sp.className="c";sp.style.transitionDelay=(i*0.045)+"s";sp.innerHTML=ch===" "?"&nbsp;":ch;el.appendChild(sp)})});
 // data wall (slide 4): 21 oils + 7 prints that get crossed out at 7 s
 (function(){const g=document.getElementById("grid");let h="",o=0,p=0;const prints=[2,6,9,13,17,22,26];
   for(let i=0;i<28;i++){const isP=prints.includes(i);const src=isP?`assets/wall/print_${p++%4}.jpg`:`assets/wall/oil_${String(o++%21).padStart(2,"0")}.jpg`;
@@ -367,17 +410,15 @@ document.querySelectorAll(".words").forEach(el=>{let i=0;const walk=n=>{[...n.ch
   c.querySelectorAll("img[data-try]").forEach(img=>{const list=img.dataset.try.split("|");let k=0;const go=()=>{if(k<list.length)img.src="assets/"+list[k++]};img.addEventListener("error",go);go()})})();
 // videos (fallback to screenshot)
 slides.forEach((s,i)=>{const v=s.querySelector("video");if(!v)return;const fb=s.querySelector(".fallback");v.style.display="none";
-  v.addEventListener("loadedmetadata",()=>{v.style.display="block";fb.style.display="none";durs[i]=Math.max(DUR[i],v.duration+0.5)});
+  v.addEventListener("loadedmetadata",()=>{v.style.display="block";fb.style.display="none";durs[i]=Math.max(DUR[i],(v.duration+0.5)*SPEED)});
   v.addEventListener("error",()=>{v.style.display="none";fb.style.display="block"});v.load()});
 
 let cur=-1,t0=0,elapsed=0,playing=false,showCaps=true,started=false;
-const capEl=document.getElementById("cap"),low=document.getElementById("lower");
+
 function show(i){
   slides.forEach((s,k)=>{s.classList.toggle("on",k===i);if(k!==i){s.querySelectorAll(".in,.go").forEach(e=>e.classList.remove("in","go"));s.querySelectorAll("video").forEach(v=>{v.pause();v.currentTime=0})}});
   cur=i;elapsed=0;t0=performance.now();const s=slides[i];
   document.getElementById("chap").innerHTML=s.dataset.ch||"";
-  document.getElementById("lnm").textContent=s.dataset.spk;document.getElementById("lrl").textContent=s.dataset.role;
-  low.classList.remove("in");
   s.querySelectorAll("[data-type]").forEach(e=>{if(!e.dataset.full)e.dataset.full=e.innerHTML;e.innerHTML=""});
   s.querySelectorAll(".bars b").forEach(b=>b.style.width="0");
   const v=s.querySelector("video");if(v&&v.style.display!=="none"&&playing){v.currentTime=0;v.play()}
@@ -385,7 +426,7 @@ function show(i){
 function typeHTML(el,f){const tmp=document.createElement("div");tmp.innerHTML=el.dataset.full;let keep=Math.floor(tmp.textContent.length*f);
   (function walk(n){for(const c of[...n.childNodes]){if(c.nodeType===3){if(keep<=0)c.remove();else if(c.length>keep){c.textContent=c.textContent.slice(0,keep);keep=0}else keep-=c.length}else walk(c)}})(tmp);el.innerHTML=tmp.innerHTML}
 function tick(now){
-  if(playing)elapsed=(now-t0)/1000;const s=slides[cur];
+  if(playing)elapsed=(now-t0)/1000*SPEED;const s=slides[cur];
   if(s){
     s.querySelectorAll("[data-at]").forEach(e=>{if(elapsed>=+e.dataset.at)e.classList.add("in")});
     s.querySelectorAll(".wipe[data-wipe]").forEach(w=>{const h=w.closest("[data-at]");if(h&&h.classList.contains("in")&&elapsed>=+w.dataset.wipe+(+h.dataset.at))w.classList.add("go")});
@@ -394,17 +435,15 @@ function tick(now){
     if(s.querySelector("#cnt")){const c=document.getElementById("cnt"),l=document.getElementById("cntlab");
       if(elapsed<8.5){c.textContent=Math.round(135*Math.min(1,Math.max(0,(elapsed-2)/1.4)));l.textContent="images collected from Wikimedia Commons"}
       else{const f=Math.min(1,(elapsed-8.5)/1.2);c.textContent=Math.round(135-(135-61)*f);l.textContent="oil paintings kept (prints removed)"}}
+    s.querySelectorAll(".morph").forEach(m=>{const t=elapsed-(+m.dataset.off||0);const st=t<3?0:t<6?1:2;[...m.children].forEach((x,k)=>x.style.opacity=k===st?1:0);
+      const lab=m.parentElement.querySelector(".mlab");if(lab)lab.innerHTML="<b>"+["The pose photo","The skeleton","The painting"][st]+"</b>"});
     const wc=s.querySelector("#winc");if(wc)wc.classList.toggle("win",elapsed>=7.5);
-    const m=s.querySelector(".morph");if(m){const st=elapsed<3?0:elapsed<6?1:2;[...m.children].forEach((x,k)=>x.style.opacity=k===st?1:0);
-      document.getElementById("mlab").innerHTML="<b>"+["The pose photo","The OpenPose skeleton","The painting"][st]+"</b>"}
-    if(elapsed>0.6)low.classList.add("in");
-    let c="";for(const[t,x]of caps[cur])if(elapsed>=t)c=x;capEl.textContent=showCaps?c:"";
     const total=durs.reduce((a,b)=>a+b,0),done=durs.slice(0,cur).reduce((a,b)=>a+b,0)+Math.min(elapsed,durs[cur]);
     document.getElementById("bar").style.width=(done/total*100)+"%";
     if(playing&&elapsed>=durs[cur]){if(cur<slides.length-1)show(cur+1);else playing=false}
   }
   requestAnimationFrame(tick)}
-function play(){if(cur<0)show(0);playing=!playing;if(playing){t0=performance.now()-elapsed*1000;const v=slides[cur].querySelector("video");if(v&&v.style.display!=="none")v.play()}else slides[cur].querySelectorAll("video").forEach(v=>v.pause())}
+function play(){if(cur<0)show(0);playing=!playing;if(playing){t0=performance.now()-elapsed*1000/SPEED;const v=slides[cur].querySelector("video");if(v&&v.style.display!=="none")v.play()}else slides[cur].querySelectorAll("video").forEach(v=>v.pause())}
 function next(){if(!started){started=true;if(!playing)play();return}if(cur<slides.length-1){show(cur+1);if(!playing)play()}}
 addEventListener("click",next);
 addEventListener("keydown",e=>{if(e.code==="Space"){e.preventDefault();started=true;play()}
