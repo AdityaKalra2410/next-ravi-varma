@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Next Ravi Varma: an exhibition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#2a0f0e; --wall2:#3c1614; --cream:#f4e6cc; --muted:#c9b291; --dim:#8c7559;
+  --gold1:#f6d88b; --gold2:#c8962f; --gold3:#7d5916; --ink:#1b0f08;
+  --green:#7fc49a; --red:#e2553f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;overflow:hidden;color:var(--cream);font-family:Lora,Georgia,serif}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;
+  background:
+    radial-gradient(900px 520px at 50% 6%,rgba(255,214,150,.20),transparent 70%),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 2px,transparent 2px 140px),
+    linear-gradient(180deg,var(--wall2),var(--wall) 55%,#1a0807)}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;z-index:40}
+#rail{position:absolute;left:0;right:0;bottom:136px;height:3px;background:linear-gradient(90deg,transparent,var(--gold2),transparent);opacity:.45}
+.slide{position:absolute;inset:0;padding:64px 96px 185px;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.slide.on{opacity:1}
+#chap{position:absolute;top:40px;left:96px;z-index:30;font:500 19px Cinzel;letter-spacing:.32em;color:var(--gold1);display:flex;align-items:center;gap:18px}
+#chap .num{font:700 30px Cinzel;letter-spacing:.05em}
+#chap .orn{width:90px;height:1px;background:linear-gradient(90deg,var(--gold1),transparent)}
+.title{font:600 70px 'Cormorant Garamond',serif;line-height:1.02;margin-top:58px}
+.title i{color:var(--gold1)}
+.lede{font:italic 400 26px Lora;color:var(--muted);margin-top:14px}
+.b{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.b.in{opacity:1;transform:none}
+.b.pop{transform:scale(.85)} .b.pop.in{transform:none}
+.frame{position:relative;padding:16px;border-radius:4px;
+  background:linear-gradient(135deg,var(--gold1),var(--gold2) 30%,var(--gold3) 50%,var(--gold2) 70%,var(--gold1));
+  box-shadow:0 22px 50px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,240,200,.5),inset 0 0 0 7px rgba(90,60,10,.55)}
+.frame:after{content:"";position:absolute;inset:16px;box-shadow:inset 0 0 24px rgba(0,0,0,.55);pointer-events:none}
+.frame .in-img{width:100%;height:100%;overflow:hidden;background:#111;position:relative}
+.frame img,.frame video{display:block;width:100%;height:100%;object-fit:cover}
+.frame.thin{padding:7px} .frame.thin:after{inset:7px}
+.spot:before{content:"";position:absolute;left:50%;top:-150px;width:560px;height:240px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(255,220,160,.30),transparent);pointer-events:none}
+.plaque{background:linear-gradient(180deg,#f3e6c8,#e2cfa6);color:var(--ink);border-radius:3px;padding:12px 16px;
+  box-shadow:0 6px 14px rgba(0,0,0,.45);font:500 17px Lora;line-height:1.35}
+.plaque b{font:700 22px 'Cormorant Garamond',serif;display:block}
+.plaque small{color:#6b5232;font-style:italic;font-size:16px}
+.stamp{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%) rotate(-14deg) scale(1.7);opacity:0;
+  font:700 15px Cinzel;color:#ff6a50;border:3px solid #ff6a50;padding:4px 7px;letter-spacing:.08em;background:rgba(30,0,0,.55);
+  transition:opacity .3s ease,transform .35s cubic-bezier(.3,1.6,.5,1);white-space:nowrap;z-index:3;text-align:center;line-height:1.15}
+.stamp.in{opacity:1;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
+.numeral{font:700 120px 'Cormorant Garamond',serif;color:var(--gold1);line-height:.9}
+.numlab{font:italic 22px Lora;color:var(--muted)}
+.scroll{background:linear-gradient(180deg,#f2e3c2,#e6d2a8);color:#2a1a0e;border-radius:6px;padding:26px 30px;position:relative;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);font:400 24px Lora;line-height:1.5}
+.scroll:before,.scroll:after{content:"";position:absolute;left:-10px;right:-10px;height:18px;border-radius:9px;background:linear-gradient(180deg,#a37a3a,#5e4116)}
+.scroll:before{top:-10px} .scroll:after{bottom:-10px}
+.scroll .k{font:600 15px Cinzel;letter-spacing:.2em;color:#8a5a1c}
+.trig{color:#9a2a17;font-weight:600}
+.ruler{position:relative;height:190px}
+.ruler .axis{position:absolute;left:0;right:0;top:92px;height:4px;background:linear-gradient(90deg,#5a3a2a,var(--gold2),var(--gold1))}
+.ruler .tick{position:absolute;top:184px;font:15px 'IBM Plex Mono';color:var(--dim);transform:translateX(-50%)}
+.ruler .mk{position:absolute;top:-4px;transform:translate(-50%,-26px);opacity:0;transition:opacity .6s,transform .8s cubic-bezier(.3,1.5,.5,1);text-align:center}
+.ruler .mk.low{top:84px;transform:translate(-50%,26px)}
+.ruler .mk.in{opacity:1;transform:translate(-50%,0)}
+.ruler .mk .d{width:20px;height:20px;border-radius:50%;margin:0 auto;border:3px solid rgba(255,255,255,.25)}
+.ruler .mk .t{font:600 19px Lora;white-space:nowrap}
+.ruler .mk .v{font:700 28px 'Cormorant Garamond',serif}
+.ruler .mk .stem{width:2px;height:26px;margin:0 auto;background:currentColor;opacity:.6}
+.wipe .top{position:absolute;inset:0;clip-path:inset(0 0 0 100%);transition:clip-path 2.6s cubic-bezier(.6,.05,.3,1)}
+.wipe.go .top{clip-path:inset(0 0 0 0)}
+.wipe .line{position:absolute;top:0;bottom:0;width:4px;left:100%;background:var(--gold1);box-shadow:0 0 18px var(--gold1);transition:left 2.6s cubic-bezier(.6,.05,.3,1)}
+.wipe.go .line{left:0}
+.wipe .tagL,.wipe .tagR{position:absolute;bottom:10px;font:600 14px Cinzel;letter-spacing:.12em;padding:4px 9px;background:rgba(0,0,0,.7);border-radius:3px}
+.wipe .tagL{left:10px;color:#f0a090;transition:opacity .4s} .wipe.go .tagL{opacity:0;transition-delay:1.6s}
+.wipe .tagR{right:10px;color:var(--gold1);opacity:0;transition:opacity .6s 2.2s} .wipe.go .tagR{opacity:1}
+.morph > *{position:absolute;inset:0;transition:opacity 1.4s ease}
+.col{width:100%;height:0;border-radius:6px 6px 0 0;transition:height 1.4s cubic-bezier(.2,.8,.2,1)}
+.cols .v{font:700 32px 'Cormorant Garamond',serif;margin-top:8px}
+.curtain{position:absolute;top:0;bottom:0;width:52%;z-index:35;pointer-events:none;
+  background:repeating-linear-gradient(90deg,#5c070c 0 34px,#8d1119 34px 62px,#6d0a10 62px 96px);
+  box-shadow:inset 0 -60px 80px rgba(0,0,0,.55);transition:transform 2.4s cubic-bezier(.7,0,.2,1)}
+.curtain.l{left:0} .curtain.r{right:0}
+.curtain:after{content:"";position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(90deg,var(--gold3),var(--gold1),var(--gold3))}
+#stage.open .curtain.l{transform:translateX(-97%)} #stage.open .curtain.r{transform:translateX(97%)}
+#valance{position:absolute;left:0;right:0;top:0;height:46px;z-index:36;background:repeating-linear-gradient(90deg,#6d0a10 0 60px,#8d1119 60px 90px);
+  box-shadow:0 8px 20px rgba(0,0,0,.6);border-bottom:6px solid var(--gold2);opacity:0;transition:opacity .8s}
+#guide{position:absolute;left:96px;right:96px;bottom:40px;height:62px;display:flex;align-items:center;gap:24px;z-index:30}
+#guide .who{display:flex;align-items:center;gap:12px;min-width:290px}
+#guide .ic{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold1);display:grid;place-items:center;color:var(--gold1);font:700 20px serif}
+#guide .nm{font:600 18px Cinzel;letter-spacing:.12em;color:var(--gold1)}
+#guide .nm small{display:block;font:italic 14px Lora;letter-spacing:0;color:var(--dim)}
+#cap{flex:1;font:500 31px Lora;color:#fff;line-height:1.25;text-shadow:0 2px 6px #000}
+#parvas{position:absolute;left:96px;right:96px;bottom:137px;height:0;z-index:31}
+#parvas .p{position:absolute;top:-8px;transform:translateX(-50%);text-align:center}
+#parvas .dot{width:16px;height:16px;border-radius:50%;margin:0 auto;border:2px solid var(--gold2);background:var(--wall);transition:background .5s,box-shadow .5s}
+#parvas .p.done .dot{background:var(--gold2)} #parvas .p.cur .dot{background:var(--gold1);box-shadow:0 0 14px var(--gold1)}
+#parvas .lb{font:500 13px Cinzel;letter-spacing:.18em;color:var(--dim);margin-top:7px;white-space:nowrap}
+#parvas .p.cur .lb{color:var(--gold1)}
+#hint{position:fixed;left:12px;bottom:8px;font:12px sans-serif;color:#777;z-index:99}
+.kb{animation:kb 20s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+.live{display:inline-flex;align-items:center;gap:12px}
+.live:before{content:"";width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+</style>
+</head>
+<body>
+<div id="stage">
+<svg id="grain" width="1920" height="1080"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+<div id="rail"></div>
+
+<!-- ===== 1 · TITLE (curtains open) — layout follows our midsem title page ===== -->
+<section class="slide" data-p="0" data-spk="Aditya Kalra">
+  <div style="display:flex;gap:80px;align-items:flex-start;margin-top:46px">
+    <div style="flex:1">
+      <div class="b" data-at="2" style="font:500 21px Cinzel;letter-spacing:.32em;color:var(--gold1)">CS F407 ARTIFICIAL INTELLIGENCE &nbsp;|&nbsp; FINAL PROJECT</div>
+      <div class="b" data-at="2.4" style="font:700 132px 'Cormorant Garamond',serif;line-height:.92;margin-top:26px">The Next<br><span style="color:var(--gold1);font-style:italic">Ravi Varma</span></div>
+      <div class="b" data-at="3" style="width:110px;height:3px;margin:30px 0 26px;background:linear-gradient(90deg,var(--gold1),transparent)"></div>
+      <div class="b" data-at="3" style="font:italic 32px Lora;color:var(--cream);line-height:1.38;max-width:900px">Text-to-image generation of scenes from Indian epics<br>in the oil-painting style of Raja Ravi Varma</div>
+      <div class="b" data-at="3.6" style="font:600 30px Cinzel;letter-spacing:.14em;color:var(--gold1);margin-top:30px">Team The Unsupervised</div>
+      <div class="b" data-at="4.2" style="margin-top:44px">
+        <div style="font:500 17px Cinzel;letter-spacing:.32em;color:var(--dim)">TEAM MEMBERS</div>
+        <div style="display:flex;gap:46px;margin-top:14px">
+          <div style="font:600 30px 'Cormorant Garamond',serif">Aditya Kalra<div style="font:16px 'IBM Plex Mono';color:var(--muted);margin-top:2px">2024A7PS0536G</div></div>
+          <div style="font:600 30px 'Cormorant Garamond',serif">Eshan Singhai<div style="font:16px 'IBM Plex Mono';color:var(--muted);margin-top:2px">2024ADPS0836G</div></div>
+          <div style="font:600 30px 'Cormorant Garamond',serif">Rishit Khanna<div style="font:16px 'IBM Plex Mono';color:var(--muted);margin-top:2px">2024A3PS0343G</div></div>
+          <div style="font:600 30px 'Cormorant Garamond',serif">Mayank Bhojwani<div style="font:16px 'IBM Plex Mono';color:var(--muted);margin-top:2px">2024A7PS0639G</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="b spot" data-at="1.2" style="position:relative;margin-top:10px">
+      <div class="frame" style="width:560px;height:580px"><div class="in-img"><img class="kb" src="assets/title_painting.jpg"></div></div>
+      <div class="plaque" style="position:absolute;left:-40px;bottom:-36px;width:330px"><b>Jatayu Vadh</b><small>Raja Ravi Varma · oil on canvas</small></div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Raja Ravi Varma painted the Indian epics in a European oil style.
+4.5 | What if he could paint any scene you describe, in a pose you choose?
+9 | This is The Next Ravi Varma, by Team The Unsupervised.
+  </script>
+</section>
+
+<!-- ===== 2 · COMMISSION A PAINTING ===== -->
+<section class="slide" data-p="0" data-spk="Aditya Kalra">
+  <div class="title">Commission a painting <i>in two lines</i></div>
+  <div class="lede">Words choose the scene. An optional photo chooses the pose.</div>
+  <div style="display:flex;align-items:center;gap:56px;margin-top:36px">
+    <div class="b" data-at="0.3" style="width:560px">
+      <div class="scroll"><div class="k">THE SCENE</div><div style="margin-top:10px;font:italic 500 32px 'Cormorant Garamond',serif;line-height:1.25">“Vibhishana standing with folded hands, asking Rama for refuge”</div></div>
+      <div class="b" data-at="3" style="display:flex;align-items:center;gap:26px;margin-top:40px">
+        <div style="transform:rotate(-4deg);background:#fbf6ec;padding:12px 12px 40px;box-shadow:0 14px 30px rgba(0,0,0,.55)">
+          <img src="assets/pose_folded_hands.jpg" style="width:200px;height:260px;object-fit:cover;display:block">
+          <div style="font:italic 18px Lora;color:#333;text-align:center;margin-top:8px">the pose (optional)</div></div>
+        <div style="font:italic 24px Lora;color:var(--muted);width:220px">any phone photo of a person posing</div>
+      </div>
+    </div>
+    <div class="b" data-at="6" style="font:700 90px 'Cormorant Garamond',serif;color:var(--gold1)">⟶</div>
+    <div class="b spot" data-at="6.3" style="position:relative">
+      <div class="frame" style="width:470px;height:620px"><div class="in-img"><img src="assets/out_vibhishana.jpg"></div></div>
+      <div class="plaque" style="position:absolute;left:-40px;bottom:-34px;width:360px"><b>Vibhishana seeks refuge</b><small>generated by our system · 2026</small></div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | You type a scene from the Mahabharata or Ramayana,
+3 | optionally add a photo of someone posing,
+6 | and receive a new painting in his oil style.
+  </script>
+</section>
+
+<!-- ===== 3 · FOUR ROOMS ===== -->
+<section class="slide" data-p="0" data-spk="Aditya Kalra">
+  <div class="title">Four rooms, <i>four milestones</i></div>
+  <div class="lede">Stable Diffusion 1.5 · everything trained and run on a free Colab T4 GPU</div>
+  <div style="position:relative;margin-top:60px">
+    <div style="position:absolute;left:-20px;right:-20px;top:0;height:4px;background:linear-gradient(90deg,var(--gold3),var(--gold1),var(--gold3))"></div>
+    <div style="display:flex;justify-content:space-between">
+      <div class="b" data-at="0.5" style="text-align:center"><div style="width:2px;height:40px;margin:0 auto;background:var(--gold2)"></div>
+        <div class="frame thin" style="width:330px;height:280px"><div class="in-img"><img src="assets/rrv_0068.jpg"></div></div>
+        <div class="plaque" style="margin:18px auto 0;width:300px"><b>I · The Collection</b><small>61 oil paintings, captioned by Qwen3-VL</small></div></div>
+      <div class="b" data-at="1.6" style="text-align:center"><div style="width:2px;height:70px;margin:0 auto;background:var(--gold2)"></div>
+        <div class="frame thin" style="width:330px;height:280px"><div class="in-img"><img src="assets/cmp_lora.jpg"></div></div>
+        <div class="plaque" style="margin:18px auto 0;width:300px"><b>II · The Style</b><small>a 3 MB LoRA on frozen SD 1.5</small></div></div>
+      <div class="b" data-at="2.7" style="text-align:center"><div style="width:2px;height:40px;margin:0 auto;background:var(--gold2)"></div>
+        <div class="frame thin" style="width:330px;height:280px"><div class="in-img"><img src="assets/out_valmiki.jpg"></div></div>
+        <div class="plaque" style="margin:18px auto 0;width:300px"><b>III · The Word</b><small>Qwen2.5 prompt expansion, best of four</small></div></div>
+      <div class="b" data-at="3.8" style="text-align:center"><div style="width:2px;height:70px;margin:0 auto;background:var(--gold2)"></div>
+        <div class="frame thin" style="width:330px;height:280px"><div class="in-img"><img src="assets/skel_vibhishana.jpg" style="object-fit:contain;background:#000"></div></div>
+        <div class="plaque" style="margin:18px auto 0;width:300px"><b>IV · The Pose</b><small>OpenPose + ControlNet, web app</small></div></div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Our project follows the four milestones of our proposal, like four rooms of a gallery:
+5 | the collection, the style, the words, and the pose, with a web app.
+  </script>
+</section>
+
+<!-- ===== 4 · PARVA I · THE COLLECTION ===== -->
+<section class="slide" data-p="1" data-spk="Eshan Singhai">
+  <div class="title">Curating <i>the collection</i></div>
+  <div class="lede">Wikimedia Commons, public domain · 9 paintings locked away for testing, never trained on</div>
+  <div style="display:flex;gap:50px;margin-top:30px">
+    <div id="wall" style="width:900px;height:640px;position:relative"></div>
+    <div style="flex:1">
+      <div style="display:flex;gap:44px">
+        <div class="b" data-at="2"><div class="numeral" data-count="135">0</div><div class="numlab">images collected</div></div>
+        <div class="b" data-at="5.5"><div class="numeral" data-count="61">0</div><div class="numlab">oil paintings kept</div></div>
+      </div>
+      <div class="b" data-at="11" style="margin-top:30px">
+        <div style="font:600 17px Cinzel;letter-spacing:.2em;color:var(--gold1)">WHO WRITES THE LABELS?</div>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <div class="plaque" style="flex:1;opacity:.7"><b>BLIP-2</b><small>“a woman”</small></div>
+          <div class="plaque" style="flex:1;opacity:.7"><b>LLaVA</b><small>invents characters</small></div>
+          <div class="plaque" style="flex:1;box-shadow:0 0 0 3px var(--gold1),0 6px 14px rgba(0,0,0,.45)"><b>Qwen3-VL ✓</b><small>61 / 61 valid</small></div>
+        </div>
+      </div>
+      <div class="b" data-at="15" style="margin-top:28px">
+        <div class="scroll" style="padding:18px 22px;font-size:19px;line-height:1.45"><div class="k">CATALOGUE CARD · DRAUPADI</div><span data-type="2.6"><span class="trig">rrvarma oil painting</span>, Draupadi, woman in red sari, man holding her sari, bearded man in white robe, sari being torn, red sari with gold trim</span></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Room one: the collection. His printed copies, oleographs, have a flat calendar look,
+5.5 | so from 135 images we kept only his 61 oil paintings, and locked nine away for testing.
+11 | BLIP-2 and LLaVA wrote poor labels, so Qwen3-VL captioned every painting.
+16 | Each caption starts with our trigger phrase: rrvarma oil painting.
+  </script>
+</section>
+
+<!-- ===== 5 · PARVA II · THE STYLE ===== -->
+<section class="slide" data-p="2" data-spk="Rishit Khanna">
+  <div class="title">Teaching <i>the brushwork</i></div>
+  <div class="lede">A 3 MB LoRA: W′ = W + B·A on the attention layers, rank 4 · Stable Diffusion 1.5 stays frozen</div>
+  <div style="display:flex;gap:50px;margin-top:40px;align-items:flex-start">
+    <div class="b" data-at="0.3" style="text-align:center">
+      <div class="frame" style="width:300px;height:420px"><div class="in-img"><img src="assets/cmp_orig.jpg"></div></div>
+      <div class="plaque" style="margin:16px auto 0;width:280px"><b>His original</b><small>held out, never trained on</small></div>
+    </div>
+    <div class="b" data-at="2.5" style="text-align:center">
+      <div class="frame" style="width:300px;height:420px"><div class="in-img wipe" id="wipe1">
+        <img src="assets/cmp_style.jpg"><div class="top"><img src="assets/cmp_lora.jpg"></div><div class="line"></div>
+        <div class="tagL">“STYLE OF RAVI VARMA”</div><div class="tagR">OUR LORA</div></div></div>
+      <div class="plaque" style="margin:16px auto 0;width:280px"><b>Same caption, re-painted</b><small>prompting alone → a print · our LoRA → oil</small></div>
+    </div>
+    <div class="b" data-at="9" style="flex:1;padding-top:10px">
+      <div style="font:600 17px Cinzel;letter-spacing:.2em;color:var(--gold1)">THE STYLE RULER</div>
+      <div class="numlab">similarity to the 9 unseen paintings (CLIP ViT-L/14)</div>
+      <div class="ruler" style="margin-top:60px">
+        <div class="axis"></div>
+        <div class="tick" style="left:0%">0.70</div><div class="tick" style="left:33.3%">0.75</div><div class="tick" style="left:66.6%">0.80</div><div class="tick" style="left:100%">0.85</div>
+        <div class="mk" data-at="9.6" style="left:20.6%;color:#c4ad98"><div class="t">base SD</div><div class="v">0.731</div><div class="stem"></div><div class="d" style="background:#c4ad98"></div></div>
+        <div class="mk low" data-at="10.4" style="left:60%;color:#e2c7a2"><div class="d" style="background:#e2c7a2"></div><div class="stem"></div><div class="t">“Ravi Varma” prompt</div><div class="v">0.790</div></div>
+        <div class="mk" data-at="11.3" style="left:77.3%;color:var(--gold1)"><div class="t">our LoRA</div><div class="v">0.816</div><div class="stem"></div><div class="d" style="background:var(--gold1)"></div></div>
+        <div class="mk low" data-at="12.3" style="left:92.6%;color:var(--green)"><div class="d" style="background:var(--green)"></div><div class="stem"></div><div class="t">his paintings</div><div class="v">0.839</div></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Room two: the style. A three-megabyte LoRA trained on top of frozen Stable Diffusion 1.5.
+5.5 | Just asking for Ravi Varma gives a calendar print. Our LoRA paints in oil.
+11 | Style similarity rises from 0.73 to 0.82, close to 0.84 for his real paintings.
+  </script>
+</section>
+
+<!-- ===== 6 · PARVA III · THE WORD ===== -->
+<section class="slide" data-p="3" data-spk="Aditya Kalra">
+  <div class="title">From a line <i>to a full brief</i></div>
+  <div class="lede">Qwen2.5-7B fills the same fields as our captions · four paintings are made, a CLIP judge keeps one</div>
+  <div style="display:flex;gap:60px;margin-top:50px;align-items:flex-start">
+    <div class="b" data-at="0.3" style="width:960px">
+      <div class="scroll"><div class="k">THE USER WRITES</div>
+        <div style="font:italic 500 32px 'Cormorant Garamond',serif;margin-top:6px">Arjuna drawing his bow on his chariot while Krishna holds the reins</div>
+        <div class="k" style="margin-top:22px">THE LLM EXPANDS</div>
+        <div style="margin-top:6px;font-size:23px"><span data-type="3.5"><span class="trig">rrvarma oil painting</span>, Arjuna drawing his bow on his chariot while Krishna holds the reins, <b>young man drawing bow, man holding reins, Arjuna standing, legs apart, arm extended, Krishna sitting, leaning forward, chariot on battlefield, sun setting, two-figure composition</b></span></div>
+      </div>
+    </div>
+    <div class="b" data-at="6" style="flex:1">
+      <div style="font:600 17px Cinzel;letter-spacing:.2em;color:var(--gold1)">SCENE MATCH</div>
+      <div class="numlab">CLIP ViT-L/14 · 20 paintings per setting</div>
+      <div class="cols" style="display:flex;align-items:flex-end;gap:30px;height:340px;margin-top:20px">
+        <div style="text-align:center;flex:1"><div class="col" data-h="28.2" style="background:#8f7a6a"></div><div class="v">28.2</div><div class="numlab" style="font-size:18px">as typed</div></div>
+        <div style="text-align:center;flex:1"><div class="col" data-h="28.71" style="background:#b98cd6"></div><div class="v">28.7</div><div class="numlab" style="font-size:18px">LLM expanded</div></div>
+        <div style="text-align:center;flex:1"><div class="col" data-h="30.4" style="background:var(--gold1)"></div><div class="v" style="color:var(--gold1)">30.4</div><div class="numlab" style="font-size:18px">best of four</div></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Room three: the words. Qwen 2.5 expands a short scene into a detailed brief.
+5 | Then four paintings are made and a CLIP judge keeps the best one.
+9.5 | Best-of-four raised scene match from 28.2 to 30.4.
+  </script>
+</section>
+
+<!-- ===== 7 · PARVA IV · THE POSE (morph) ===== -->
+<section class="slide" data-p="4" data-spk="Aditya Kalra">
+  <div class="title">A photo becomes <i>a skeleton</i>, then <i>a painting</i></div>
+  <div class="lede">OpenPose + ControlNet · only the skeleton reaches the model, never the photo's clothes</div>
+  <div style="display:flex;gap:90px;margin-top:36px;align-items:center">
+    <div class="b spot" data-at="0.3" style="position:relative;margin-left:40px">
+      <div class="frame" style="width:380px;height:620px"><div class="in-img morph">
+        <img src="assets/pose_kneeling_side.jpg" style="object-fit:contain;background:#fff">
+        <img src="assets/skel_hanuman.jpg" style="opacity:0;object-fit:contain;background:#000">
+        <img src="assets/out_hanuman.jpg" style="opacity:0">
+      </div></div>
+      <div class="plaque" style="position:absolute;right:-70px;bottom:-30px;width:300px"><b class="morphlab">The pose photo</b><small>Hanuman kneeling in devotion</small></div>
+    </div>
+    <div style="flex:1">
+      <div class="b" data-at="9" style="display:flex;flex-direction:column;gap:22px">
+        <div class="plaque" style="font-size:21px;padding:16px 20px"><b>Character looks</b>gender, age and traditional attire for 31 characters, since SD 1.5 doesn't know who Hanuman or Bharata are</div>
+        <div class="plaque" style="font-size:21px;padding:16px 20px"><b>Pose-aware best of four</b>OpenPose checks every candidate before the CLIP judge picks</div>
+        <div class="plaque" style="font-size:21px;padding:16px 20px"><b>High-resolution refine</b>a 1.5× repaint for cleaner faces and hands</div>
+      </div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | Room four: the pose. OpenPose turns a photo into a skeleton,
+4 | and ControlNet paints a figure that follows it.
+8.5 | We also add each character's look, check every candidate's pose, and refine at high resolution.
+  </script>
+</section>
+
+<!-- ===== 8 · BEFORE / AFTER ===== -->
+<section class="slide" data-p="4" data-spk="Aditya Kalra">
+  <div class="title">Words alone <i>vs</i> words + a pose</div>
+  <div class="lede">Same prompt and seeds · 8 pose photos × 2 seeds, no hand-picking</div>
+  <div style="display:flex;gap:50px;margin-top:36px;align-items:flex-start">
+    <div style="display:flex;gap:24px">
+      <div class="b" data-at="0.3"><div class="frame thin" style="width:250px;height:430px"><div class="in-img wipe" data-wipe="1.2"><img src="assets/no_hanuman.jpg"><div class="top"><img src="assets/cn_hanuman.jpg"></div><div class="line"></div><div class="tagL">TEXT ONLY</div><div class="tagR">+ POSE</div></div></div></div>
+      <div class="b" data-at="0.6"><div class="frame thin" style="width:250px;height:430px"><div class="in-img wipe" data-wipe="1.8"><img src="assets/no_bharata.jpg"><div class="top"><img src="assets/cn_bharata.jpg"></div><div class="line"></div><div class="tagL">TEXT ONLY</div><div class="tagR">+ POSE</div></div></div></div>
+      <div class="b" data-at="0.9"><div class="frame thin" style="width:250px;height:430px"><div class="in-img wipe" data-wipe="2.4"><img src="assets/no_vibhishana.jpg"><div class="top"><img src="assets/cn_vibhishana.jpg"></div><div class="line"></div><div class="tagL">TEXT ONLY</div><div class="tagR">+ POSE</div></div></div></div>
+    </div>
+    <div style="flex:1;padding-top:20px">
+      <div class="b" data-at="4"><div class="numeral"><span style="color:#e59a88">10%</span> → 97%</div><div class="numlab" style="margin-top:10px">of the pose's joints land in the right place (PCK@0.1)</div></div>
+      <div class="b" data-at="8" style="display:flex;gap:50px;margin-top:40px">
+        <div><div class="numeral" style="font-size:76px">no loss</div><div class="numlab">scene match 28.2 → 28.6</div></div>
+        <div><div class="numeral" style="font-size:76px;color:var(--muted)">−0.02</div><div class="numlab">style 0.834 → 0.815</div></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | From words alone, kneeling and folded hands fail, and extra people appear.
+4 | With the pose, accuracy jumps from 10 to 97 percent,
+8 | with no loss in scene match and only a small style cost.
+  </script>
+</section>
+
+<!-- ===== 9 · NOW SHOWING · DEMO 1 ===== -->
+<section class="slide" data-p="5" data-spk="Mayank Bhojwani">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:38px">
+    <div style="font:600 50px 'Cormorant Garamond',serif">Now showing · <i style="color:var(--gold1)">the studio</i></div>
+    <div class="plaque live" style="font:600 18px Cinzel;letter-spacing:.15em">LIVE DEMO · TEXT TO PAINTING</div>
+  </div>
+  <div class="frame" style="position:absolute;left:96px;right:96px;top:170px;bottom:150px"><div class="in-img">
+    <video src="clips/demo_text.mp4" muted playsinline style="object-fit:contain;background:#000"></video>
+    <img class="fallback kb" src="assets/app_fast.jpg" style="object-fit:contain;background:#1a0f0b">
+  </div></div>
+  <script type="text/caps">
+0 | Here is our web app. I type a scene and press Paint.
+6 | Four paintings are made and the best is kept; the prompt and seed are shown below.
+13 | Fast mode gives a quick single-image preview.
+  </script>
+</section>
+
+<!-- ===== 10 · NOW SHOWING · DEMO 2 ===== -->
+<section class="slide" data-p="5" data-spk="Mayank Bhojwani">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:38px">
+    <div style="font:600 50px 'Cormorant Garamond',serif">Now showing · <i style="color:var(--gold1)">pose control</i></div>
+    <div class="plaque live" style="font:600 18px Cinzel;letter-spacing:.15em">LIVE DEMO · PHOTO TO POSE</div>
+  </div>
+  <div class="frame" style="position:absolute;left:96px;right:96px;top:170px;bottom:150px"><div class="in-img">
+    <video src="clips/demo_pose.mp4" muted playsinline style="object-fit:contain;background:#000"></video>
+    <img class="fallback kb" src="assets/app_pose.jpg" style="object-fit:contain;background:#1a0f0b">
+  </div></div>
+  <script type="text/caps">
+0 | Now I upload a photo of someone with folded hands.
+5.5 | The app shows the skeleton and paints Vibhishana in exactly that pose.
+12 | If a photo has no person in it, the app says so instead of guessing.
+18 | All of this runs on a free Colab T4 GPU.
+  </script>
+</section>
+
+<!-- ===== 11 · EPILOGUE (curtains close) ===== -->
+<section class="slide" data-p="6" data-spk="Aditya Kalra" data-close="1">
+  <div class="title">Before you <i>leave the gallery</i></div>
+  <div style="display:flex;gap:60px;margin-top:40px">
+    <div class="b" data-at="0.3" style="width:780px">
+      <div class="plaque" style="font-size:21px;padding:22px 26px;line-height:1.6"><b style="font-size:27px">What we could not do</b>
+        · a small collection (61 paintings, mostly women) gives a warm red cast<br>
+        · SD 1.5 doesn't know the characters: their looks come from our descriptions<br>
+        · front-view kneeling confuses OpenPose
+        <b style="font-size:27px;margin-top:14px">How we handled it</b>
+        · public-domain paintings, credited pose photos, every output labelled AI-generated</div>
+    </div>
+    <div class="b" data-at="5.5" style="flex:1">
+      <div style="font:500 18px Cinzel;letter-spacing:.3em;color:var(--gold1)">THE CURATORS</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 30px;margin-top:18px;font:600 32px 'Cormorant Garamond',serif">
+        <div>Aditya Kalra<div style="font:15px 'IBM Plex Mono';color:var(--muted)">2024A7PS0536G</div></div>
+        <div>Eshan Singhai<div style="font:15px 'IBM Plex Mono';color:var(--muted)">2024ADPS0836G</div></div>
+        <div>Rishit Khanna<div style="font:15px 'IBM Plex Mono';color:var(--muted)">2024A3PS0343G</div></div>
+        <div>Mayank Bhojwani<div style="font:15px 'IBM Plex Mono';color:var(--muted)">2024A7PS0639G</div></div>
+      </div>
+      <div class="plaque" style="margin-top:30px;display:inline-block;font:600 20px 'IBM Plex Mono'">github.com/AdityaKalra2410/next-ravi-varma</div>
+      <div style="font:italic 600 58px 'Cormorant Garamond',serif;color:var(--gold1);margin-top:24px">Thank you.</div>
+    </div>
+  </div>
+  <script type="text/caps">
+0 | What we could not do: a small collection, characters Stable Diffusion doesn't know, and a warm red cast.
+6.5 | Our code, data and evaluations are public on GitHub. Thank you for visiting.
+  </script>
+</section>
+
+<div class="curtain l"></div><div class="curtain r"></div><div id="valance"></div>
+<div id="chap"><span class="num" id="chapnum"></span><span class="orn"></span><span id="chapname"></span></div>
+<div id="parvas"></div>
+<div id="guide"><div class="who"><div class="ic">❧</div><div class="nm" id="spk"></div></div><div id="cap"></div></div>
+</div>
+<div id="hint">Space: play / pause · → or click: next slide · ←: back · R: restart · C: subtitles · H: hide hint</div>
+
+<script>
+const DUR=[12,10,10,22,22,14,14,12,20,24,14];   // seconds per slide (auto-advance); → or a click skips ahead
+const ALL_AT_ONCE=true;                          // false = text builds in one piece at a time
+const PARVA=[["","PRELUDE"],["I","THE COLLECTION"],["II","THE STYLE"],["III","THE WORD"],["IV","THE POSE"],["V","THE STUDIO"],["","EPILOGUE"]];
+const PLAB=["Prelude","I · Collection","II · Style","III · Word","IV · Pose","V · Studio","Epilogue"];
+const stage=document.getElementById("stage");
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`}
+addEventListener("resize",fit);fit();
+const slides=[...document.querySelectorAll(".slide")];
+const caps=slides.map(s=>{const t=s.querySelector('script[type="text/caps"]');return t?t.textContent.trim().split("\n").map(l=>{const i=l.indexOf("|");return[parseFloat(l.slice(0,i)),l.slice(i+1).trim()]}):[]});
+const durs=DUR.slice();
+const pv=document.getElementById("parvas");
+PLAB.forEach((n,i)=>{const d=document.createElement("div");d.className="p";d.style.left=(i/(PLAB.length-1)*100)+"%";d.innerHTML=`<div class="dot"></div><div class="lb">${n}</div>`;pv.appendChild(d)});
+// salon-style wall for Parva I: 24 oil paintings + 4 prints that get stamped
+(function(){const w=document.getElementById("wall");const prints=[3,9,16,22];let k=0,o=0,html="";const cols=7,cw=126,rh=158;
+  for(let i=0;i<28;i++){const r=Math.floor(i/cols),c=i%cols,isP=prints.includes(i);
+    const src=isP?`assets/wall/print_${k++}.jpg`:`assets/wall/oil_${String(o++%21).padStart(2,"0")}.jpg`;
+    const jx=c*cw+((r*37+c*13)%16),jy=r*rh+((c*29+r*11)%12);
+    html+=`<div class="b pop" data-at="${(0.15+i*0.06).toFixed(2)}" style="position:absolute;left:${jx}px;top:${jy}px"><div class="frame thin" style="width:${cw-14}px;height:${rh-16}px"><div class="in-img"><img src="${src}"></div></div>${isP?`<div class="stamp" data-at="${(3.4+prints.indexOf(i)*0.5).toFixed(1)}">PRINT<br>REJECTED</div>`:""}</div>`}
+  w.innerHTML=html})();
+slides.forEach((s,i)=>{const v=s.querySelector("video");if(!v)return;const fb=s.querySelector(".fallback");v.style.display="none";
+  v.addEventListener("loadedmetadata",()=>{v.style.display="block";fb.style.display="none";durs[i]=Math.max(DUR[i],v.duration+0.5)});
+  v.addEventListener("error",()=>{v.style.display="none";fb.style.display="block"});v.load()});
+
+let cur=-1,t0=0,elapsed=0,playing=false,showCaps=true;
+const capEl=document.getElementById("cap"),spkEl=document.getElementById("spk");
+function show(i){
+  slides.forEach((s,k)=>{s.classList.toggle("on",k===i);if(k!==i){s.querySelectorAll(".in,.go").forEach(e=>e.classList.remove("in","go"));s.querySelectorAll("video").forEach(v=>{v.pause();v.currentTime=0})}});
+  cur=i;elapsed=0;t0=performance.now();const s=slides[i],p=+s.dataset.p;
+  document.getElementById("chapnum").textContent=PARVA[p][0];document.getElementById("chapname").textContent=(PARVA[p][0]?"PARVA · ":"")+PARVA[p][1];
+  spkEl.innerHTML=`${s.dataset.spk.toUpperCase()}<small>audio guide · Team The Unsupervised</small>`;
+  s.querySelectorAll("[data-count]").forEach(e=>e.textContent="0");
+  s.querySelectorAll("[data-type]").forEach(e=>{if(!e.dataset.full)e.dataset.full=e.innerHTML;e.innerHTML=""});
+  s.querySelectorAll(".col").forEach(c=>c.style.height="0");
+  const v=s.querySelector("video");if(v&&v.style.display!=="none"&&playing){v.currentTime=0;v.play()}
+}
+function typeHTML(el,f){const tmp=document.createElement("div");tmp.innerHTML=el.dataset.full;let keep=Math.floor(tmp.textContent.length*f);
+  (function walk(n){for(const c of[...n.childNodes]){if(c.nodeType===3){if(keep<=0)c.remove();else if(c.length>keep){c.textContent=c.textContent.slice(0,keep);keep=0}else keep-=c.length}else walk(c)}})(tmp);el.innerHTML=tmp.innerHTML}
+function tick(now){
+  if(playing)elapsed=(now-t0)/1000;const s=slides[cur];
+  if(s){
+    // ALL_AT_ONCE: every text block of a slide appears together (stamps, wipes and the morph still animate)
+    s.querySelectorAll(".b").forEach(e=>{if(ALL_AT_ONCE||elapsed>=parseFloat(e.dataset.at||0))e.classList.add("in")});
+    s.querySelectorAll(".mk").forEach(e=>{if(ALL_AT_ONCE||elapsed>=parseFloat(e.dataset.at||0))e.classList.add("in")});
+    s.querySelectorAll(".stamp").forEach(e=>{if(elapsed>=(ALL_AT_ONCE?1+parseFloat(e.dataset.at)-3.4:parseFloat(e.dataset.at||0)))e.classList.add("in")});
+    s.querySelectorAll("[data-count]").forEach(e=>{const h=e.closest(".b");if(!h.classList.contains("in"))return;const f=ALL_AT_ONCE?1:Math.max(0,Math.min(1,(elapsed-+h.dataset.at)/1.6));e.textContent=Math.round(+e.dataset.count*(1-Math.pow(1-f,3)))});
+    s.querySelectorAll("[data-type]").forEach(e=>{const h=e.closest(".b");if(!h||!h.classList.contains("in"))return;const f=ALL_AT_ONCE?1:Math.max(0,Math.min(1,(elapsed-+h.dataset.at-0.8)/+e.dataset.type));typeHTML(e,f)});
+    s.querySelectorAll(".col").forEach(c=>{if(c.closest(".b").classList.contains("in"))c.style.height=((+c.dataset.h-26)/(31-26)*260)+"px"});
+    const w1=s.querySelector("#wipe1");if(w1&&elapsed>=5)w1.classList.add("go");
+    s.querySelectorAll(".wipe[data-wipe]").forEach(w=>{if(elapsed>=+w.dataset.wipe)w.classList.add("go")});
+    const m=s.querySelector(".morph");if(m){const st=elapsed<3.5?0:elapsed<7?1:2;[...m.children].forEach((x,k)=>x.style.opacity=k===st?1:0);
+      s.querySelector(".morphlab").textContent=["The pose photo","The OpenPose skeleton","The painting"][st]}
+    let c="";for(const[t,x]of caps[cur])if(elapsed>=t)c=x;capEl.textContent=showCaps?c:"";
+    const p=+s.dataset.p;[...pv.children].forEach((d,k)=>{d.classList.toggle("cur",k===p);d.classList.toggle("done",k<p)});
+    const closing=s.dataset.close&&elapsed>durs[cur]-2.6, opening=cur===0&&elapsed<0.6;
+    stage.classList.toggle("open",!(closing||opening));
+    document.getElementById("valance").style.opacity=(cur===0&&elapsed<3)||(s.dataset.close&&elapsed>durs[cur]-3)?1:0;
+    if(playing&&elapsed>=durs[cur]){if(cur<slides.length-1)show(cur+1);else playing=false}
+  }
+  requestAnimationFrame(tick)}
+function play(){if(cur<0)show(0);playing=!playing;if(playing){t0=performance.now()-elapsed*1000;const v=slides[cur].querySelector("video");if(v&&v.style.display!=="none")v.play()}else slides[cur].querySelectorAll("video").forEach(v=>v.pause())}
+let started=false;
+function next(){if(!started){started=true;if(!playing)play();return}   // first click = start on the title slide
+  if(cur<slides.length-1){show(cur+1);if(!playing)play()}}
+addEventListener("click",next);
+addEventListener("keydown",e=>{if(e.code==="Space"){e.preventDefault();started=true;play()}
+  if(e.code==="ArrowRight")next();if(e.code==="ArrowLeft"&&cur>0)show(cur-1);
+  if(e.key==="r"||e.key==="R"){playing=false;started=false;show(0)}
+  if(e.key==="c"||e.key==="C")showCaps=!showCaps;if(e.key==="h"||e.key==="H")document.getElementById("hint").style.display="none"});
+show(0);requestAnimationFrame(tick);
+</script>
+</body>
+</html>
