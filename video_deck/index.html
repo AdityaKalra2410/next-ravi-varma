@@ -361,7 +361,7 @@ document.querySelectorAll(".words").forEach(el=>{let i=0;const walk=n=>{[...n.ch
     h+=`<div class="zoom" data-at="${(1+i*0.05).toFixed(2)}" style="position:relative"><div class="img" style="height:166px;border-radius:8px"><img src="${src}"></div>${isP?`<div class="cross" data-at="${(7+prints.indexOf(i)*0.25).toFixed(2)}"></div>`:""}</div>`}
   g.innerHTML=h})();
 // closing collage of generated paintings
-(function(){const c=document.getElementById("collage");const names=["damayanti","sita","radha","saraswati","shakuntala","chitrangada","satyabhama","draupadi","shakuntala_seated","damayanti"];
+(function(){const c=document.getElementById("collage");const names=["damayanti","sita","radha","saraswati","shakuntala","chitrangada","satyabhama","draupadi","shakuntala_seated","sita"];
   const fb=["out_vibhishana","out_hanuman","out_bhima","out_vishwamitra","out_bharata","out_arjuna","out_valmiki","out_bhagiratha","cmp_lora","cmp2_lora"];
   c.innerHTML=names.map((n,i)=>`<div style="overflow:hidden"><img data-try="showcase/${n}_s${i<5?0:1}.jpg|showcase/${n}_s0.jpg|${fb[i]}.jpg" style="width:100%;height:540px;object-fit:cover;display:block"></div>`).join("");
   c.querySelectorAll("img[data-try]").forEach(img=>{const list=img.dataset.try.split("|");let k=0;const go=()=>{if(k<list.length)img.src="assets/"+list[k++]};img.addEventListener("error",go);go()})})();
